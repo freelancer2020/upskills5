@@ -1,0 +1,10 @@
+.profile-logo {
+  display: flex;
+  align-items: center;
+}
+
+.profile-icon {
+  width: 3rem;
+  height: 3rem;
+  margin-left: 1rem;
+}

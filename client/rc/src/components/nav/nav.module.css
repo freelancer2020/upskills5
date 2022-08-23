@@ -1,0 +1,19 @@
+.nav-list {
+  display: flex;
+  list-style: none;
+  width: fit-content;
+  box-sizing: border-box;
+}
+
+.nav-row {
+  display: flex;
+}
+
+@media only screen and (max-width: 500px) {
+  .nav-list {
+    display: none;
+  }
+  .nav-row {
+    display: flex;
+  }
+}

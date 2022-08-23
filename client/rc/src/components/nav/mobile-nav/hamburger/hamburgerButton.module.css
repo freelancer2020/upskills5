@@ -1,0 +1,19 @@
+.hamburger-button {
+  width: fit-content;
+  height: fit-content;
+  padding: 0px;
+  border: none;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
+  display: none;
+}
+
+@media only screen and (max-width: 500px) {
+  .hamburger-button {
+    display: flex;
+  }
+}

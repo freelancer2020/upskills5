@@ -1,0 +1,27 @@
+li {
+  margin-right: 1rem;
+  font-size: large;
+}
+.nav-link {
+  text-decoration: none;
+  color: #212121;
+  font-family: "Alegreya Sans";
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.selected {
+  color: rgb(0, 0, 238);
+  font-weight: bold;
+  font-size: 1.2rem;
+  font-family: "Alegreya Sans";
+}
+
+@media only screen and (max-width: 500px) {
+  .nav-link {
+    font-size: 2.5rem;
+  }
+  .selected {
+    font-size: 2.5rem;
+  }
+}

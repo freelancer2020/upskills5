@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { mobileNavSlice } from "./mobileNavState";
+import { navState } from "./navPathState";
 const store = configureStore({
   reducer: {
-    mobileNav: mobileNavSlice.reducer
+    mobileNav: mobileNavSlice.reducer,
+    navState: navState.reducer,
   },
 });
 

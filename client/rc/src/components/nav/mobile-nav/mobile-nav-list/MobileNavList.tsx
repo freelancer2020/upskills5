@@ -6,7 +6,7 @@ import styles from "./mobile-nav-list.module.css";
 
 const MobileNavList: React.FC = () => {
   return (
-    <div className={styles["mobile-list-container"]}>
+    <div id="mobile-nav" className={styles["mobile-list-container"]}>
       <ul className={styles["mobile-list"]}>
         {navigationItems.map((item, index) => (
           <NavItem children={item.nav} to={item.path} key={index.toString()} />

@@ -4,7 +4,7 @@ import HamburgerButton from "./mobile-nav/hamburger/HamburgerButton";
 import styles from "./nav.module.css";
 
 export const navigationItems = [
-  { nav: "Insurance", path: "insurance" },
+  { nav: "Insurance", path: "/" },
   { nav: "About us", path: "about-us" },
   { nav: "Claim report", path: "claim-report" },
   { nav: "Contact", path: "contact" },

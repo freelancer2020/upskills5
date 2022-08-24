@@ -1,5 +1,6 @@
 .header {
   display: flex;
+  height: 4rem;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
@@ -8,11 +9,49 @@
   width: 100vw;
 }
 
+section,
+article {
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 14.5rem;
+}
+
+.travel-insurance {
+  background-color: #f8f9f9;
+}
+
 @media only screen and (max-width: 500px) {
   .header {
     box-sizing: border-box;
     padding: 0.2rem 2rem 0.2rem 2rem;
     display: flex;
+    width: 100vw;
+  }
+}
+
+@media only screen and (min-width: 1536px) {
+  .header {
+    box-sizing: border-box;
+    padding: 0.2rem 15rem 0.2rem 15rem;
+    display: flex;
+    width: 100vw;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  section,
+  article {
+    box-sizing: border-box;
+    padding: 4rem 2rem 4rem 2rem;
+    width: 100vw;
+  }
+}
+
+@media only screen and (min-width: 1536px) {
+  section,
+  article {
+    box-sizing: border-box;
+    padding: 4rem 15rem 4rem 15rem;
     width: 100vw;
   }
 }

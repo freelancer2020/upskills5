@@ -2,7 +2,8 @@ a:hover {
   text-decoration: underline;
 }
 
-h1 {
+h1,
+h2, p {
   font-family: "Alegreya Sans";
+  font-weight: bold;
 }
-

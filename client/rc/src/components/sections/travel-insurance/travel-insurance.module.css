@@ -1,0 +1,33 @@
+.travel-insurance-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.travel-ins-header {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.ins-p {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #212121;
+}
+
+.ins-button {
+  width: 200px;
+  height: 40px;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  background-color: #2b2b2b;
+}
+
+/* @media only screen and (max-width: 500px) {
+
+} */

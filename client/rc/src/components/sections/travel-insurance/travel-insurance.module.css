@@ -1,14 +1,17 @@
 .travel-insurance-container {
+  height: 100%;
+  width: 100%;
+  background-color: #f8f9f9;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
-  width: 100%;
+  padding: 14.5rem;
 }
 
 .travel-ins-header {
   font-size: 2rem;
   font-weight: bold;
+  margin-top: 0px;
 }
 
 .ins-p {
@@ -26,8 +29,16 @@
   cursor: pointer;
   margin-top: 1.5rem;
   background-color: #2b2b2b;
+  border: none;
+  box-shadow: 0px 0px 2px 2px lightgray;
 }
 
-/* @media only screen and (max-width: 500px) {
+.ins-button:active {
+  box-shadow: 0px 0px 0px 0px #fff;
+}
 
-} */
+@media only screen and (max-width: 500px) {
+  .travel-insurance-container {
+    width: fit-content;
+  }
+}

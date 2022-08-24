@@ -1,0 +1,33 @@
+.intv-container {
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 6rem;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0px;
+}
+
+.intv-block {
+  background-color: #ffffff;
+  width: 50%;
+  box-sizing: border-box;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (max-width: 500px) {
+  .intv-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .intv-block {
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+}

@@ -23,13 +23,13 @@ const Layout: React.FC = () => {
         <Header />
       </header>
       <main>
-        <section className={styles["travel-insurance"]}>
-          <TravelInsurance />
-        </section>
         <section
           aria-labelledby="Travel-Insurance"
-          className={styles["international-visitor"]}
-        ></section>
+          className={styles["travel-insurance"]}
+        >
+          <TravelInsurance />
+        </section>
+
         <section className={styles["travel-topics"]}>
           <InternationalVisitor
             reverse={reverse}

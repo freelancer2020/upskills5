@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/header/Header";
 //section components
 import TravelInsurance from "../../components/sections/travel-insurance/TravelInsurance";
@@ -8,9 +8,15 @@ import Image from "../../components/blocks/Image";
 import Content from "../../components/blocks/Content";
 // assets
 import visitor from "../../assets/international-visitor.jpg";
+import travelTopics from "../../assets/travel-topics.jpg";
 import styles from "./layout.module.css";
 
 const Layout: React.FC = () => {
+  const [reverse, setReverse] = useState<boolean>(false);
+  useEffect(() => {
+    const availWidth = window.screen.availWidth;
+    availWidth <= 500 ? setReverse(true) : setReverse(false);
+  }, []);
   return (
     <React.Fragment>
       <header className={styles["header"]}>
@@ -26,15 +32,39 @@ const Layout: React.FC = () => {
         ></section>
         <section className={styles["travel-topics"]}>
           <InternationalVisitor
-            reverse={false}
-            image={<Image src={visitor} alt="graphic visitor image" />}
+            reverse={reverse}
+            image={<Image src={visitor} alt="" />}
             content={
               <Content
                 header="Insurance for International Visitor"
                 children={
-                  <p>
+                  <React.Fragment>
+                    <p tabIndex={0} className={styles["section-paragraph"]}>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                    </p>
+                    <ul>
+                      <li tabIndex={0}>List item #1</li>
+                      <li tabIndex={0}>List item #2</li>
+                      <li tabIndex={0}>List item #3</li>
+                    </ul>
+                  </React.Fragment>
+                }
+              />
+            }
+          />
+          <InternationalVisitor
+            reverse={true}
+            image={<Image src={travelTopics} alt="" />}
+            content={
+              <Content
+                header="Insurance for International Visitor"
+                children={
+                  <p tabIndex={0} className={styles["section-paragraph"]}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
+                    do eiusmod tempor incididunt ut labore et dolore magna.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna.
                   </p>
                 }
               />

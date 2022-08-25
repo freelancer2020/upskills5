@@ -11,6 +11,9 @@
 
 p {
   font-size: 1.2rem;
+  line-height: 1.8em;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
 }
 
 section,
@@ -21,6 +24,13 @@ article {
   align-items: center;
   justify-content: center;
 }
+
+.travel-topics {
+  display: flex;
+  flex-direction: column;
+}
+
+
 
 @media only screen and (max-width: 500px) {
   .header {

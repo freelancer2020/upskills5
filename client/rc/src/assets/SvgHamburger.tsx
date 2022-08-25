@@ -9,9 +9,9 @@ const SvgLines: React.FC = () => {
       width="35"
       className={styles["svg-container"]}
     >
-      <line x1="5" y1="8" y2="8" x2="30" stroke="black" stroke-width={3} />
-      <line x1="5" y1="16" y2="16" x2="30" stroke="black" stroke-width={3} />
-      <line x1="5" y1="24" y2="24" x2="30" stroke="black" stroke-width={3} />
+      <line x1="5" y1="8" y2="8" x2="30" stroke="black" strokeWidth={3} />
+      <line x1="5" y1="16" y2="16" x2="30" stroke="black" strokeWidth={3} />
+      <line x1="5" y1="24" y2="24" x2="30" stroke="black" strokeWidth={3} />
     </svg>
   );
 };

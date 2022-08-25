@@ -9,7 +9,7 @@ interface ContentProps {
 const Content: React.FC<ContentProps> = (props) => {
   return (
     <div>
-      <h2 className={styles["intv-header"]}>{props.header}</h2>
+      <h2 tabIndex={0} className={styles["intv-header"]}>{props.header}</h2>
       {props.children}
     </div>
   );

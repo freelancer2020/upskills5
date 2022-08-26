@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./travel-topics.module.css";
 
 interface TravelTopicsProps {
-  children: JSX.Element;
+  children: JSX.Element[];
 }
 
 const TravelTopics: React.FC<TravelTopicsProps> = (props) => {

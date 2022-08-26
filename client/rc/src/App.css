@@ -3,9 +3,15 @@ a:hover {
 }
 
 h1,
-h2, p, li {
+h2,
+p,
+li {
   font-family: "Alegreya Sans";
   font-weight: bold;
   line-height: 1.5em;
-  letter-spacing: .12rem;
+  letter-spacing: 0.12rem;
+}
+
+h2 {
+  text-align: center;
 }

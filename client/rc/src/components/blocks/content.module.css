@@ -2,4 +2,9 @@
   font-size: 2rem;
   font-weight: bold;
   margin-top: 0px;
+  box-sizing: border-box;
+}
+
+.intv-content {
+  padding: 0 4rem 0 4rem;
 }

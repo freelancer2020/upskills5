@@ -16,6 +16,7 @@ import renting from "../../assets/renting.jpg";
 import trends from "../../assets/trends.jpg";
 import popular from "../../assets/popular.jpg";
 import gear from "../../assets/gear.jpg";
+import profilePic from "../../assets/profilePic.png";
 
 const arr = [
   {
@@ -111,7 +112,29 @@ const Layout: React.FC = () => {
             ))}
           </TravelTopics>
         </section>
-        <article className={styles["posts"]}></article>
+        <article aria-labelledby="article-header" className={styles["posts"]}>
+          <div className={styles["article-container"]}>
+            <h2
+              tabIndex={0}
+              id="article-header"
+              className={styles["article-text"]}
+            >
+              {" "}
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt"
+            </h2>
+            <div
+              aria-label="Dopnald Duck, CEO of Disney and his profle picture"
+              tabIndex={0}
+              className={styles["artilce-profile"]}
+            >
+              <img className={styles["profile-pic"]} src={profilePic} alt="" />
+              <p className={styles["article-profile-title"]}>
+                Donald Duck, CEO Disney
+              </p>
+            </div>
+          </div>
+        </article>
         <section className={styles["contact"]}></section>
       </main>
       <footer></footer>

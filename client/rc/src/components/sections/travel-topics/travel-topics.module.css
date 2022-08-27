@@ -8,7 +8,7 @@
 
 .topics-row {
   display: flex;
-  padding: 0 6rem 0 6rem;
+  padding: 0 10rem 0 10rem;
 }
 
 @media only screen and (max-width: 500px) {

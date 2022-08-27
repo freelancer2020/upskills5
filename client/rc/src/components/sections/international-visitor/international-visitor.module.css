@@ -1,7 +1,7 @@
 .intv-container {
   width: 100vw;
   box-sizing: border-box;
-  padding: 0rem 24.5rem 0rem 24.5rem;
+  padding: 0rem 12.5rem 0rem 12.5rem;
   display: flex;
   justify-content: space-between;
   margin-top: 0px;
@@ -13,6 +13,12 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
+}
+
+@media only screen and (min-width: 1536px) {
+  .intv-container {
+    padding: 0rem 24.5rem 0rem 24.5rem;
+  }
 }
 
 @media only screen and (max-width: 500px) {

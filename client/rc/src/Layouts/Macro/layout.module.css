@@ -64,12 +64,22 @@ article {
   width: fit-content !important;
 }
 
+@media only screen and (min-width: 1200px) {
+  .posts {
+    width: 100vw;
+    padding: 0;
+  }
+}
 @media only screen and (min-width: 1536px) {
   .header {
     box-sizing: border-box;
     padding: 0.2rem 15rem 0.2rem 15rem;
     display: flex;
     width: 100vw;
+  }
+  .posts {
+    width: 100vw;
+    padding: 14rem;
   }
 }
 
@@ -96,7 +106,7 @@ article {
   .posts {
     padding: 1rem;
   }
-  .article-container  {
+  .article-container {
     width: 100vw;
   }
   ul {

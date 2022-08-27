@@ -14,12 +14,14 @@ const MobileNavList: React.FC = () => {
     dispatch(mobileNavAction.toggleNavState());
   };
   return (
-    <div id="mobile-nav" className={styles["mobile-list-container"]}>
+    <div
+      id="mobile-nav"
+      className={styles["mobile-list-container"]}
+      onClick={handleNavState}
+    >
       <ul className={styles["mobile-list"]}>
         {navigationItems.map((item, index) => (
-          <div onClick={handleNavState} key={index.toString()}>
-            <NavItem children={item.nav} to={item.path} />
-          </div>
+          <NavItem children={item.nav} to={item.path} key={index.toString()} />
         ))}
       </ul>
     </div>

@@ -8,6 +8,7 @@ import styles from "./nav-item.module.css";
 interface NavItemProps {
   to: string;
   children: React.ReactNode;
+  click?: () => {};
 }
 
 const NavItem: React.FC<NavItemProps> = (props) => {

@@ -83,7 +83,6 @@ article {
   section,
   article {
     box-sizing: border-box;
-    padding: 0rem 2rem 0rem 2rem;
     width: 100vw;
   }
   .artilce-profile {
@@ -99,6 +98,9 @@ article {
   }
   .article-container  {
     width: 100vw;
+  }
+  ul {
+    list-style-type: none;
   }
 }
 

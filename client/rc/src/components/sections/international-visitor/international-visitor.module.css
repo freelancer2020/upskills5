@@ -21,11 +21,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    padding: 1rem;
   }
 
   .intv-block {
     width: 100vw;
     text-align: center;
-    padding: 1rem;
+    /* padding: 1rem; */
   }
 }

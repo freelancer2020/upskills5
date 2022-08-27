@@ -39,6 +39,7 @@
 
 @media only screen and (max-width: 500px) {
   .travel-insurance-container {
-    width: fit-content;
+    width: 100vw;
+    padding: 4rem 1rem 4rem 1rem;
   }
 }

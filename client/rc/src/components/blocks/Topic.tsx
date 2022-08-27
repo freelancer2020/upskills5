@@ -10,8 +10,13 @@ const Topic: React.FC<TopicProps> = (props) => {
   return (
     <div className={styles["topic-container"]}>
       <figure>
-        <img className={styles["img"]} src={props.src} alt={props.alt} />
-        <figcaption>{props.caption}</figcaption>
+        <img
+          tabIndex={0}
+          className={styles["img"]}
+          src={props.src}
+          alt={props.alt}
+        />
+        <figcaption tabIndex={0}>{props.caption}</figcaption>
       </figure>
     </div>
   );

@@ -8,7 +8,7 @@ interface TravelTopicsProps {
 const TravelTopics: React.FC<TravelTopicsProps> = (props) => {
   return (
     <div className={styles["travel-topics-container"]}>
-      <h2>Explore Our Travel Topics</h2>
+      <h2 tabIndex={0}>Explore Our Travel Topics</h2>
       <div className={styles["topics-row"]}>{props.children}</div>
     </div>
   );

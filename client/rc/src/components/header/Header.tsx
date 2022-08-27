@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store/appStore";
 import navStateActions from "../../store/navPathState";
+import mobileNavAction from "../../store/mobileNavState";
 import { NavLink } from "react-router-dom";
 import Nav from "../nav/Nav";
 import profilePic from "../../assets/profilePic.png";
@@ -11,10 +12,21 @@ const Header: React.FC = () => {
   const pathState = useSelector<RootState, boolean>(
     (state) => state.navState.isOnPath
   );
+
+  const mobileListState = useSelector<RootState, boolean>(
+    (state) => state.mobileNav.toggle
+  );
   const dispatch = useDispatch<AppDispatch>();
 
   const homePathHandler = () => {
-    return pathState ? dispatch(navStateActions.backHome()) : null;
+    if (pathState) {
+      dispatch(navStateActions.backHome());
+    }
+
+    if (window.screen.availWidth <= 500 && mobileListState) {
+      dispatch(navStateActions.backHome());
+      dispatch(mobileNavAction.toggleNavState());
+    }
   };
   return (
     <React.Fragment>

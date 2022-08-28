@@ -4,6 +4,7 @@ import Header from "../../components/header/Header";
 import TravelInsurance from "../../components/sections/travel-insurance/TravelInsurance";
 import InternationalVisitor from "../../components/sections/international-visitor/InternationalVisitor";
 import TravelTopics from "../../components/sections/travel-topics/TravelTopics";
+import Contacts from "../../components/sections/contacts/Contacts";
 //blocks
 import Image from "../../components/blocks/Image";
 import Content from "../../components/blocks/Content";
@@ -135,7 +136,9 @@ const Layout: React.FC = () => {
             </div>
           </div>
         </article>
-        <section className={styles["contact"]}></section>
+        <section className={styles["contact"]}>
+          <Contacts />
+        </section>
       </main>
       <footer></footer>
     </React.Fragment>

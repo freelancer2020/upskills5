@@ -1,0 +1,63 @@
+.contacts-container {
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 4rem 10rem 4rem 10rem;
+}
+
+/* .contact-text {
+  background-color: saddlebrown;
+} */
+
+.contact-buttons {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.btn-contact {
+  width: 12rem;
+  height: 2.8rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.5rem;
+}
+.btn-call-us {
+  background-color: #ffffff;
+  border: 2px solid #212121;
+  font-weight: bold;
+}
+.btn-message {
+  margin-left: 1rem;
+  background-color: #212121;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.contact-header {
+  margin-top: 0;
+}
+
+@media only screen and (max-width: 500px) {
+  .contacts-container {
+    box-sizing: border-box;
+    padding: 1rem;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+  }
+  .contact-buttons {
+    width: 100vw;
+    flex-direction: column;
+    align-items: center;
+  }
+  .btn-message {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+  .contact-text {
+    width: 100vw;
+    text-align: center;
+  }
+}

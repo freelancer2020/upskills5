@@ -18,6 +18,7 @@ const HamburgerButton: React.FC = () => {
 
   return (
     <button
+      aria-haspopup={true}
       aria-controls="mobile-nav"
       aria-expanded={menuToggleState}
       onClick={handleMenuToggle}

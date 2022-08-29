@@ -19,12 +19,15 @@ const FooterNavList: React.FC<FooterNavProps> = (props) => {
       </li>
       {props.navList.map((item) => (
         <a
+          role="listitem"
           className={styles["footer-nav-link"]}
           key={item.id.toString()}
           href="/"
           aria-label={`Link to ${item.name}`}
         >
-          <li className={styles["list-item"]}>{item.name}</li>
+          <li role="none" className={styles["list-item"]}>
+            {item.name}
+          </li>
         </a>
       ))}
     </ul>

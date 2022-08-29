@@ -5,10 +5,14 @@ import TravelInsurance from "../../components/sections/travel-insurance/TravelIn
 import InternationalVisitor from "../../components/sections/international-visitor/InternationalVisitor";
 import TravelTopics from "../../components/sections/travel-topics/TravelTopics";
 import Contacts from "../../components/sections/contacts/Contacts";
+//footer
+import Footer from "../../components/footer/Footer";
 //blocks
 import Image from "../../components/blocks/Image";
 import Content from "../../components/blocks/Content";
 import Topic from "../../components/blocks/Topic";
+import FooterNavList from "../../components/blocks/FooterNavList";
+import FootrNavHeader from "../../components/blocks/FooterNavHeader";
 // assets
 import visitor from "../../assets/international-visitor.jpg";
 import travelTopics from "../../assets/travel-topics.jpg";
@@ -40,6 +44,28 @@ const arr = [
     altr: "Travel Gear for Safe Travels in 2021",
     caption: "Travel Gear ",
   },
+];
+
+const footerNavAboutUs = [
+  { name: "Newsroom", id: 1 },
+  { name: "Careers", id: 2 },
+  { name: "Our Story", id: 3 },
+  { name: "Customer Stories", id: 4 },
+];
+
+const footerNavProducts = [
+  { name: "Vacation / Holiday", id: 1 },
+  { name: "Student / Scholar", id: 2 },
+  { name: "Mission ", id: 3 },
+  { name: "Marine Captain / Crew", id: 4 },
+  { name: "Employer / Business Traveles", id: 5 },
+];
+
+const footerNavMembers = [
+  { name: "Forms Library", id: 1 },
+  { name: "Find a Doctor", id: 2 },
+  { name: "Renew", id: 3 },
+  { name: "Claims Center", id: 4 },
 ];
 const Layout: React.FC = () => {
   const [reverse, setReverse] = useState<boolean>(false);
@@ -140,7 +166,16 @@ const Layout: React.FC = () => {
           <Contacts />
         </section>
       </main>
-      <footer></footer>
+      <footer>
+        <Footer
+          footerHeader={<FootrNavHeader />}
+          footerNav={[
+            <FooterNavList navHeader="About Us" navList={footerNavAboutUs} />,
+            <FooterNavList navHeader="Products" navList={footerNavProducts} />,
+            <FooterNavList navHeader="Members" navList={footerNavMembers} />,
+          ]}
+        />
+      </footer>
     </React.Fragment>
   );
 };

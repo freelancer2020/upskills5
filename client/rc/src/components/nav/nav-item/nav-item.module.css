@@ -1,7 +1,7 @@
-li {
+ .nav-item {
   margin-right: 1rem;
   font-size: large;
-}
+} 
 .nav-link {
   text-decoration: none;
   color: #212121;
@@ -19,9 +19,10 @@ li {
 
 @media only screen and (max-width: 500px) {
   .nav-link {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    line-height: 1.5em;
   }
   .selected {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
   }
 }

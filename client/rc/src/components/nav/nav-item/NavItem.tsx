@@ -31,7 +31,7 @@ const NavItem: React.FC<NavItemProps> = (props) => {
   };
 
   return (
-    <li>
+    <li className={styles["nav-item"]}>
       <NavLink
         onClick={(e) => changePathState(e, props.to)}
         className={({ isActive }) => handleStyleAndSelect(isActive)}

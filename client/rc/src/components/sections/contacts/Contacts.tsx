@@ -8,10 +8,13 @@ const Contacts: React.FC = () => {
         <h2 className={styles["contact-header"]} tabIndex={0}>
           Are you Looking for an Insurance?
         </h2>
-        <h3 tabIndex={0}>Contact us to order now</h3>
+        <h3 id="contact-us-now" tabIndex={0}>
+          Contact us to order now
+        </h3>
       </div>
       <div className={styles["contact-buttons"]}>
         <button
+          aria-describedby="contact-us-now"
           type="button"
           tabIndex={0}
           className={`${styles["btn-contact"]} ${styles["btn-call-us"]}`}
@@ -19,6 +22,7 @@ const Contacts: React.FC = () => {
           Call Us
         </button>
         <button
+          aria-describedby="contact-us"
           type="button"
           tabIndex={0}
           className={`${styles["btn-contact"]} ${styles["btn-message"]}`}

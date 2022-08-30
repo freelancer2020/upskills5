@@ -87,13 +87,17 @@ const Layout: React.FC = () => {
               element={
                 <React.Fragment>
                   <section
+                    id="travel-insurance"
                     aria-labelledby="Travel-Insurance"
                     className={styles["travel-insurance"]}
                   >
                     <TravelInsurance />
                   </section>
 
-                  <section className={styles["travel-topics"]}>
+                  <section
+                    id="international-visitor"
+                    className={styles["travel-topics"]}
+                  >
                     <InternationalVisitor
                       reverse={reverse}
                       image={<Image src={visitor} alt="" />}
@@ -142,7 +146,7 @@ const Layout: React.FC = () => {
                       }
                     />
                   </section>
-                  <section>
+                  <section id="travel-topics">
                     <TravelTopics>
                       {arr.map((item, index) => (
                         <Topic
@@ -155,6 +159,7 @@ const Layout: React.FC = () => {
                     </TravelTopics>
                   </section>
                   <article
+                    id="posts"
                     aria-labelledby="article-header"
                     className={styles["posts"]}
                   >
@@ -184,7 +189,7 @@ const Layout: React.FC = () => {
                       </div>
                     </div>
                   </article>
-                  <section className={styles["contact"]}>
+                  <section id="contact-us" className={styles["contact"]}>
                     <Contacts />
                   </section>
                 </React.Fragment>
@@ -192,7 +197,7 @@ const Layout: React.FC = () => {
             />
           </Routes>
         </main>
-        <footer>
+        <footer id="about-us">
           <Footer
             footerHeader={<FootrNavHeader />}
             footerNav={[

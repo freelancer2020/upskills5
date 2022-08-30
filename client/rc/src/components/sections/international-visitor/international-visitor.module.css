@@ -1,7 +1,7 @@
 .intv-container {
   width: 100vw;
   box-sizing: border-box;
-  padding: 0rem 12.5rem 0rem 12.5rem;
+  padding: 4rem 12.5rem 4rem 12.5rem;
   display: flex;
   justify-content: space-between;
   margin-top: 0px;
@@ -34,6 +34,5 @@
   .intv-block {
     width: 100vw;
     text-align: center;
-    /* padding: 1rem; */
   }
 }

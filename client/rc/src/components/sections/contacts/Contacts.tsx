@@ -8,7 +8,7 @@ const Contacts: React.FC = () => {
         <h2 className={styles["contact-header"]} tabIndex={0}>
           Are you Looking for an Insurance?
         </h2>
-        <p tabIndex={0}>Contact us to order now</p>
+        <h3 tabIndex={0}>Contact us to order now</h3>
       </div>
       <div className={styles["contact-buttons"]}>
         <button

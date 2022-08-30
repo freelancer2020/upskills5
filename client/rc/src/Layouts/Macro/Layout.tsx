@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import Header from "../../components/header/Header";
 //section components
 import TravelInsurance from "../../components/sections/travel-insurance/TravelInsurance";
@@ -75,107 +76,136 @@ const Layout: React.FC = () => {
   }, []);
   return (
     <React.Fragment>
-      <header className={styles["header"]}>
-        <Header />
-      </header>
-      <main>
-        <section
-          aria-labelledby="Travel-Insurance"
-          className={styles["travel-insurance"]}
-        >
-          <TravelInsurance />
-        </section>
+      <div className={styles["layout"]}>
+        <header className={styles["header"]}>
+          <Header />
+        </header>
+        <main>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <React.Fragment>
+                  <section
+                    aria-labelledby="Travel-Insurance"
+                    className={styles["travel-insurance"]}
+                  >
+                    <TravelInsurance />
+                  </section>
 
-        <section className={styles["travel-topics"]}>
-          <InternationalVisitor
-            reverse={reverse}
-            image={<Image src={visitor} alt="" />}
-            content={
-              <Content
-                header="Insurance for International Visitor"
-                children={
-                  <React.Fragment>
-                    <p tabIndex={0} className={styles["section-paragraph"]}>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                    </p>
-                    <ul>
-                      <li tabIndex={0}>List item #1</li>
-                      <li tabIndex={0}>List item #2</li>
-                      <li tabIndex={0}>List item #3</li>
-                    </ul>
-                  </React.Fragment>
-                }
-              />
-            }
+                  <section className={styles["travel-topics"]}>
+                    <InternationalVisitor
+                      reverse={reverse}
+                      image={<Image src={visitor} alt="" />}
+                      content={
+                        <Content
+                          header="Insurance for International Visitor"
+                          children={
+                            <React.Fragment>
+                              <p
+                                tabIndex={0}
+                                className={styles["section-paragraph"]}
+                              >
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna
+                              </p>
+                              <ul>
+                                <li tabIndex={0}>List item #1</li>
+                                <li tabIndex={0}>List item #2</li>
+                                <li tabIndex={0}>List item #3</li>
+                              </ul>
+                            </React.Fragment>
+                          }
+                        />
+                      }
+                    />
+                    <InternationalVisitor
+                      reverse={true}
+                      image={<Image src={travelTopics} alt="" />}
+                      content={
+                        <Content
+                          header="Insurance for International Visitor"
+                          children={
+                            <p
+                              tabIndex={0}
+                              className={styles["section-paragraph"]}
+                            >
+                              Lorem ipsum dolor sit amet, consectetur adipiscing
+                              elit, sed do eiusmod tempor incididunt ut labore
+                              et dolore magna. Lorem ipsum dolor sit amet,
+                              consectetur adipiscing elit, sed do eiusmod tempor
+                              incididunt ut labore et dolore magna.
+                            </p>
+                          }
+                        />
+                      }
+                    />
+                  </section>
+                  <section>
+                    <TravelTopics>
+                      {arr.map((item, index) => (
+                        <Topic
+                          src={item.src}
+                          alt={item.altr}
+                          caption={item.caption}
+                          key={index.toString()}
+                        />
+                      ))}
+                    </TravelTopics>
+                  </section>
+                  <article
+                    aria-labelledby="article-header"
+                    className={styles["posts"]}
+                  >
+                    <div className={styles["article-container"]}>
+                      <h2
+                        tabIndex={0}
+                        id="article-header"
+                        className={styles["article-text"]}
+                      >
+                        {" "}
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit, sed do eiusmod tempor incididunt"
+                      </h2>
+                      <div
+                        aria-label="Dopnald Duck, CEO of Disney and his profle picture"
+                        tabIndex={0}
+                        className={styles["artilce-profile"]}
+                      >
+                        <img
+                          className={styles["profile-pic"]}
+                          src={profilePic}
+                          alt=""
+                        />
+                        <p className={styles["article-profile-title"]}>
+                          Donald Duck, CEO Disney
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                  <section className={styles["contact"]}>
+                    <Contacts />
+                  </section>
+                </React.Fragment>
+              }
+            />
+          </Routes>
+        </main>
+        <footer>
+          <Footer
+            footerHeader={<FootrNavHeader />}
+            footerNav={[
+              <FooterNavList navHeader="About Us" navList={footerNavAboutUs} />,
+              <FooterNavList
+                navHeader="Products"
+                navList={footerNavProducts}
+              />,
+              <FooterNavList navHeader="Members" navList={footerNavMembers} />,
+            ]}
           />
-          <InternationalVisitor
-            reverse={true}
-            image={<Image src={travelTopics} alt="" />}
-            content={
-              <Content
-                header="Insurance for International Visitor"
-                children={
-                  <p tabIndex={0} className={styles["section-paragraph"]}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna.
-                  </p>
-                }
-              />
-            }
-          />
-        </section>
-        <section>
-          <TravelTopics>
-            {arr.map((item, index) => (
-              <Topic
-                src={item.src}
-                alt={item.altr}
-                caption={item.caption}
-                key={index.toString()}
-              />
-            ))}
-          </TravelTopics>
-        </section>
-        <article aria-labelledby="article-header" className={styles["posts"]}>
-          <div className={styles["article-container"]}>
-            <h2
-              tabIndex={0}
-              id="article-header"
-              className={styles["article-text"]}
-            >
-              {" "}
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt"
-            </h2>
-            <div
-              aria-label="Dopnald Duck, CEO of Disney and his profle picture"
-              tabIndex={0}
-              className={styles["artilce-profile"]}
-            >
-              <img className={styles["profile-pic"]} src={profilePic} alt="" />
-              <p className={styles["article-profile-title"]}>
-                Donald Duck, CEO Disney
-              </p>
-            </div>
-          </div>
-        </article>
-        <section className={styles["contact"]}>
-          <Contacts />
-        </section>
-      </main>
-      <footer>
-        <Footer
-          footerHeader={<FootrNavHeader />}
-          footerNav={[
-            <FooterNavList navHeader="About Us" navList={footerNavAboutUs} />,
-            <FooterNavList navHeader="Products" navList={footerNavProducts} />,
-            <FooterNavList navHeader="Members" navList={footerNavMembers} />,
-          ]}
-        />
-      </footer>
+        </footer>
+      </div>
     </React.Fragment>
   );
 };

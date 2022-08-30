@@ -1,12 +1,14 @@
 .header {
   display: flex;
+  align-items: center;
   height: 4rem;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
-  padding: 0.5rem 6rem 0.5rem 6rem;
+  padding: 0.8rem 6rem 0.8rem 6rem;
   background-color: #fff;
   width: 100vw;
+  background-color: seagreen;
 }
 
 .layout {

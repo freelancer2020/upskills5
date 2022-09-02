@@ -31,7 +31,7 @@ export const claimSlice = createSlice({
       }
       if (step === 3) {
         state.done = true;
-        state.isReturn = true;
+        state.isReturn = false;
       }
     },
 
@@ -53,7 +53,14 @@ export const claimSlice = createSlice({
       state.step = step;
       if (step === 3) {
         state.done = true;
-      } else {
+        state.isReturn = true;
+      }
+      if (step === 2) {
+        state.isReturn = true;
+        state.done = false;
+      }
+      if (step === 1) {
+        state.isReturn = false;
         state.done = false;
       }
     },

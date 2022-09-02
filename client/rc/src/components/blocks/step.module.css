@@ -27,3 +27,14 @@
 .de-active:hover {
   text-decoration: none;
 }
+
+@media only screen and (max-width: 500px) {
+  .de-active {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .active {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}

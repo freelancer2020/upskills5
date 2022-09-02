@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../../store/appStore";
@@ -14,10 +14,19 @@ const ClaimReport: React.FC = () => {
   const stepDone = useSelector<RootState, boolean>(
     (state) => state.claimState.done
   );
+
+  const isReturn = useSelector<RootState, boolean>(
+    (state) => state.claimState.isReturn
+  );
   const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(claimActions.continueHref(1));
+  }, []);
   const navigate = useNavigate();
 
   const continueHandler = () => {
+    if (stepDone ) return false; // later we will handle submit
     dispatch(claimActions.continue());
     if (claimStep === 1) {
       navigate("/claim-report/incident-details");
@@ -53,6 +62,7 @@ const ClaimReport: React.FC = () => {
       <div className={styles["claim-report-control-btns"]}>
         <button
           onClick={returnHandler}
+          style={{ visibility: isReturn ? "visible" : "hidden" }}
           className={`${styles["claim-btn"]} ${styles["return"]}`}
           type="button"
         >

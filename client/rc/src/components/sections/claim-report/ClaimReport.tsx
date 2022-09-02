@@ -10,6 +10,10 @@ const ClaimReport: React.FC = () => {
   const claimStep = useSelector<RootState, number>(
     (state) => state.claimState.step
   );
+
+  const stepDone = useSelector<RootState, boolean>(
+    (state) => state.claimState.done
+  );
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
@@ -60,7 +64,7 @@ const ClaimReport: React.FC = () => {
           className={`${styles["claim-btn"]} ${styles["continue"]}`}
           type="button"
         >
-          Continue
+          {stepDone ? "Submit" : "Continue"}
         </button>
       </div>
     </div>

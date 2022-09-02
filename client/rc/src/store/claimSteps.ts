@@ -49,7 +49,13 @@ export const claimSlice = createSlice({
       }
     },
     continueHref(state, payload) {
-      state.step = payload.payload;
+      const step = payload.payload;
+      state.step = step;
+      if (step === 3) {
+        state.done = true;
+      } else {
+        state.done = false;
+      }
     },
   },
 });

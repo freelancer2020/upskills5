@@ -1,0 +1,16 @@
+.incident-app-container {
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 4rem 16rem 4rem 16rem;
+  display: flex;
+}
+
+.radiogroup {
+  width: 100%;
+}
+
+@media only screen and (max-width: 500px) {
+  .incident-app-container {
+    padding: 01rem 0 1rem;
+  }
+}

@@ -15,8 +15,12 @@
   font-weight: bold;
   font-size: 1.2rem;
   font-family: "Alegreya Sans";
+  cursor: default;
+  text-decoration: none;
 }
-
+.selected:hover {
+  text-decoration: none;
+}
 @media only screen and (max-width: 500px) {
   .nav-link {
     font-size: 1.5rem;

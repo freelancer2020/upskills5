@@ -5,7 +5,6 @@ label {
 }
 input {
   height: 2rem;
-
 }
 ::placeholder {
   color: #767676;
@@ -20,22 +19,38 @@ input {
   padding: 4rem 16rem 4rem 16rem;
 }
 
-.form-row {
+.input-row {
   width: 100%;
   height: fit-content;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: .8rem 1rem .8rem 1rem;
+  padding: 0.8rem 1rem 0.8rem 1rem;
+}
+
+.radio-row {
+  width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0.3rem;
+}
+.radio-label {
+  padding: 0 0 0 0.7rem;
+  min-width: 12rem;
+  height: fit-content;
+}
+input[type="radio"] {
+  width: 1.3rem;
 }
 
 @media only screen and (max-width: 500px) {
-  .form-row {
+  .input-row {
     width: 100vw;
-    padding: .8rem 1rem .8rem 1rem;
+    padding: 0.8rem 1rem 0.8rem 1rem;
   }
-
-  input {
+  .personal-input {
     width: 100%;
   }
 }

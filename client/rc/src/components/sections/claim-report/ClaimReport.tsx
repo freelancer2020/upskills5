@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../../store/appStore";
@@ -7,6 +7,7 @@ import claimActions from "../../../store/claimSteps";
 import Step from "../../blocks/Step";
 //applications
 import PersonalDetailsApp from "../../applications/PersonalDetailsApp";
+import IncidentDetailsApp from "../../applications/IncidentDetailsApp";
 import styles from "./claim-report.module.css";
 
 //data
@@ -33,6 +34,7 @@ const steps = [
 ];
 
 const ClaimReport: React.FC = () => {
+  const claimObject = useRef<HTMLDivElement>(null);
   const claimStep = useSelector<RootState, number>(
     (state) => state.claimState.step
   );
@@ -71,6 +73,7 @@ const ClaimReport: React.FC = () => {
 
   const continueHandler = () => {
     if (stepDone) return false; // later handle submit
+    claimObject.current?.scrollIntoView(true);
     dispatch(claimActions.continue());
     if (claimStep === 1) {
       navigate("/claim-report/incident-details");
@@ -81,6 +84,7 @@ const ClaimReport: React.FC = () => {
   };
 
   const returnHandler = () => {
+    claimObject.current?.scrollIntoView(true);
     dispatch(claimActions.returnBtn());
     if (claimStep === 3) {
       navigate("/claim-report/incident-details");
@@ -91,7 +95,7 @@ const ClaimReport: React.FC = () => {
     }
   };
   return (
-    <div className={styles["claim-report-container"]}>
+    <div ref={claimObject} className={styles["claim-report-container"]}>
       <h1 id="claim-header" tabIndex={0} className={styles["claim-header"]}>
         Claim Report
       </h1>
@@ -109,7 +113,8 @@ const ClaimReport: React.FC = () => {
         </ol>
       </nav>
       <div className={styles["claim-report-app-container"]}>
-        <PersonalDetailsApp />
+        {claimStep === 1 && <PersonalDetailsApp />}
+        {claimStep === 2 && <IncidentDetailsApp />}
       </div>
       <div className={styles["claim-report-control-btns"]}>
         <button

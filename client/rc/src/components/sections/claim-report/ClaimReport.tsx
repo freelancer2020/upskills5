@@ -20,13 +20,31 @@ const ClaimReport: React.FC = () => {
   );
   const dispatch = useDispatch<AppDispatch>();
 
-  useEffect(() => {
-    dispatch(claimActions.continueHref(1));
-  }, []);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const path = window.location.pathname;
+
+    switch (path) {
+      case "/claim-report/personal-details":
+        dispatch(claimActions.continueHref(1));
+        navigate(path);
+        break;
+      case "/claim-report/incident-details":
+        dispatch(claimActions.continueHref(2));
+        navigate(path);
+        break;
+      case "/claim-report/expense-report":
+        dispatch(claimActions.continueHref(3));
+        navigate(path);
+        break;
+      default:
+        return;
+    }
+  }, []);
+
   const continueHandler = () => {
-    if (stepDone ) return false; // later we will handle submit
+    if (stepDone) return false; // later we will handle submit
     dispatch(claimActions.continue());
     if (claimStep === 1) {
       navigate("/claim-report/incident-details");

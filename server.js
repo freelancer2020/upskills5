@@ -14,8 +14,8 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "./client/rc/build/index.html"));
   });
 } else {
-  app.use(express.static(path.join(__dirname, "/client/public")));
+  app.use(express.static(path.join(__dirname, "./client/rc/build")));
   app.get("/*", function (req, res) {
-    res.sendFile(path.join(__dirname, "./client/public/index.html"));
+    res.sendFile(path.join(__dirname, "./client/rc/build/index.html"));
   });
 }

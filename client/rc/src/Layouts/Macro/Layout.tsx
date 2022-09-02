@@ -6,6 +6,7 @@ import TravelInsurance from "../../components/sections/travel-insurance/TravelIn
 import InternationalVisitor from "../../components/sections/international-visitor/InternationalVisitor";
 import TravelTopics from "../../components/sections/travel-topics/TravelTopics";
 import Contacts from "../../components/sections/contacts/Contacts";
+import ClaimReport from "../../components/sections/claim-report/ClaimReport";
 //footer
 import Footer from "../../components/footer/Footer";
 //blocks
@@ -191,6 +192,16 @@ const Layout: React.FC = () => {
                   </article>
                   <section id="contact-us" className={styles["contact"]}>
                     <Contacts />
+                  </section>
+                </React.Fragment>
+              }
+            />
+            <Route
+              path="/claim-report/:step"
+              element={
+                <React.Fragment>
+                  <section aria-describedby="claim-header">
+                    <ClaimReport />
                   </section>
                 </React.Fragment>
               }

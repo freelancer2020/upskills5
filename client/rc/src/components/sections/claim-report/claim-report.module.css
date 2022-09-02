@@ -1,0 +1,61 @@
+ol {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.claim-header {
+  text-align: center;
+}
+.claim-report-container {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 4rem 12rem 4rem 12rem;
+}
+
+.breadcrumb {
+  width: 100%;
+  padding: 0;
+}
+
+.claim-nav-btn {
+  width: fit-content;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  padding: 0.8rem;
+  background-color: lightgray;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.claim-report-control-btns {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 2rem 0 2rem;
+  justify-content: space-between;
+}
+.claim-btn {
+  width: 10rem;
+  box-sizing: border-box;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.return {
+  background-color: #ffffff;
+  border: 1px solid #212121;
+  color: #212121;
+}
+
+.continue {
+  background-color: #212121;
+  color: #ffffff;
+}

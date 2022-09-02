@@ -6,7 +6,7 @@ import styles from "./nav.module.css";
 export const navigationItems = [
   { nav: "Insurance", path: "/" },
   { nav: "About us", path: "about-us" },
-  { nav: "Claim report", path: "claim-report" },
+  { nav: "Claim report", path: "claim-report/personal-details" },
   { nav: "Contact", path: "contact" },
 ];
 

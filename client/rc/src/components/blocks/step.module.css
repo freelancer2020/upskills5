@@ -1,0 +1,29 @@
+.de-active {
+  width: fit-content;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  padding: 0.8rem;
+  background-color: lightgray;
+  color: #212121;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.active {
+  width: fit-content;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  padding: 0.8rem;
+  background-color: #212121;
+  color: #ffffff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.active:hover {
+  text-decoration: none;
+}
+
+.de-active:hover {
+  text-decoration: none;
+}

@@ -206,7 +206,6 @@ const Layout: React.FC = () => {
                 </React.Fragment>
               }
             />
-            <Route path="*" element={<h1>Server</h1>} />
           </Routes>
         </main>
         <footer id="about-us">

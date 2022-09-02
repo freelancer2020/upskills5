@@ -40,7 +40,7 @@ const NavItem: React.FC<NavItemProps> = (props) => {
         aria-current={ariaCurrent}
         onClick={(e) => changePathState(e, props.to)}
         className={({ isActive }) => handleStyleAndSelect(isActive)}
-        to={props.to}
+        to={`${props.to}`}
       >
         {props.children}
       </NavLink>

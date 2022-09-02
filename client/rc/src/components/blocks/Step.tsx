@@ -9,10 +9,13 @@ import { NavLink } from "react-router-dom";
 import styles from "./step.module.css";
 
 interface StepProps {
+  id: string;
+  path: string;
   stepName: string;
+  stepNumber: number;
 }
 
-export const StepPersonal: React.FC<StepProps> = (props) => {
+const Step: React.FC<StepProps> = (props) => {
   const dispatch = useDispatch<AppDispatch>();
   const [active, setActive] = useState<boolean>(false);
   const handleActive = (state: boolean) => {
@@ -26,80 +29,35 @@ export const StepPersonal: React.FC<StepProps> = (props) => {
   };
 
   const clickHandler = () => {
-    dispatch(claimActions.continueHref(1));
-  };
-
-  return (
-    <li
-      onClick={clickHandler}
-      className={active ? `${styles["active"]}` : `${styles["de-active"]}`}
-    >
-      <NavLink
-        to="/claim-report/personal-details"
-        children={props.stepName}
-        className={({ isActive }) => handleActive(isActive)}
-      />
-    </li>
-  );
-};
-
-export const StepIncident: React.FC<StepProps> = (props) => {
-  const dispatch = useDispatch<AppDispatch>();
-  const [active, setActive] = useState<boolean>(false);
-  const handleActive = (state: boolean) => {
-    if (state) {
-      setActive(true);
-      return `${styles["active"]}`;
-    } else {
-      setActive(false);
-      return `${styles["de-active"]}`;
+    switch (props.stepNumber) {
+      case 1:
+        dispatch(claimActions.continueHref(1));
+        break;
+      case 2:
+        dispatch(claimActions.continueHref(2));
+        break;
+      case 3:
+        dispatch(claimActions.continueHref(3));
+        break;
+      default:
+        return;
     }
   };
 
-  const clickHandler = () => {
-    dispatch(claimActions.continueHref(2));
-  };
   return (
     <li
-      onClick={clickHandler}
-      className={active ? `${styles["active"]}` : `${styles["de-active"]}`}
-    >
-      <NavLink
-        to="/claim-report/incident-details"
-        children={props.stepName}
-        className={({ isActive }) => handleActive(isActive)}
-      />
-    </li>
-  );
-};
-
-export const StepExpense: React.FC<StepProps> = (props) => {
-  const dispatch = useDispatch<AppDispatch>();
-  const [active, setActive] = useState<boolean>(false);
-  const handleActive = (state: boolean) => {
-    if (state) {
-      setActive(true);
-      return `${styles["active"]}`;
-    } else {
-      setActive(false);
-      return `${styles["de-active"]}`;
-    }
-  };
-
-  const clickHandler = () => {
-    dispatch(claimActions.continueHref(3));
-  };
-  return (
-    <li
+      id={props.id}
       onClick={clickHandler}
       className={active ? `${styles["active"]}` : `${styles["de-active"]}`}
     >
       <NavLink
         aria-current="step"
-        to="/claim-report/expense-report"
+        to={props.path}
         children={props.stepName}
         className={({ isActive }) => handleActive(isActive)}
       />
     </li>
   );
 };
+
+export default Step;

@@ -1,0 +1,41 @@
+label {
+  font-weight: bold;
+  box-sizing: border-box;
+  padding: 0 0 0.5rem 0;
+}
+input {
+  height: 2rem;
+
+}
+::placeholder {
+  color: #767676;
+  opacity: 1;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 4rem 16rem 4rem 16rem;
+}
+
+.form-row {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: .8rem 1rem .8rem 1rem;
+}
+
+@media only screen and (max-width: 500px) {
+  .form-row {
+    width: 100vw;
+    padding: .8rem 1rem .8rem 1rem;
+  }
+
+  input {
+    width: 100%;
+  }
+}

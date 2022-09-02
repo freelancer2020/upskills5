@@ -3,8 +3,34 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../../store/appStore";
 import claimActions from "../../../store/claimSteps";
-import { StepPersonal, StepIncident, StepExpense } from "../../blocks/Step";
+// import { StepPersonal, StepIncident, StepExpense } from "../../blocks/Step";
+import Step from "../../blocks/Step";
+//applications
+import PersonalDetailsApp from "../../applications/PersonalDetailsApp";
 import styles from "./claim-report.module.css";
+
+//data
+
+const steps = [
+  {
+    id: "personal-details",
+    path: "/claim-report/personal-details",
+    stepName: "Step 1 - Personal Details",
+    stepNumber: 1,
+  },
+  {
+    id: "incident-details",
+    path: "/claim-report/incident-details",
+    stepName: "Step 2 - Incident Details",
+    stepNumber: 2,
+  },
+  {
+    id: "expense-report",
+    path: "/claim-report/expense-report",
+    stepName: "Step 3 - Expense Report",
+    stepNumber: 3,
+  },
+];
 
 const ClaimReport: React.FC = () => {
   const claimStep = useSelector<RootState, number>(
@@ -44,7 +70,7 @@ const ClaimReport: React.FC = () => {
   }, []);
 
   const continueHandler = () => {
-    if (stepDone) return false; // later we will handle submit
+    if (stepDone) return false; // later handle submit
     dispatch(claimActions.continue());
     if (claimStep === 1) {
       navigate("/claim-report/incident-details");
@@ -71,12 +97,20 @@ const ClaimReport: React.FC = () => {
       </h1>
       <nav className={styles["breadcrumb"]} aria-label="Breadcrumb">
         <ol>
-          {<StepPersonal stepName="Step 1 - Personal Details" />}
-          {<StepIncident stepName="Step 2 - Incident Details" />}
-          {<StepExpense stepName="Step 3 - Expense Rerport" />}
+          {steps.map((step, index) => (
+            <Step
+              key={index.toString()}
+              id={step.id}
+              path={step.path}
+              stepName={step.stepName}
+              stepNumber={step.stepNumber}
+            />
+          ))}
         </ol>
       </nav>
-      <div className={styles["claim-report-app-container"]}></div>
+      <div className={styles["claim-report-app-container"]}>
+        <PersonalDetailsApp />
+      </div>
       <div className={styles["claim-report-control-btns"]}>
         <button
           onClick={returnHandler}

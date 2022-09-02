@@ -15,13 +15,7 @@ const Nav: React.FC = () => {
     <nav className={styles["nav-row"]}>
       <ul className={styles["nav-list"]}>
         {navigationItems.map((item, index) => (
-          <NavItem
-            children={item.nav}
-            to={
-              item.path === "/" ? item.path : `${item.path}/#`
-            }
-            key={index.toString()}
-          />
+          <NavItem children={item.nav} to={item.path} key={index.toString()} />
         ))}
       </ul>
       <HamburgerButton />

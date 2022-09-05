@@ -1,23 +1,32 @@
 import React from "react";
+//redux
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/appStore";
+//@Types
+import { ClaimPersonalValidation } from "../../store/claimPersonalValidation";
 import Input from "../blocks/Input";
+
 import styles from "./personal-details-app.module.css";
 
 const inputs = [
   {
-    label: "First Name",
+    category: "Personal Details",
+    label: "First name",
     type: "text",
     name: "personal_name",
     id: "personal_name",
     placeholder: "First Name",
   },
   {
-    label: "Second Name",
+    category: "Personal Details",
+    label: "Second name",
     type: "text",
     name: "personal_secound_name",
     id: "personal_secound_name",
     placeholder: "Second Name",
   },
   {
+    category: "Personal Details",
     label: "Birthday",
     type: "date",
     name: "personal_birthday",
@@ -25,13 +34,15 @@ const inputs = [
     placeholder: "",
   },
   {
+    category: "Personal Details",
     label: "Phone number",
     type: "tel",
     name: "personal_phone_number",
     id: "personal_phone_number",
-    placeholder: "123-45-678",
+    placeholder: "733-825-924",
   },
   {
+    category: "Personal Details",
     label: "Email",
     type: "email",
     name: "personal_email",
@@ -39,6 +50,7 @@ const inputs = [
     placeholder: "Email",
   },
   {
+    category: "Personal Details",
     label: "Policy number",
     type: "number",
     name: "personal_policy_number",
@@ -48,6 +60,10 @@ const inputs = [
 ];
 
 const PersonalDetailsApp: React.FC = () => {
+  const validations = useSelector<RootState, ClaimPersonalValidation>(
+    (state) => state.personalValidation
+  );
+
   return (
     <div
       className={styles["app-container"]}
@@ -56,6 +72,8 @@ const PersonalDetailsApp: React.FC = () => {
     >
       {inputs.map((input, index) => (
         <Input
+          validation={validations[input.label]}
+          category={input.category}
           key={index.toString()}
           label={input.label}
           type={input.type}

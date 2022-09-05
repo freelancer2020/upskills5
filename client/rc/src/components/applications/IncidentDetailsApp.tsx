@@ -4,6 +4,7 @@ import styles from "./incident-details.module.css";
 
 const radios = [
   {
+    category: "Incident Details",
     name: "tourism",
     type: "radio",
     id: "tourism",
@@ -11,6 +12,7 @@ const radios = [
     placeholder: "",
   },
   {
+    category: "Incident Details",
     name: "study",
     type: "radio",
     id: "study",
@@ -18,6 +20,7 @@ const radios = [
     placeholder: "",
   },
   {
+    category: "Incident Details",
     name: "physical work",
     type: "radio",
     id: "physical",
@@ -25,6 +28,7 @@ const radios = [
     placeholder: "",
   },
   {
+    category: "Incident Details",
     name: "high_risk",
     type: "radio",
     id: "high_risk",
@@ -45,6 +49,8 @@ const IncidentDetailsApp: React.FC = () => {
         >
           {radios.map((input, index) => (
             <Input
+            validation={true}
+              category={input.category}
               radiosgroup
               key={index.toString()}
               type={input.type}

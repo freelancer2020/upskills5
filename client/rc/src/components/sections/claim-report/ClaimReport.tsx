@@ -3,12 +3,20 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../../store/appStore";
 import claimActions from "../../../store/claimSteps";
-// import { StepPersonal, StepIncident, StepExpense } from "../../blocks/Step";
+import personalValidationActions from "../../../store/claimPersonalValidation";
 import Step from "../../blocks/Step";
 //applications
 import PersonalDetailsApp from "../../applications/PersonalDetailsApp";
 import IncidentDetailsApp from "../../applications/IncidentDetailsApp";
+
+//@Types
+import { PersonalDetailsData } from "../../../store/claimData";
+import { IncidentDetailsData } from "../../../store/claimData";
+import { ClaimPersonalValidation } from "../../../store/claimPersonalValidation";
 import styles from "./claim-report.module.css";
+
+//validator
+import validator from "../../../utilities/validator";
 
 //data
 
@@ -46,6 +54,19 @@ const ClaimReport: React.FC = () => {
   const isReturn = useSelector<RootState, boolean>(
     (state) => state.claimState.isReturn
   );
+
+  const personalState = useSelector<RootState, PersonalDetailsData>(
+    (state) => state.claimData.personalDetailsData
+  );
+
+  const incidentState = useSelector<RootState, IncidentDetailsData>(
+    (state) => state.claimData.incidentDetailsData
+  );
+
+  const personalV = useSelector<RootState, ClaimPersonalValidation>(
+    (state) => state.personalValidation
+  );
+
   const dispatch = useDispatch<AppDispatch>();
 
   const navigate = useNavigate();
@@ -76,7 +97,18 @@ const ClaimReport: React.FC = () => {
     claimObject.current?.scrollIntoView(true);
     dispatch(claimActions.continue());
     if (claimStep === 1) {
+      const dataValidations = validator(personalState);
+
+      dispatch(personalValidationActions.getValidations(dataValidations));
+
       navigate("/claim-report/incident-details");
+      fetch("/graphql/claimData", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query: personalState }),
+      });
     }
     if (claimStep === 2) {
       navigate("/claim-report/expense-report");

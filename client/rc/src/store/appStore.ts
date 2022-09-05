@@ -1,12 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { mobileNavSlice } from "./mobileNavState";
 import { navState } from "./navPathState";
-import {claimSlice} from './claimSteps'
+import { claimSlice } from "./claimSteps";
+import { claimData } from "./claimData";
+import { claimPersonalValidation } from "./claimPersonalValidation";
 const store = configureStore({
   reducer: {
     mobileNav: mobileNavSlice.reducer,
     navState: navState.reducer,
-    claimState: claimSlice.reducer
+    claimState: claimSlice.reducer,
+    claimData: claimData.reducer,
+    personalValidation: claimPersonalValidation.reducer,
   },
 });
 

@@ -11,9 +11,18 @@ input {
   opacity: 1;
 }
 
+/* .app-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  box-sizing: border-box;
+ padding: 4rem 16rem 4rem 16rem; 
+
+} */
 .app-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100vw;
   box-sizing: border-box;
   padding: 4rem 16rem 4rem 16rem;
@@ -35,15 +44,16 @@ input {
   align-items: center;
   box-sizing: border-box;
   padding: 0.3rem;
+
 }
 .radio-label {
   padding: 0 0 0 0.7rem;
   min-width: 12rem;
   height: fit-content;
 }
-input[type="radio"] {
+/* input[type="radio"] {
   width: 1.3rem;
-}
+} */
 
 @media only screen and (max-width: 500px) {
   .input-row {

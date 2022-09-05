@@ -1,16 +1,38 @@
-.incident-app-container {
+.radiogroup {
   width: 100vw;
   box-sizing: border-box;
-  padding: 4rem 16rem 4rem 16rem;
+  padding: 1rem 16rem 2rem 16rem;
   display: flex;
+  flex-direction: column;
 }
 
-.radiogroup {
+.incident-app-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  box-sizing: border-box;
+  align-items: center;
+  padding: 1rem 16rem 2rem 16rem;
+}
+
+.incident-header {
   width: 100%;
+  box-sizing: border-box;
+  padding: 0rem 16rem 0rem 16rem;
 }
-
 @media only screen and (max-width: 500px) {
   .incident-app-container {
-    padding: 01rem 0 1rem;
+    padding: 0rem 0rem 2rem 0rem;
+    display: flex;
+  }
+
+  .radiogroup {
+    padding: 0rem;
+  }
+
+  .incident-header {
+    width: 100%;
+    display: flex;
+    padding: 0rem 0rem 0rem 1rem;
   }
 }

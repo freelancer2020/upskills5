@@ -1,12 +1,17 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 //redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 //redux @types
-import { AppDispatch } from "../../store/appStore";
+import { AppDispatch, RootState } from "../../store/appStore";
+import { PersonalDetailsData } from "../../store/claimData";
 //redux actions
 import claimActions from "../../store/claimSteps";
+//validator
+import validator from "../../utilities/validator";
 import { NavLink } from "react-router-dom";
 import styles from "./step.module.css";
+import { pureFinalPropsSelectorFactory } from "react-redux/es/connect/selectorFactory";
 
 interface StepProps {
   id: string;
@@ -16,6 +21,10 @@ interface StepProps {
 }
 
 const Step: React.FC<StepProps> = (props) => {
+  const navigate = useNavigate();
+  const personalState = useSelector<RootState, PersonalDetailsData>(
+    (state) => state.claimData.personalDetailsData
+  );
   const dispatch = useDispatch<AppDispatch>();
   const [active, setActive] = useState<boolean>(false);
   const handleActive = (state: boolean) => {
@@ -29,18 +38,33 @@ const Step: React.FC<StepProps> = (props) => {
   };
 
   const clickHandler = () => {
-    switch (props.stepNumber) {
-      case 1:
-        dispatch(claimActions.continueHref(1));
-        break;
-      case 2:
-        dispatch(claimActions.continueHref(2));
-        break;
-      case 3:
-        dispatch(claimActions.continueHref(3));
-        break;
-      default:
-        return;
+    const personalValidation = validator(personalState);
+    for (let i in personalValidation) {
+      if (personalValidation[i] === false) {
+        if (props.stepNumber === 2) {
+          window.localStorage.setItem("personal", "0");
+          navigate("/claim-report/personal-details");
+        }
+        if (props.stepNumber === 3) {
+          navigate("/claim-report/incident-details");
+        }
+        return false;
+      } else {
+        window.localStorage.setItem("personal", "1");
+        switch (props.stepNumber) {
+          case 1:
+            dispatch(claimActions.continueHref(1));
+            break;
+          case 2:
+            dispatch(claimActions.continueHref(2));
+            break;
+          case 3:
+            dispatch(claimActions.continueHref(3));
+            break;
+          default:
+            return;
+        }
+      }
     }
   };
 

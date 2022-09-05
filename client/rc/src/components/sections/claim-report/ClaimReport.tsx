@@ -95,23 +95,32 @@ const ClaimReport: React.FC = () => {
   const continueHandler = () => {
     if (stepDone) return false; // later handle submit
     claimObject.current?.scrollIntoView(true);
-    dispatch(claimActions.continue());
+
     if (claimStep === 1) {
       const dataValidations = validator(personalState);
-
+      for (let i in dataValidations) {
+        if (dataValidations[i] === false) {
+          window.localStorage.setItem("personal", "0");
+          return false;
+        };
+      }
+      window.localStorage.setItem("personal", "1");
+      dispatch(claimActions.continue());
       dispatch(personalValidationActions.getValidations(dataValidations));
-
       navigate("/claim-report/incident-details");
-      fetch("/graphql/claimData", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ query: personalState }),
-      });
-    }
-    if (claimStep === 2) {
+      // fetch("/graphql/claimData", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ query: personalState }),
+      // });
+    } else if (claimStep === 2) {
+      // window.localStorage.setItem("incident", "0");
+      // Will handle next step validation
       navigate("/claim-report/expense-report");
+    } else {
+      return false;
     }
   };
 

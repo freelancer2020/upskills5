@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+//validation
+import validatorX from "../../utilities/validatorX";
 
 //redux
 //@Types
@@ -20,10 +22,14 @@ interface InputProps {
 }
 
 const Input: React.FC<InputProps> = (props) => {
+  const [isValid, setIsValid] = useState<boolean>(true);
   const dispatch = useDispatch<AppDispatch>();
 
   const storeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(props.label);
     const value = e.target.value;
+    const validation = validatorX(value, props.label);
+    setIsValid(validation);
     dispatch(claimDataActions.dataHandler({ type: props.label, value: value }));
   };
   return (
@@ -48,7 +54,7 @@ const Input: React.FC<InputProps> = (props) => {
         <div className={styles["input-row"]}>
           <label htmlFor={props.id}>{props.label}</label>
           <input
-            style={{ border: props.validation ? "" : "2px solid red" }}
+            style={{ border: isValid ? "" : "2px solid red" }}
             onChange={(e) => storeValue(e)}
             required
             aria-required="true"

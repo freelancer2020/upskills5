@@ -28,3 +28,12 @@ input {
   box-sizing: border-box;
   padding: 0.8rem 0 0.8rem 0;
 }
+
+@media only screen and (max-width: 500px) {
+  .app-container {
+    padding: 0rem;
+  }
+  .form-row {
+    padding: 0rem;
+  }
+}

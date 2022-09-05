@@ -11,8 +11,8 @@ import IncidentDetailsApp from "../../applications/IncidentDetailsApp";
 
 //@Types
 import { PersonalDetailsData } from "../../../store/claimData";
-import { IncidentDetailsData } from "../../../store/claimData";
-import { ClaimPersonalValidation } from "../../../store/claimPersonalValidation";
+// import { IncidentDetailsData } from "../../../store/claimData";
+// import { ClaimPersonalValidation } from "../../../store/claimPersonalValidation";
 import styles from "./claim-report.module.css";
 
 //validator
@@ -59,13 +59,13 @@ const ClaimReport: React.FC = () => {
     (state) => state.claimData.personalDetailsData
   );
 
-  const incidentState = useSelector<RootState, IncidentDetailsData>(
-    (state) => state.claimData.incidentDetailsData
-  );
+  // const incidentState = useSelector<RootState, IncidentDetailsData>(
+  //   (state) => state.claimData.incidentDetailsData
+  // );
 
-  const personalV = useSelector<RootState, ClaimPersonalValidation>(
-    (state) => state.personalValidation
-  );
+  // const personalV = useSelector<RootState, ClaimPersonalValidation>(
+  //   (state) => state.personalValidation
+  // );
 
   const dispatch = useDispatch<AppDispatch>();
 

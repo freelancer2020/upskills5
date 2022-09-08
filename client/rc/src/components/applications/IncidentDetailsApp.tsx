@@ -89,20 +89,23 @@ const IncidentDetailsApp: React.FC = () => {
           tabIndex={0}
           className={styles["radiogroup"]}
         >
-          {radios.map((input, index) => (
-            <Input
-              value=""
-              validation={true}
-              category={input.category}
-              radiosgroup
-              key={index.toString()}
-              type={input.type}
-              name={input.name}
-              label={input.label}
-              id={input.id}
-              placeholder={input.placeholder}
-            />
-          ))}
+          <fieldset>
+            <legend></legend>
+            {radios.map((input, index) => (
+              <Input
+                value=""
+                validation={true}
+                category={input.category}
+                radiosgroup
+                key={index.toString()}
+                type={input.type}
+                name={input.name}
+                label={input.label}
+                id={input.id}
+                placeholder={input.placeholder}
+              />
+            ))}
+          </fieldset>
         </ul>
         <div className={styles["incident-app-container"]}>
           {inputsIncident.map((input, index) => (
@@ -120,6 +123,15 @@ const IncidentDetailsApp: React.FC = () => {
               />
             </ul>
           ))}
+          <div className={styles["text-container"]}>
+            <label htmlFor="text">Incident description</label>
+            <textarea
+              required
+              aria-required={true}
+              id="text"
+              className={styles["text-area"]}
+            ></textarea>
+          </div>
         </div>
       </div>
       <div className={styles["inputs-container"]}></div>

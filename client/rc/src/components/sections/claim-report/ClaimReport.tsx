@@ -102,10 +102,11 @@ const ClaimReport: React.FC = () => {
       for (let i in dataValidations) {
         if (dataValidations[i] === false) {
           window.localStorage.setItem("personal", "0");
-          dispatch(toastActions.hasError())
+          dispatch(toastActions.hasError());
           return false;
-        };
+        }
       }
+      dispatch(toastActions.hasNoError());
       window.localStorage.setItem("personal", "1");
       dispatch(claimActions.continue());
       dispatch(personalValidationActions.getValidations(dataValidations));

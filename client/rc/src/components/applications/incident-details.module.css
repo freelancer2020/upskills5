@@ -20,6 +20,21 @@
   box-sizing: border-box;
   padding: 0rem 16rem 0rem 16rem;
 }
+
+.text-container {
+  width: 96%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.text-area {
+  max-width: 100%;
+  min-height: 8rem;
+  resize: none;
+  box-sizing: border-box;
+}
+
 @media only screen and (max-width: 500px) {
   .incident-app-container {
     padding: 0rem 0rem 2rem 0rem;
@@ -34,5 +49,13 @@
     width: 100%;
     display: flex;
     padding: 0rem 0rem 0rem 1rem;
+  }
+  .text-container {
+    width: 100vw;
+    box-sizing: border-box;
+    padding: 0 1rem 0 1rem;
+  }
+  .text-area {
+    width: 100%;
   }
 }

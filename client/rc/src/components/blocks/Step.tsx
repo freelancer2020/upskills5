@@ -7,11 +7,11 @@ import { AppDispatch, RootState } from "../../store/appStore";
 import { PersonalDetailsData } from "../../store/claimData";
 //redux actions
 import claimActions from "../../store/claimSteps";
+import toastActions from '../../store/claimToast'
 //validator
 import validator from "../../utilities/validator";
 import { NavLink } from "react-router-dom";
 import styles from "./step.module.css";
-import { pureFinalPropsSelectorFactory } from "react-redux/es/connect/selectorFactory";
 
 interface StepProps {
   id: string;
@@ -43,6 +43,7 @@ const Step: React.FC<StepProps> = (props) => {
       if (personalValidation[i] === false) {
         if (props.stepNumber === 2) {
           window.localStorage.setItem("personal", "0");
+          dispatch(toastActions.hasError())
           navigate("/claim-report/personal-details");
         }
         if (props.stepNumber === 3) {

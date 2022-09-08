@@ -91,12 +91,12 @@ const Layout: React.FC = () => {
         <header className={styles["header"]}>
           <Header />
         </header>
-        <main>
-          {claimHasError && (
-            <div>
-              <ToastMessageAlert />
-            </div>
-          )}
+        {claimHasError && (
+          <div>
+            <ToastMessageAlert />
+          </div>
+        )}
+        <main tabIndex={-1} id="main">
           <Routes>
             <Route
               path="/"

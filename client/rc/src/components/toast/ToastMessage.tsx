@@ -29,13 +29,13 @@ const ToastMessage: React.FC = () => {
       aria-describedby="toast-msg"
       onKeyDown={(e) => keyboardCloseHandler(e)}
       ref={currentRef}
-      tabIndex={0}
+      tabIndex={1}
       role="alert"
       className={styles["toast-container"]}
     >
       <div className={styles["toast-close-ontainer"]}>
         <BsFillXCircleFill
-          tabIndex={0}
+          tabIndex={1}
           onClick={closeHandler}
           title="close alert message"
           className={styles["toast-close-icon"]}

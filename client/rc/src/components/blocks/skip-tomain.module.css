@@ -1,0 +1,15 @@
+.skip-main {
+  padding: 0.3rem;
+  background-color: #fff;
+  color: #212121;
+  font-weight: bold;
+  z-index: -999;
+}
+
+.skip-main:active {
+  z-index: 999;
+}
+
+.skip-main:focus {
+  z-index: 999;
+}

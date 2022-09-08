@@ -5,6 +5,7 @@ import navStateActions from "../../store/navPathState";
 import mobileNavAction from "../../store/mobileNavState";
 import { NavLink } from "react-router-dom";
 import Nav from "../nav/Nav";
+import SkipToMain from "../blocks/SkipToMain";
 import profilePic from "../../assets/profilePic.png";
 import styles from "./header.module.css";
 
@@ -31,6 +32,7 @@ const Header: React.FC = () => {
   return (
     <React.Fragment>
       <div className={styles["profile-logo"]}>
+        <SkipToMain />
         <NavLink
           onClick={homePathHandler}
           to="/"

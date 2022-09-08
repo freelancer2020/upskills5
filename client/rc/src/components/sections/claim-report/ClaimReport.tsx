@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../../store/appStore";
 import claimActions from "../../../store/claimSteps";
+import toastActions from "../../../store/claimToast";
 import personalValidationActions from "../../../store/claimPersonalValidation";
 import Step from "../../blocks/Step";
 //applications
@@ -101,6 +102,7 @@ const ClaimReport: React.FC = () => {
       for (let i in dataValidations) {
         if (dataValidations[i] === false) {
           window.localStorage.setItem("personal", "0");
+          dispatch(toastActions.hasError())
           return false;
         };
       }

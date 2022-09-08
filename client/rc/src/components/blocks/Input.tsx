@@ -26,7 +26,6 @@ const Input: React.FC<InputProps> = (props) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const storeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(props.label);
     const value = e.target.value;
     const validation = validatorX(value, props.label);
     setIsValid(validation);
@@ -51,7 +50,7 @@ const Input: React.FC<InputProps> = (props) => {
           </label>
         </li>
       ) : (
-        <div className={styles["input-row"]}>
+        <li className={styles["input-row"]}>
           <label htmlFor={props.id}>{props.label}</label>
           <input
             style={{ border: isValid ? "" : "2px solid red" }}
@@ -64,7 +63,7 @@ const Input: React.FC<InputProps> = (props) => {
             id={props.id}
             className={styles["personal-input"]}
           />
-        </div>
+        </li>
       )}
     </React.Fragment>
   );

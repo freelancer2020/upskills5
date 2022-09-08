@@ -1,19 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export type PersonalDetailsData = {
-  firstName: string;
-  secondName: string;
-  birthday: string;
-  phoneNumber: string;
-  email: string;
-  policyNumber: string;
+  ["First name"]: string;
+  ["Second name"]: string;
+  Birthday: string;
+  ["Phone number"]: string;
+  Email: string;
+  ["Policy number"]: string;
 };
 
 export type IncidentDetailsData = {
   travelPurpose: string;
-  country: string;
-  address: string;
-  date: string;
+  Country: string;
+  Address: string;
+  Date: string;
   incidentDesc: string;
 };
 
@@ -24,18 +24,18 @@ interface ClaimData {
 
 const initClaimState: ClaimData = {
   personalDetailsData: {
-    firstName: "",
-    secondName: "",
-    birthday: "",
-    phoneNumber: "",
-    email: "",
-    policyNumber: "",
+    "First name": "",
+    "Second name": "",
+    Birthday: "",
+    "Phone number": "",
+    Email: "",
+    "Policy number": "",
   },
   incidentDetailsData: {
     travelPurpose: "",
-    country: "",
-    address: "",
-    date: "",
+    Country: "",
+    Address: "",
+    Date: "",
     incidentDesc: "",
   },
 };
@@ -50,22 +50,22 @@ export const claimData = createSlice({
 
       switch (field) {
         case "First name":
-          state.personalDetailsData.firstName = value;
+          state.personalDetailsData["First name"] = value;
           break;
         case "Second name":
-          state.personalDetailsData.secondName = value;
+          state.personalDetailsData["Second name"] = value;
           break;
         case "Birthday":
-          state.personalDetailsData.birthday = value;
+          state.personalDetailsData.Birthday = value;
           break;
         case "Phone number":
-          state.personalDetailsData.phoneNumber = value;
+          state.personalDetailsData["Phone number"] = value;
           break;
         case "Email":
-          state.personalDetailsData.email = value;
+          state.personalDetailsData.Email = value;
           break;
         case "Policy number":
-          state.personalDetailsData.policyNumber = value;
+          state.personalDetailsData["Policy number"] = value;
           break;
         case "tourism":
           state.incidentDetailsData.travelPurpose = value;
@@ -80,13 +80,13 @@ export const claimData = createSlice({
           state.incidentDetailsData.travelPurpose = value;
           break;
         case "Country":
-          state.incidentDetailsData.country = value;
+          state.incidentDetailsData.Country = value;
           break;
         case "Address":
-          state.incidentDetailsData.address = value;
+          state.incidentDetailsData.Address = value;
           break;
         case "Date":
-          state.incidentDetailsData.date = value;
+          state.incidentDetailsData.Date = value;
           break;
         case "Incident description":
           state.incidentDetailsData.incidentDesc = value;

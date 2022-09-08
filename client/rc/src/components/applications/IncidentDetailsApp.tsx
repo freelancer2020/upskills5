@@ -91,6 +91,7 @@ const IncidentDetailsApp: React.FC = () => {
         >
           {radios.map((input, index) => (
             <Input
+              value=""
               validation={true}
               category={input.category}
               radiosgroup
@@ -105,16 +106,19 @@ const IncidentDetailsApp: React.FC = () => {
         </ul>
         <div className={styles["incident-app-container"]}>
           {inputsIncident.map((input, index) => (
-            <Input
-              validation={true}
-              category={input.category}
-              key={index.toString()}
-              type={input.type}
-              name={input.name}
-              label={input.label}
-              id={input.id}
-              placeholder={input.placeholder}
-            />
+            <ul style={{ width: "100%" }}>
+              <Input
+                value=""
+                validation={true}
+                category={input.category}
+                key={index.toString()}
+                type={input.type}
+                name={input.name}
+                label={input.label}
+                id={input.id}
+                placeholder={input.placeholder}
+              />
+            </ul>
           ))}
         </div>
       </div>

@@ -12,7 +12,7 @@ const validator = (obj: PersonalDetailsData | IncidentDetailsData) => {
   const numberRegex = /^\d+$/;
   let validation: ValidationObj = {};
 
-  if ("firstName" in obj) {
+  if ("First name" in obj) {
     const keys = [
       "validateFirstName",
       "validateSecondName",
@@ -22,14 +22,14 @@ const validator = (obj: PersonalDetailsData | IncidentDetailsData) => {
       "validateNumber",
     ];
     const validations = [
-      nameRegex.test(obj.firstName),
-      nameRegex.test(obj.secondName),
+      nameRegex.test(obj["First name"]),
+      nameRegex.test(obj["Second name"]),
       (function () {
-        return obj.birthday.length <= 0 ? false : true;
+        return obj.Email.length <= 0 ? false : true;
       })(),
-      phoneRegex.test(obj.phoneNumber),
-      emailRegex.test(obj.email),
-      numberRegex.test(obj.policyNumber),
+      phoneRegex.test(obj["Phone number"]),
+      emailRegex.test(obj.Email),
+      numberRegex.test(obj["Policy number"]),
     ];
 
     for (let i = 0; i < keys.length; i++) {

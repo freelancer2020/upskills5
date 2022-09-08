@@ -4,13 +4,14 @@ import validatorX from "../../utilities/validatorX";
 
 //redux
 //@Types
-import { AppDispatch } from "../../store/appStore";
+import { AppDispatch, RootState } from "../../store/appStore";
 import claimDataActions from "../../store/claimData";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import styles from "./input.module.css";
 
 interface InputProps {
+  value: string;
   category: string;
   placeholder: string;
   type: string;
@@ -21,9 +22,16 @@ interface InputProps {
   validation: string | boolean;
 }
 
+interface Sig {
+  [index: string]: string;
+}
+
 const Input: React.FC<InputProps> = (props) => {
   const [isValid, setIsValid] = useState<boolean>(true);
   const dispatch = useDispatch<AppDispatch>();
+  const inputsValue = useSelector<RootState, Sig>(
+    (state) => state.claimData.personalDetailsData
+  );
 
   const storeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -37,7 +45,7 @@ const Input: React.FC<InputProps> = (props) => {
         <li className={styles["radio-row"]}>
           <input
             onChange={(e) => storeValue(e)}
-            value={props.label}
+            value={`${inputsValue[props.label]}`}
             aria-required="true"
             placeholder={props.placeholder}
             type={props.type}
@@ -53,6 +61,7 @@ const Input: React.FC<InputProps> = (props) => {
         <li className={styles["input-row"]}>
           <label htmlFor={props.id}>{props.label}</label>
           <input
+            value={inputsValue[props.label]}
             style={{ border: isValid ? "" : "2px solid red" }}
             onChange={(e) => storeValue(e)}
             required

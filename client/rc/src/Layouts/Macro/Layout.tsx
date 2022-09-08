@@ -227,12 +227,21 @@ const Layout: React.FC = () => {
           <Footer
             footerHeader={<FootrNavHeader />}
             footerNav={[
-              <FooterNavList navHeader="About Us" navList={footerNavAboutUs} />,
               <FooterNavList
+                key={0}
+                navHeader="About Us"
+                navList={footerNavAboutUs}
+              />,
+              <FooterNavList
+                key={1}
                 navHeader="Products"
                 navList={footerNavProducts}
               />,
-              <FooterNavList navHeader="Members" navList={footerNavMembers} />,
+              <FooterNavList
+                key={2}
+                navHeader="Members"
+                navList={footerNavMembers}
+              />,
             ]}
           />
         </footer>

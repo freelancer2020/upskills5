@@ -71,7 +71,9 @@ const PersonalDetailsApp: React.FC = () => {
       aria-labelledby="personal-details"
     >
       {inputs.map((input, index) => (
+        <ul style={{width: '100%'}}>
         <Input
+          value={""}
           validation={validations[input.label]}
           category={input.category}
           key={index.toString()}
@@ -81,6 +83,7 @@ const PersonalDetailsApp: React.FC = () => {
           id={input.id}
           placeholder={input.placeholder}
         />
+        </ul>
       ))}
     </div>
   );

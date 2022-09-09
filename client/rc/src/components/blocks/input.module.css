@@ -11,14 +11,10 @@ input {
   opacity: 1;
 }
 
-/* .app-container {
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  box-sizing: border-box;
- padding: 4rem 16rem 4rem 16rem; 
-
-} */
+.error-field-msg {
+  font-size: small;
+  color: red;
+}
 .app-container {
   display: flex;
   flex-direction: column;

@@ -22,7 +22,7 @@ interface InputProps {
   id: string;
   label: string;
   radiosgroup?: boolean;
-  validation: string | boolean;
+  validation: boolean;
   checked?: boolean;
 }
 
@@ -77,6 +77,7 @@ const Input: React.FC<InputProps> = (props) => {
         <li className={styles["input-row"]}>
           <label htmlFor={props.id}>{props.label}</label>
           <input
+      
             value={
               props.category === "Personal Details"
                 ? inputsValue[props.label]
@@ -85,6 +86,10 @@ const Input: React.FC<InputProps> = (props) => {
             style={{ border: isValid ? "" : "2px solid red" }}
             onChange={(e) => storeValue(e)}
             required
+            aria-live="polite"
+            aria-describedby={props.label}
+            aria-invalid="true"
+            aria-errormessage={props.label}
             aria-required="true"
             placeholder={props.placeholder}
             type={props.type}
@@ -92,6 +97,10 @@ const Input: React.FC<InputProps> = (props) => {
             id={props.id}
             className={styles["personal-input"]}
           />
+
+          <i id={props.label} className={styles["error-field-msg"]}>
+            {isValid ? "" : `Please provide a valid ${props.label}`}
+          </i>
         </li>
       )}
     </React.Fragment>

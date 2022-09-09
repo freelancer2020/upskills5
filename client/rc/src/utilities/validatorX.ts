@@ -27,6 +27,22 @@ const validatorX = (value: string, flag: string) => {
     case "Policy number":
       validation = numberRegex.test(value);
       break;
+    case "Country":
+      validation = nameRegex.test(value);
+      break;
+    case "Address":
+      validation = nameRegex.test(value);
+      break;
+    case "Date":
+      validation = (function () {
+        return value.length > 0 ? true : false;
+      })();
+      break;
+    case "Purpose of Travel":
+      validation = (function () {
+        return value.length > 0 ? true : false;
+      })();
+      break;
     default:
       return false;
   }

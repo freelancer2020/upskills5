@@ -12,7 +12,8 @@ export const toastSlice = createSlice({
   name: "Toast Message",
   initialState: initClaimToast,
   reducers: {
-    hasError(state) {
+    hasError(state, payload) {
+      console.log(payload.payload)
       state.hasError = true;
     },
     hasNoError(state) {

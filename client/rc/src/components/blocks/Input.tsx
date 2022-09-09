@@ -7,11 +7,14 @@ import validatorX from "../../utilities/validatorX";
 import { AppDispatch, RootState } from "../../store/appStore";
 import claimDataActions from "../../store/claimData";
 import { useDispatch, useSelector } from "react-redux";
+//Actions
+import toastActions from "../../store/claimToast";
 
 import styles from "./input.module.css";
 
 interface InputProps {
-  value: string;
+  value?: string;
+  selectValue?: string;
   category: string;
   placeholder: string;
   type: string;
@@ -20,6 +23,7 @@ interface InputProps {
   label: string;
   radiosgroup?: boolean;
   validation: string | boolean;
+  checked?: boolean;
 }
 
 interface Sig {
@@ -33,20 +37,32 @@ const Input: React.FC<InputProps> = (props) => {
     (state) => state.claimData.personalDetailsData
   );
 
-  const storeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const incidentValues = useSelector<RootState, Sig>(
+    (state) => state.claimData.incidentDetailsData
+  );
+
+  const storeValue = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const value = e.target.value;
     const validation = validatorX(value, props.label);
     setIsValid(validation);
     dispatch(claimDataActions.dataHandler({ type: props.label, value: value }));
+    dispatch(toastActions.hasNoError());
   };
+
   return (
     <React.Fragment>
       {props.radiosgroup ? (
         <li className={styles["radio-row"]}>
           <input
             onChange={(e) => storeValue(e)}
-            value={`${inputsValue[props.label]}`}
+            value={props.selectValue}
+            checked={
+              incidentValues.travelPurpose === props.label ? true : false
+            }
             aria-required="true"
+            required
             placeholder={props.placeholder}
             type={props.type}
             name="radio-option"
@@ -61,7 +77,11 @@ const Input: React.FC<InputProps> = (props) => {
         <li className={styles["input-row"]}>
           <label htmlFor={props.id}>{props.label}</label>
           <input
-            value={inputsValue[props.label]}
+            value={
+              props.category === "Personal Details"
+                ? inputsValue[props.label]
+                : incidentValues[props.label]
+            }
             style={{ border: isValid ? "" : "2px solid red" }}
             onChange={(e) => storeValue(e)}
             required

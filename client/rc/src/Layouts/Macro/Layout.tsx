@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
-//redux
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/appStore";
 //react-router
 import { Routes, Route } from "react-router-dom";
 
-import ToastMessageAlert from "../../components/toast/ToastMessage";
 import Header from "../../components/header/Header";
 //section components
 import TravelInsurance from "../../components/sections/travel-insurance/TravelInsurance";
@@ -76,9 +72,6 @@ const footerNavMembers = [
   { name: "Claims Center", id: 4 },
 ];
 const Layout: React.FC = () => {
-  const claimHasError = useSelector<RootState, boolean>(
-    (state) => state.claimToast.hasError
-  );
   const [reverse, setReverse] = useState<boolean>(false);
   useEffect(() => {
     const availWidth = window.screen.availWidth;
@@ -91,11 +84,6 @@ const Layout: React.FC = () => {
         <header className={styles["header"]}>
           <Header />
         </header>
-        {claimHasError && (
-          <div>
-            <ToastMessageAlert />
-          </div>
-        )}
         <main tabIndex={-1} id="main">
           <Routes>
             <Route

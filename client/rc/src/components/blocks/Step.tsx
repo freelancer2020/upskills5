@@ -4,10 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 //redux @types
 import { AppDispatch, RootState } from "../../store/appStore";
-import { PersonalDetailsData } from "../../store/claimData";
+import {
+  PersonalDetailsData,
+  IncidentDetailsData,
+} from "../../store/claimData";
 //redux actions
 import claimActions from "../../store/claimSteps";
-import toastActions from '../../store/claimToast'
+import toastActions from "../../store/claimToast";
 //validator
 import validator from "../../utilities/validator";
 import { NavLink } from "react-router-dom";
@@ -25,6 +28,10 @@ const Step: React.FC<StepProps> = (props) => {
   const personalState = useSelector<RootState, PersonalDetailsData>(
     (state) => state.claimData.personalDetailsData
   );
+
+  const incidentState = useSelector<RootState, IncidentDetailsData>(
+    (state) => state.claimData.incidentDetailsData
+  );
   const dispatch = useDispatch<AppDispatch>();
   const [active, setActive] = useState<boolean>(false);
   const handleActive = (state: boolean) => {
@@ -39,32 +46,47 @@ const Step: React.FC<StepProps> = (props) => {
 
   const clickHandler = () => {
     const personalValidation = validator(personalState);
-    for (let i in personalValidation) {
-      if (personalValidation[i] === false) {
-        if (props.stepNumber === 2) {
-          window.localStorage.setItem("personal", "0");
-          dispatch(toastActions.hasError())
+    const incidentValidation = validator(incidentState);
+    let cross = true;
+    if (props.stepNumber === 2) {
+      for (let i in personalValidation) {
+        if (personalValidation[i] === false) {
           navigate("/claim-report/personal-details");
+          window.localStorage.setItem("personal", "0");
+          dispatch(toastActions.hasError(personalValidation));
+          cross = false;
+          return false;
         }
-        if (props.stepNumber === 3) {
+      }
+    }
+
+    if (props.stepNumber === 3) {
+      for (let i in incidentValidation) {
+        if (incidentValidation[i] === false) {
           navigate("/claim-report/incident-details");
+          window.localStorage.setItem("incident", "0");
+          dispatch(toastActions.hasError(incidentValidation));
+          cross = false;
+          return false;
         }
-        return false;
-      } else {
-        window.localStorage.setItem("personal", "1");
-        switch (props.stepNumber) {
-          case 1:
-            dispatch(claimActions.continueHref(1));
-            break;
-          case 2:
-            dispatch(claimActions.continueHref(2));
-            break;
-          case 3:
-            dispatch(claimActions.continueHref(3));
-            break;
-          default:
-            return;
-        }
+      }
+    }
+
+    if (cross) {
+      switch (props.stepNumber) {
+        case 1:
+          dispatch(claimActions.continueHref(1));
+          break;
+        case 2:
+          window.localStorage.setItem("personal", "1");
+          dispatch(claimActions.continueHref(2));
+          break;
+        case 3:
+          window.localStorage.setItem("incident", "1");
+          dispatch(claimActions.continueHref(3));
+          break;
+        default:
+          return;
       }
     }
   };

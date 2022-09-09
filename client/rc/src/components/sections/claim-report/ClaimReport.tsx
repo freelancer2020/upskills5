@@ -2,25 +2,31 @@ import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../../../store/appStore";
+//Actions
 import claimActions from "../../../store/claimSteps";
 import toastActions from "../../../store/claimToast";
+
 import personalValidationActions from "../../../store/claimPersonalValidation";
+import incidentlValidationActions from "../../../store/claimIncidentValidations";
 import Step from "../../blocks/Step";
 //applications
 import PersonalDetailsApp from "../../applications/PersonalDetailsApp";
 import IncidentDetailsApp from "../../applications/IncidentDetailsApp";
 
+//Toast
+import ToastMessageAlert from "../../toast/ToastMessage";
+
 //@Types
-import { PersonalDetailsData } from "../../../store/claimData";
-// import { IncidentDetailsData } from "../../../store/claimData";
-// import { ClaimPersonalValidation } from "../../../store/claimPersonalValidation";
+import {
+  PersonalDetailsData,
+  IncidentDetailsData,
+} from "../../../store/claimData";
 import styles from "./claim-report.module.css";
 
 //validator
 import validator from "../../../utilities/validator";
 
 //data
-
 const steps = [
   {
     id: "personal-details",
@@ -60,13 +66,13 @@ const ClaimReport: React.FC = () => {
     (state) => state.claimData.personalDetailsData
   );
 
-  // const incidentState = useSelector<RootState, IncidentDetailsData>(
-  //   (state) => state.claimData.incidentDetailsData
-  // );
+  const incidentState = useSelector<RootState, IncidentDetailsData>(
+    (state) => state.claimData.incidentDetailsData
+  );
 
-  // const personalV = useSelector<RootState, ClaimPersonalValidation>(
-  //   (state) => state.personalValidation
-  // );
+  const claimHasError = useSelector<RootState, boolean>(
+    (state) => state.claimToast.hasError
+  );
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -74,7 +80,6 @@ const ClaimReport: React.FC = () => {
 
   useEffect(() => {
     const path = window.location.pathname;
-
     switch (path) {
       case "/claim-report/personal-details":
         dispatch(claimActions.continueHref(1));
@@ -91,7 +96,7 @@ const ClaimReport: React.FC = () => {
       default:
         return;
     }
-  }, []);
+  }, [dispatch, navigate]);
 
   const continueHandler = () => {
     if (stepDone) return false; // later handle submit
@@ -102,7 +107,7 @@ const ClaimReport: React.FC = () => {
       for (let i in dataValidations) {
         if (dataValidations[i] === false) {
           window.localStorage.setItem("personal", "0");
-          dispatch(toastActions.hasError());
+          dispatch(toastActions.hasError(dataValidations));
           return false;
         }
       }
@@ -111,14 +116,22 @@ const ClaimReport: React.FC = () => {
       dispatch(claimActions.continue());
       dispatch(personalValidationActions.getValidations(dataValidations));
       navigate("/claim-report/incident-details");
-      // fetch("/graphql/claimData", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({ query: personalState }),
-      // });
     } else if (claimStep === 2) {
+      const dataValidations = validator(incidentState);
+      console.log("debugging", dataValidations);
+      for (let i in dataValidations) {
+        if (dataValidations[i] === false) {
+          window.localStorage.setItem("incident", "0");
+          dispatch(toastActions.hasError(dataValidations));
+          return false;
+        }
+      }
+
+      dispatch(toastActions.hasNoError());
+      window.localStorage.setItem("incident", "1");
+      dispatch(claimActions.continue());
+      dispatch(incidentlValidationActions.getValidations(dataValidations));
+
       // window.localStorage.setItem("incident", "0");
       // Will handle next step validation
       navigate("/claim-report/expense-report");
@@ -140,6 +153,11 @@ const ClaimReport: React.FC = () => {
   };
   return (
     <div ref={claimObject} className={styles["claim-report-container"]}>
+      {claimHasError && (
+        <div>
+          <ToastMessageAlert />
+        </div>
+      )}
       <h1 id="claim-header" tabIndex={0} className={styles["claim-header"]}>
         Claim Report
       </h1>

@@ -25,7 +25,7 @@ const validator = (obj: PersonalDetailsData | IncidentDetailsData) => {
       nameRegex.test(obj["First name"]),
       nameRegex.test(obj["Second name"]),
       (function () {
-        return obj.Email.length <= 0 ? false : true;
+        return obj.Birthday.length <= 0 ? false : true;
       })(),
       phoneRegex.test(obj["Phone number"]),
       emailRegex.test(obj.Email),
@@ -35,6 +35,24 @@ const validator = (obj: PersonalDetailsData | IncidentDetailsData) => {
     for (let i = 0; i < keys.length; i++) {
       validation[keys[i]] = validations[i];
     }
+  } else if ("Country" in obj) {
+    const keys = ["Country", "Address", "Date", "travelPurpose"];
+
+    const validations = [
+      nameRegex.test(obj["Country"]),
+      nameRegex.test(obj["Address"]),
+      (function () {
+        return obj["Date"].length <= 0 ? false : true;
+      })(),
+      (function () {
+        return obj["travelPurpose"].length <= 0 ? false : true;
+      })()
+    ];
+    for (let i = 0; i < keys.length; i++) {
+      validation[keys[i]] = validations[i];
+    }
+  } else {
+    return;
   }
 
   return validation;

@@ -4,6 +4,7 @@ import { navState } from "./navPathState";
 import { claimSlice } from "./claimSteps";
 import { claimData } from "./claimData";
 import { claimPersonalValidation } from "./claimPersonalValidation";
+import { claimIncidentValidation } from "./claimIncidentValidations";
 import { toastSlice } from "./claimToast";
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     claimState: claimSlice.reducer,
     claimData: claimData.reducer,
     personalValidation: claimPersonalValidation.reducer,
+    incidentValidations: claimIncidentValidation.reducer,
     claimToast: toastSlice.reducer,
   },
 });

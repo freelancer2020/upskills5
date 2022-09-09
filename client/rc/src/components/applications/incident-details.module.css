@@ -1,3 +1,6 @@
+fieldset {
+  border: none;
+}
 .radiogroup {
   width: 100vw;
   box-sizing: border-box;

@@ -1,19 +1,32 @@
 import React, { useEffect } from "react";
 import Input from "../blocks/Input";
+//redux
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../../store/appStore";
+
+//@Types
+import { ClaimIncidentValidation } from "../../store/claimIncidentValidations";
+
+//Actions
+import toastActions from "../../store/claimToast";
+
 import styles from "./incident-details.module.css";
 
 const radios = [
   {
     category: "Incident Details",
+    selectValue: "tourism",
     name: "tourism",
     type: "radio",
     id: "tourism",
     label: "tourism",
     placeholder: "",
     group: "radio",
+    checked: true,
   },
   {
     category: "Incident Details",
+    selectValue: "study / mental work",
     name: "study",
     type: "radio",
     id: "study",
@@ -23,6 +36,7 @@ const radios = [
   },
   {
     category: "Incident Details",
+    selectValue: "physical work",
     name: "physical work",
     type: "radio",
     id: "physical",
@@ -32,6 +46,7 @@ const radios = [
   },
   {
     category: "Incident Details",
+    selectValue: "high_risk sport",
     name: "high_risk",
     type: "radio",
     id: "high_risk",
@@ -69,15 +84,20 @@ const inputsIncident = [
 ];
 
 const IncidentDetailsApp: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
+    dispatch(toastActions.hasNoError());
     const pass = window.localStorage.getItem("personal");
-    console.log(pass);
     if (pass === "0" || pass === null) {
       window.location.pathname = "/";
       window.localStorage.removeItem("personal");
       return;
     }
-  }, []);
+  }, [dispatch]);
+
+  const validations = useSelector<RootState, ClaimIncidentValidation>(
+    (state) => state.incidentValidations
+  );
   return (
     <div className={styles["incident-app-container"]}>
       <div className={styles["radios-container"]}>
@@ -93,7 +113,7 @@ const IncidentDetailsApp: React.FC = () => {
             <legend></legend>
             {radios.map((input, index) => (
               <Input
-                value=""
+                selectValue={input.selectValue}
                 validation={true}
                 category={input.category}
                 radiosgroup
@@ -112,9 +132,9 @@ const IncidentDetailsApp: React.FC = () => {
             <ul style={{ width: "100%" }}>
               <Input
                 value=""
-                validation={true}
+                validation={validations[input.label]}
                 category={input.category}
-                key={index.toString()}
+                key={input.id}
                 type={input.type}
                 name={input.name}
                 label={input.label}

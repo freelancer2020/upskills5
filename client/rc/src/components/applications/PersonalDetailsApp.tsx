@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 //redux
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/appStore";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../../store/appStore";
 //@Types
 import { ClaimPersonalValidation } from "../../store/claimPersonalValidation";
+//Actions
+import toastActions from "../../store/claimToast";
 import Input from "../blocks/Input";
 
 import styles from "./personal-details-app.module.css";
@@ -60,9 +62,14 @@ const inputs = [
 ];
 
 const PersonalDetailsApp: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const validations = useSelector<RootState, ClaimPersonalValidation>(
     (state) => state.personalValidation
   );
+
+  useEffect(() => {
+    dispatch(toastActions.hasNoError());
+  }, [dispatch]);
 
   return (
     <div
@@ -71,18 +78,18 @@ const PersonalDetailsApp: React.FC = () => {
       aria-labelledby="personal-details"
     >
       {inputs.map((input, index) => (
-        <ul style={{width: '100%'}}>
-        <Input
-          value={""}
-          validation={validations[input.label]}
-          category={input.category}
-          key={index.toString()}
-          label={input.label}
-          type={input.type}
-          name={input.name}
-          id={input.id}
-          placeholder={input.placeholder}
-        />
+        <ul style={{ width: "100%" }}>
+          <Input
+            value={""}
+            validation={validations[input.label]}
+            category={input.category}
+            key={index.toString()}
+            label={input.label}
+            type={input.type}
+            name={input.name}
+            id={input.id}
+            placeholder={input.placeholder}
+          />
         </ul>
       ))}
     </div>

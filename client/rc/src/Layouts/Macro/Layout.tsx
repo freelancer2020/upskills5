@@ -76,6 +76,7 @@ const Layout: React.FC = () => {
   useEffect(() => {
     const availWidth = window.screen.availWidth;
     window.localStorage.removeItem("personal");
+    window.localStorage.removeItem("incident");
     availWidth <= 500 ? setReverse(true) : setReverse(false);
   }, []);
   return (

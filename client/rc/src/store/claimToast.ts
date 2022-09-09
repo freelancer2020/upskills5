@@ -13,7 +13,7 @@ export const toastSlice = createSlice({
   initialState: initClaimToast,
   reducers: {
     hasError(state, payload) {
-      console.log(payload.payload)
+      // will hadnle payload to show the actual input fields error
       state.hasError = true;
     },
     hasNoError(state) {

@@ -61,6 +61,13 @@ const Step: React.FC<StepProps> = (props) => {
     }
 
     if (props.stepNumber === 3) {
+      const incidentVerification = window.localStorage.getItem("incident");
+      if (incidentVerification === null) {
+        navigate("/claim-report/personal-details");
+        dispatch(toastActions.hasError({}));
+        cross = false;
+        return false;
+      }
       for (let i in incidentValidation) {
         if (incidentValidation[i] === false) {
           navigate("/claim-report/incident-details");

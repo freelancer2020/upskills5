@@ -36,7 +36,13 @@ const validator = (obj: PersonalDetailsData | IncidentDetailsData) => {
       validation[keys[i]] = validations[i];
     }
   } else if ("Country" in obj) {
-    const keys = ["Country", "Address", "Date", "travelPurpose"];
+    const keys = [
+      "Country",
+      "Address",
+      "Date",
+      "travelPurpose",
+      "Incident description",
+    ];
 
     const validations = [
       nameRegex.test(obj["Country"]),
@@ -46,8 +52,12 @@ const validator = (obj: PersonalDetailsData | IncidentDetailsData) => {
       })(),
       (function () {
         return obj["travelPurpose"].length <= 0 ? false : true;
-      })()
+      })(),
+      (function () {
+        return obj["incidentDesc"].length <= 0 ? false : true;
+      })(),
     ];
+
     for (let i = 0; i < keys.length; i++) {
       validation[keys[i]] = validations[i];
     }

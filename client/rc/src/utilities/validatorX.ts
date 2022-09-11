@@ -43,6 +43,11 @@ const validatorX = (value: string, flag: string) => {
         return value.length > 0 ? true : false;
       })();
       break;
+    case "Incident description":
+      validation = (function () {
+        return value.length > 0 ? true : false;
+      })();
+      break;
     default:
       return false;
   }

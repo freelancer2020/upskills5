@@ -1,14 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import Input from "../blocks/Input";
 //redux
 import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "../../store/appStore";
+import { AppDispatch, RootState } from "../../store/appStore";
 
 //@Types
 import { ClaimIncidentValidation } from "../../store/claimIncidentValidations";
+import claimDataActions from "../../store/claimData";
 
-//Actions
-import toastActions from "../../store/claimToast";
+//validator x
+import validatorX from "../../utilities/validatorX";
 
 import styles from "./incident-details.module.css";
 
@@ -85,19 +86,22 @@ const inputsIncident = [
 
 const IncidentDetailsApp: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    dispatch(toastActions.hasNoError());
-    const pass = window.localStorage.getItem("personal");
-    if (pass === "0" || pass === null) {
-      window.location.pathname = "/";
-      window.localStorage.removeItem("personal");
-      return;
-    }
-  }, [dispatch]);
-
+  const [isValid, setIsValid] = useState<boolean>(true);
   const validations = useSelector<RootState, ClaimIncidentValidation>(
     (state) => state.incidentValidations
   );
+
+  const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value;
+    const validation = validatorX(value, "Incident description");
+    setIsValid(validation);
+    dispatch(
+      claimDataActions.dataHandler({
+        type: "Incident description",
+        value: value,
+      })
+    );
+  };
   return (
     <div className={styles["incident-app-container"]}>
       <div className={styles["radios-container"]}>
@@ -128,28 +132,30 @@ const IncidentDetailsApp: React.FC = () => {
           </fieldset>
         </ul>
         <div className={styles["incident-app-container"]}>
-          {inputsIncident.map((input, index) => (
-            <ul style={{ width: "100%" }}>
+          <ul style={{ width: "100%" }}>
+            {inputsIncident.map((input) => (
               <Input
+                key={input.id}
                 value=""
                 validation={validations[input.label]}
                 category={input.category}
-                key={input.id}
                 type={input.type}
                 name={input.name}
                 label={input.label}
                 id={input.id}
                 placeholder={input.placeholder}
               />
-            </ul>
-          ))}
+            ))}
+          </ul>
           <div className={styles["text-container"]}>
             <label htmlFor="text">Incident description</label>
             <textarea
+              onChange={changeHandler}
               required
               aria-required={true}
               id="text"
               className={styles["text-area"]}
+              style={{ border: isValid ? "" : "2px solid red" }}
             ></textarea>
           </div>
         </div>

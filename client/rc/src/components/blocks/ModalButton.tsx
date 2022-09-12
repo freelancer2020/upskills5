@@ -7,14 +7,19 @@ import styles from "./modal-button.module.css";
 
 type ModalButtonProps = {
   type: string;
+  click?: () => void;
 };
 
 const ModalButton: React.FC<ModalButtonProps> = (props) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const clickHandler = () => {
-    if (props.type === "cancel") {
+    if (props.type === "cancel" && !props.click) {
       dispatch(expenseModalActions.closeModal());
+    } else {
+      if (props.click) {
+        props.click();
+      }
     }
   };
   return (

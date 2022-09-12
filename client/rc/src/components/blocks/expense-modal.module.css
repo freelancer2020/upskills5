@@ -65,5 +65,8 @@
   width: 100%;
   display: flex;
   justify-content: center;
+}
 
+.error-field-msg {
+  color: Red;
 }

@@ -75,7 +75,6 @@ const footerNavMembers = [
   { name: "Claims Center", id: 4 },
 ];
 const Layout: React.FC = () => {
-
   const [reverse, setReverse] = useState<boolean>(false);
   useEffect(() => {
     const availWidth = window.screen.availWidth;
@@ -89,7 +88,7 @@ const Layout: React.FC = () => {
         <header className={styles["header"]}>
           <Header />
         </header>
-        <main aria-hidden={true} tabIndex={-1} id="main">
+        <main tabIndex={-1} id="main">
           <Routes>
             <Route
               path="/"

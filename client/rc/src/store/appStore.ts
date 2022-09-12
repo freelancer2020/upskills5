@@ -7,6 +7,7 @@ import { claimPersonalValidation } from "./claimPersonalValidation";
 import { claimIncidentValidation } from "./claimIncidentValidations";
 import { toastSlice } from "./claimToast";
 import { expenseModalSlice } from "./expenseModal";
+import { expenseSlice } from "./expenseItems";
 const store = configureStore({
   reducer: {
     mobileNav: mobileNavSlice.reducer,
@@ -17,6 +18,7 @@ const store = configureStore({
     incidentValidations: claimIncidentValidation.reducer,
     claimToast: toastSlice.reducer,
     expenseModal: expenseModalSlice.reducer,
+    expenseItems: expenseSlice.reducer,
   },
 });
 

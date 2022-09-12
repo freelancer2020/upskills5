@@ -1,0 +1,43 @@
+.item-container {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0 1rem 0 1rem;
+  width: 100%;
+  background-color: #fff;
+}
+
+.item-data-container {
+  display: flex;
+  align-items: center;
+}
+
+.expense-price {
+  box-sizing: border-box;
+  padding: 0 1.5rem 0 0;
+  font-size: 1.3rem;
+}
+
+.item-control-container {
+  display: flex;
+  align-items: center;
+}
+
+.expense-item-del,
+.expense-item-edit {
+  font-size: 1.7rem;
+}
+
+.expense-item-btn {
+  border-radius: 100%;
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  cursor: pointer;
+}
+
+.item-control-container {
+    display: flex;
+    justify-content: space-between;
+    width: 7rem;
+}

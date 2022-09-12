@@ -12,6 +12,7 @@ import Step from "../../blocks/Step";
 //applications
 import PersonalDetailsApp from "../../applications/PersonalDetailsApp";
 import IncidentDetailsApp from "../../applications/IncidentDetailsApp";
+import ExpenseReport from "../../applications/ExpenseReport";
 
 //Toast
 import ToastMessageAlert from "../../toast/ToastMessage";
@@ -177,6 +178,7 @@ const ClaimReport: React.FC = () => {
       <div className={styles["claim-report-app-container"]}>
         {claimStep === 1 && <PersonalDetailsApp />}
         {claimStep === 2 && <IncidentDetailsApp />}
+        {claimStep === 3 && <ExpenseReport />}
       </div>
       <div className={styles["claim-report-control-btns"]}>
         <button

@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+//redux
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/appStore";
 //react-router
 import { Routes, Route } from "react-router-dom";
 
@@ -72,6 +75,7 @@ const footerNavMembers = [
   { name: "Claims Center", id: 4 },
 ];
 const Layout: React.FC = () => {
+
   const [reverse, setReverse] = useState<boolean>(false);
   useEffect(() => {
     const availWidth = window.screen.availWidth;
@@ -85,7 +89,7 @@ const Layout: React.FC = () => {
         <header className={styles["header"]}>
           <Header />
         </header>
-        <main tabIndex={-1} id="main">
+        <main aria-hidden={true} tabIndex={-1} id="main">
           <Routes>
             <Route
               path="/"

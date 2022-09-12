@@ -1,0 +1,24 @@
+.modal-button-cancel {
+  width: 10rem;
+  height: 2.5rem;
+  border-radius: 0.2rem;
+  border: 0.1rem solid #212121;
+  background-color: #fff;
+  color: #212121;
+  outline: 0;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.modal-button-add {
+  width: 10rem;
+  height: 2.5rem;
+  border-radius: 0.2rem;
+  background-color: #212121;
+  color: #fff;
+  outline: 0;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 0.5rem;
+}

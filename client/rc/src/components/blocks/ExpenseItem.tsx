@@ -30,6 +30,7 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
 
   const removeItemHandler = (id: string) => {
     dispatch(expenseItemsActions.removeItem(id));
+    dispatch(expenseItemsActions.openAlertMsg("Removed"));
   };
 
   return (

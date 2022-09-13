@@ -47,7 +47,7 @@ const ExpenseReport: React.FC = () => {
         <h3>Expense report</h3>
       </div>
       <ul className={styles["report-list-items"]}>
-        {listExpenseItems.length > 0 ? (
+        {listExpenseItems.length > 0 &&
           listExpenseItems.map((item, index) => (
             <ExpenseItem
               id={index.toString()}
@@ -55,19 +55,19 @@ const ExpenseReport: React.FC = () => {
               itemText={item.itemText}
               key={index.toString()}
             />
-          ))
-        ) : (
-          <li aria-label="Your List Items Is Empty" tabIndex={0} role="note">
-            <img
-              aria-hidden={true}
-              className={styles["empty-list-image"]}
-              src={empty}
-              alt=""
-              role="presentation"
-            />
-          </li>
-        )}
+          ))}
       </ul>
+      {listExpenseItems.length <= 0 && (
+        <div tabIndex={0} aria-label="Your Expense List Is Empty">
+          <img
+            aria-hidden={true}
+            className={styles["empty-list-image"]}
+            src={empty}
+            alt=""
+            role="presentation"
+          />
+        </div>
+      )}
       <div className={styles["expense-footer"]}>
         <button
           aria-haspopup={true}

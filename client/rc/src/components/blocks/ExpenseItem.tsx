@@ -15,27 +15,29 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
   const priceEditRef = useRef<HTMLElement>(null);
 
   const editContent = () => {
-    setEditPriceItem(true);
-    setTextEdited(true);
     priceEditRef.current?.focus();
+    setEditPriceItem((prevState) => !prevState);
+    setTextEdited((prevState) => !prevState);
   };
 
   return (
     <li tabIndex={0} className={styles["item-container"]}>
       <div className={styles["item-data-container"]}>
         <b
+          aria-label={`Price item is ${props.itemPrice}`}
           tabIndex={0}
           ref={priceEditRef}
           className={styles["expense-price"]}
-          contentEditable={editPriceItem}
+          contentEditable={true}
         >
           {props.itemPrice}
         </b>
         <p
+          aria-label={`Item name is ${props.itemText}`}
           tabIndex={0}
           ref={textEditRef}
           className={styles["expense-text"]}
-          contentEditable={editTextItem}
+          contentEditable={true}
         >
           {props.itemText}
         </p>

@@ -34,6 +34,7 @@
   height: 3rem;
   border: none;
   cursor: pointer;
+  z-index: 88;
 }
 
 .item-control-container {

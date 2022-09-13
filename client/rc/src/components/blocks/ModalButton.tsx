@@ -25,6 +25,11 @@ const ModalButton: React.FC<ModalButtonProps> = (props) => {
   return (
     <button
       tabIndex={0}
+      aria-label={
+        props.type === "cancel"
+          ? "Cancel and close the modal"
+          : "Add Expense item"
+      }
       onClick={clickHandler}
       className={
         props.type === "cancel"

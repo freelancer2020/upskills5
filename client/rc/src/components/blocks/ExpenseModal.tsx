@@ -5,6 +5,7 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 //redux
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/appStore";
+//Actions
 import expenseModalActions from "../../store/expenseModal";
 import expenseItemsActions from "../../store/expenseItems";
 
@@ -13,6 +14,8 @@ import ModalButton from "./ModalButton";
 import styles from "./expense-modal.module.css";
 
 const ExpenseModal: React.FC = () => {
+  const nameRef = useRef<HTMLInputElement>(null);
+  const priceRef = useRef<HTMLInputElement>(null);
   const [itemText, setItemText] = useState<string>("");
   const [itemPrice, setItemPrice] = useState<string>("");
 
@@ -48,10 +51,12 @@ const ExpenseModal: React.FC = () => {
   };
 
   const addExpenseHandler = () => {
-    if (itemPrice.length <= 0) {
-      setIsValidPrice(false);
-    } else if (itemText.length <= 0) {
+    if (itemText.length <= 0) {
       setIsValidName(false);
+      nameRef.current?.focus();
+    } else if (itemPrice.length <= 0) {
+      setIsValidPrice(false);
+      priceRef.current?.focus();
     } else {
       setIsValidPrice(true);
       setIsValidName(true);
@@ -62,6 +67,11 @@ const ExpenseModal: React.FC = () => {
 
       dispatch(expenseItemsActions.addItem(expenseItem));
       dispatch(expenseModalActions.closeModal());
+      dispatch(expenseItemsActions.openAlertMsg("Added"));
+      setTimeout(() => dispatch(expenseItemsActions.closeAlertMsg()), 3000);
+
+      const root = document.getElementById("root") as HTMLDivElement;
+      root.scrollIntoView(true);
     }
   };
 
@@ -97,6 +107,7 @@ const ExpenseModal: React.FC = () => {
         <div className={styles["input-row"]}>
           <label htmlFor="name">Name</label>
           <input
+            ref={nameRef}
             aria-describedby="name-error-msg"
             onChange={(e) => handleNameChange(e)}
             className={styles["modal-input"]}
@@ -104,21 +115,30 @@ const ExpenseModal: React.FC = () => {
             type="text"
             placeholder="e.x Mostafa"
           />
-          <i id="name-error-msg" className={styles["error-field-msg"]}>
-            {isValidName ? "" : `*Please provide a valid name`}
+          <i
+            role="alert"
+            id="name-error-msg"
+            className={styles["error-field-msg"]}
+          >
+            {isValidName ? "" : `Please provide a valid name`}
           </i>
         </div>
         <div className={styles["input-row"]}>
           <label htmlFor="price">Price</label>
           <input
+            ref={priceRef}
             aria-describedby="price-error-msg"
             onChange={(e) => handlePriceChange(e)}
             id="name"
             type="text"
             placeholder="15$"
           />
-          <i id="price-error-msg" className={styles["error-field-msg"]}>
-            {isValidPrice ? "" : `*Please provide a valid price`}
+          <i
+            role="alert"
+            id="price-error-msg"
+            className={styles["error-field-msg"]}
+          >
+            {isValidPrice ? "" : `Please provide a valid price`}
           </i>
         </div>
         <div className={styles["modal-buttons"]}>

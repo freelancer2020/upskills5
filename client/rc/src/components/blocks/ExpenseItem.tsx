@@ -1,4 +1,9 @@
 import React, { useState, useRef } from "react";
+//Redux
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store/appStore";
+import expenseItemsActions from "../../store/expenseItems";
+
 import { MdOutlineDelete } from "react-icons/md";
 import { GrEdit } from "react-icons/gr";
 import styles from "./expense-item.module.css";
@@ -6,9 +11,12 @@ import styles from "./expense-item.module.css";
 type ExpenseItemProps = {
   itemText: string;
   itemPrice: string;
+  id: string;
 };
 
 const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const [editPriceItem, setEditPriceItem] = useState<boolean>(false);
   const [editTextItem, setTextEdited] = useState<boolean>(false);
   const textEditRef = useRef<HTMLParagraphElement>(null);
@@ -18,6 +26,10 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
     priceEditRef.current?.focus();
     setEditPriceItem((prevState) => !prevState);
     setTextEdited((prevState) => !prevState);
+  };
+
+  const removeItemHandler = (id: string) => {
+    dispatch(expenseItemsActions.removeItem(id));
   };
 
   return (
@@ -44,6 +56,7 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
       </div>
       <div className={styles["item-control-container"]}>
         <button
+          onClick={() => removeItemHandler(props.id)}
           aria-label="Delete the report item"
           type="button"
           className={styles["expense-item-btn"]}

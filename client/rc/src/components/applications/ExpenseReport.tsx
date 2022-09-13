@@ -50,6 +50,7 @@ const ExpenseReport: React.FC = () => {
         {listExpenseItems.length > 0 ? (
           listExpenseItems.map((item, index) => (
             <ExpenseItem
+              id={index.toString()}
               itemPrice={item.itemPrice}
               itemText={item.itemText}
               key={index.toString()}

@@ -35,6 +35,13 @@ export const expenseSlice = createSlice({
       prevState.push(item);
       state.items = prevState;
     },
+    removeItem(state, payload) {
+      const id = payload.payload;
+      const filterItems = [...state.items].filter(
+        (item, index) => index.toString() !== id
+      );
+      state.items = filterItems;
+    },
     closeAlertMsg(state) {
       state.isAlertMsg = false;
     },

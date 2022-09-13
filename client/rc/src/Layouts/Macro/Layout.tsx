@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-//redux
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/appStore";
 //react-router
 import { Routes, Route } from "react-router-dom";
 
@@ -16,14 +13,17 @@ import ClaimReport from "../../components/sections/claim-report/ClaimReport";
 import Footer from "../../components/footer/Footer";
 //blocks
 import Image from "../../components/blocks/Image";
+
 import Content from "../../components/blocks/Content";
 import Topic from "../../components/blocks/Topic";
 import FooterNavList from "../../components/blocks/FooterNavList";
 import FootrNavHeader from "../../components/blocks/FooterNavHeader";
+
+import styles from "./layout.module.css";
 // assets
 import visitor from "../../assets/international-visitor.jpg";
 import travelTopics from "../../assets/travel-topics.jpg";
-import styles from "./layout.module.css";
+
 import renting from "../../assets/renting.jpg";
 import trends from "../../assets/trends.jpg";
 import popular from "../../assets/popular.jpg";
@@ -212,6 +212,14 @@ const Layout: React.FC = () => {
                   </section>
                 </React.Fragment>
               }
+            />
+            <Route
+              path="/about-us"
+              element={<h2 style={{ textAlign: "center" }}>About us</h2>}
+            />
+            <Route
+              path="/contact"
+              element={<h2 style={{ textAlign: "center" }}>Contact</h2>}
             />
           </Routes>
         </main>

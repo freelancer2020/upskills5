@@ -44,7 +44,7 @@ const ExpenseReport: React.FC = () => {
       )}
 
       <div className={styles["expense-header"]}>
-        <h3>Expense report</h3>
+        <h2>Expense report</h2>
       </div>
       <ul className={styles["report-list-items"]}>
         {listExpenseItems.length > 0 &&
@@ -58,7 +58,7 @@ const ExpenseReport: React.FC = () => {
           ))}
       </ul>
       {listExpenseItems.length <= 0 && (
-        <div tabIndex={0} aria-label="Your Expense List Is Empty">
+        <div>
           <img
             aria-hidden={true}
             className={styles["empty-list-image"]}

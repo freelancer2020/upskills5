@@ -37,3 +37,9 @@ input {
     padding: 0rem;
   }
 }
+
+@media only screen and (min-width: 1536px) {
+  .app-container {
+    padding: 4rem 24rem 4rem 24rem;
+  }
+}

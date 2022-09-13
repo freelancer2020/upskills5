@@ -8,6 +8,8 @@ import { ExpenseObj } from "../../store/expenseItems";
 import { AiFillPlusCircle } from "react-icons/ai";
 
 import ExpenseItem from "../blocks/ExpenseItem";
+
+import empty from "../../assets/empty.jpg";
 import styles from "./expense-report.module.css";
 
 const ExpenseReport: React.FC = () => {
@@ -26,13 +28,25 @@ const ExpenseReport: React.FC = () => {
         <h3>Expense report</h3>
       </div>
       <ul className={styles["report-list-items"]}>
-        {listExpenseItems.map((item, index) => (
-          <ExpenseItem
-            itemPrice={item.itemPrice}
-            itemText={item.itemText}
-            key={index.toString()}
-          />
-        ))}
+        {listExpenseItems.length > 0 ? (
+          listExpenseItems.map((item, index) => (
+            <ExpenseItem
+              itemPrice={item.itemPrice}
+              itemText={item.itemText}
+              key={index.toString()}
+            />
+          ))
+        ) : (
+          <li aria-label="Your List Items Is Empty" tabIndex={0} role="note">
+            <img
+              aria-hidden={true}
+              className={styles["empty-list-image"]}
+              src={empty}
+              alt=""
+              role="presentation"
+            />
+          </li>
+        )}
       </ul>
       <div className={styles["expense-footer"]}>
         <button

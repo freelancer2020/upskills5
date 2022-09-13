@@ -38,11 +38,13 @@ const ExpenseModal: React.FC = () => {
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setItemText(value);
+    setIsValidName(true);
   };
 
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setItemPrice(value);
+    setIsValidPrice(true);
   };
 
   const addExpenseHandler = () => {
@@ -59,7 +61,7 @@ const ExpenseModal: React.FC = () => {
       };
 
       dispatch(expenseItemsActions.addItem(expenseItem));
-      dispatch(expenseModalActions.closeModal());  
+      dispatch(expenseModalActions.closeModal());
     }
   };
 

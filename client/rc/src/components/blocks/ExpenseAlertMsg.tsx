@@ -16,7 +16,8 @@ const ExpenseAlertMsg: React.FC<ExpenseAlertPrpos> = (props) => {
   const currentRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     currentRef.current?.focus();
-  }, []);
+    setTimeout(() => dispatch(expenseItemsActions.closeAlertMsg()), 3000);
+  }, [dispatch]);
 
   const closeAlerHandler = () => {
     dispatch(expenseItemsActions.closeAlertMsg());

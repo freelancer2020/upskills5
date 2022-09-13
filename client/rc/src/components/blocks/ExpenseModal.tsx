@@ -68,7 +68,6 @@ const ExpenseModal: React.FC = () => {
       dispatch(expenseItemsActions.addItem(expenseItem));
       dispatch(expenseModalActions.closeModal());
       dispatch(expenseItemsActions.openAlertMsg("Added"));
-      setTimeout(() => dispatch(expenseItemsActions.closeAlertMsg()), 3000);
 
       const root = document.getElementById("root") as HTMLDivElement;
       root.scrollIntoView(true);

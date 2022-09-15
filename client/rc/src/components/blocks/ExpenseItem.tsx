@@ -16,6 +16,7 @@ type ExpenseItemProps = {
 
 const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
   const dispatch = useDispatch<AppDispatch>();
+  const [itemHovered, setItemHover] = useState<boolean>(false);
 
   const [priceItem, setPriceItem] = useState<string>("");
   const [textItem, setTextItem] = useState<string>("");
@@ -47,8 +48,20 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
     dispatch(expenseItemsActions.openAlertMsg("Removed"));
   };
 
+  const handleItemHover = () => {
+    setItemHover(true);
+  };
+
+  const handleItemBlur = () => {
+    setItemHover(false);
+  };
+
   return (
-    <li tabIndex={0} className={styles["item-container"]}>
+    <li
+      tabIndex={0}
+      className={styles["item-container"]}
+      style={{ boxShadow: itemHovered ? "0 0 2px 2px #F0F0F0" : "" }}
+    >
       <div className={styles["item-data-container"]}>
         <b
           onInput={(e) => itemPriceInputHandler(e)}
@@ -73,6 +86,8 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
       </div>
       <div className={styles["item-control-container"]}>
         <button
+          onMouseOver={handleItemHover}
+          onMouseOut={handleItemBlur}
           onClick={() => removeItemHandler(props.id)}
           aria-label="Delete the report item"
           type="button"
@@ -84,6 +99,8 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
           />
         </button>
         <button
+          onMouseOver={handleItemHover}
+          onMouseOut={handleItemBlur}
           onClick={editContent}
           aria-label="Edit the report item"
           type="button"

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 //Redux
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/appStore";
@@ -17,15 +17,29 @@ type ExpenseItemProps = {
 const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const [editPriceItem, setEditPriceItem] = useState<boolean>(false);
-  const [editTextItem, setTextEdited] = useState<boolean>(false);
+  const [priceItem, setPriceItem] = useState<string>("");
+  const [textItem, setTextItem] = useState<string>("");
+
   const textEditRef = useRef<HTMLParagraphElement>(null);
   const priceEditRef = useRef<HTMLElement>(null);
 
+  useEffect(() => {
+    setPriceItem(props.itemPrice);
+    setTextItem(props.itemText);
+  }, [props.itemPrice, props.itemText]);
+
   const editContent = () => {
     priceEditRef.current?.focus();
-    setEditPriceItem((prevState) => !prevState);
-    setTextEdited((prevState) => !prevState);
+  };
+
+  const itemTextInputHandler = (e: React.FormEvent<HTMLParagraphElement>) => {
+    const value = e.currentTarget.textContent;
+    return value ? setTextItem(value) : null;
+  };
+
+  const itemPriceInputHandler = (e: React.FormEvent) => {
+    const value = e.currentTarget.textContent;
+    return value ? setPriceItem(value) : null;
   };
 
   const removeItemHandler = (id: string) => {
@@ -37,22 +51,24 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
     <li tabIndex={0} className={styles["item-container"]}>
       <div className={styles["item-data-container"]}>
         <b
+          onInput={(e) => itemPriceInputHandler(e)}
           aria-label={`Price item is ${props.itemPrice}`}
           tabIndex={0}
           ref={priceEditRef}
           className={styles["expense-price"]}
           contentEditable={true}
         >
-          {props.itemPrice}
+          {priceItem}
         </b>
         <p
+          onInput={(e) => itemTextInputHandler(e)}
           aria-label={`Item name is ${props.itemText}`}
           tabIndex={0}
           ref={textEditRef}
           className={styles["expense-text"]}
           contentEditable={true}
         >
-          {props.itemText}
+          {textItem}
         </p>
       </div>
       <div className={styles["item-control-container"]}>

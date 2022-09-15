@@ -77,8 +77,8 @@ const PersonalDetailsApp: React.FC = () => {
       role="group"
       aria-labelledby="personal-details"
     >
-      {inputs.map((input, index) => (
-        <ul style={{ width: "100%" }}>
+      <ul style={{ width: "100%" }}>
+        {inputs.map((input, index) => (
           <Input
             value={""}
             validation={validations[input.label]}
@@ -90,8 +90,8 @@ const PersonalDetailsApp: React.FC = () => {
             id={input.id}
             placeholder={input.placeholder}
           />
-        </ul>
-      ))}
+        ))}
+      </ul>
     </div>
   );
 };

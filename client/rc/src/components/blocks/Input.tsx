@@ -69,15 +69,14 @@ const Input: React.FC<InputProps> = (props) => {
             id={props.id}
             className={styles["radio-input"]}
           />
-          <label className={styles["radio-label"]} htmlFor={props.id}>
+          <label className={styles["radio-label"]}>
             {props.label}
           </label>
         </li>
       ) : (
-        <li className={styles["input-row"]}>
+        <li className={styles["input-row"]} key={props.id}>
           <label htmlFor={props.id}>{props.label}</label>
           <input
-      
             value={
               props.category === "Personal Details"
                 ? inputsValue[props.label]

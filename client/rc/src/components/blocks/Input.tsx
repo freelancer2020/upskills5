@@ -69,9 +69,7 @@ const Input: React.FC<InputProps> = (props) => {
             id={props.id}
             className={styles["radio-input"]}
           />
-          <label className={styles["radio-label"]}>
-            {props.label}
-          </label>
+          <label className={styles["radio-label"]}>{props.label}</label>
         </li>
       ) : (
         <li className={styles["input-row"]} key={props.id}>
@@ -87,9 +85,9 @@ const Input: React.FC<InputProps> = (props) => {
             required
             aria-live="polite"
             aria-describedby={props.label}
-            aria-invalid="true"
+            aria-invalid={!isValid}
             aria-errormessage={props.label}
-            aria-required="true"
+            aria-required={true}
             placeholder={props.placeholder}
             type={props.type}
             name={props.name}
@@ -97,7 +95,11 @@ const Input: React.FC<InputProps> = (props) => {
             className={styles["personal-input"]}
           />
 
-          <i id={props.label} className={styles["error-field-msg"]}>
+          <i
+            role="alert"
+            id={props.label}
+            className={styles["error-field-msg"]}
+          >
             {isValid ? "" : `Please provide a valid ${props.label}`}
           </i>
         </li>

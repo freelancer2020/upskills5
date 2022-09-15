@@ -1,5 +1,5 @@
 .toast-container {
-  width: 50vw;
+  width: 37vw;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -12,7 +12,7 @@
   margin: auto;
   margin-top: 4.2rem;
   z-index: 9999;
-  background-color: #ff0000;
+  background-color: #f44336;
   box-shadow: 0 0 2px 2px lightgray;
 }
 
@@ -56,5 +56,11 @@
   }
   .toast-icon {
     font-size: medium;
+  }
+}
+
+@media only screen and (min-width: 1536px) {
+  .toast-container {
+    width: 25vw;
   }
 }

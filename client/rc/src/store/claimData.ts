@@ -17,7 +17,7 @@ export type IncidentDetailsData = {
   incidentDesc: string;
 };
 
-interface ClaimData {
+export interface ClaimData {
   personalDetailsData: PersonalDetailsData;
   incidentDetailsData: IncidentDetailsData;
 }

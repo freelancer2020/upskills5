@@ -6,6 +6,9 @@ import { RootState, AppDispatch } from "../../../store/appStore";
 import claimActions from "../../../store/claimSteps";
 import toastActions from "../../../store/claimToast";
 
+//@Types
+import { ClaimData } from "../../../store/claimData";
+
 import personalValidationActions from "../../../store/claimPersonalValidation";
 import incidentlValidationActions from "../../../store/claimIncidentValidations";
 import Step from "../../blocks/Step";
@@ -75,6 +78,8 @@ const ClaimReport: React.FC = () => {
     (state) => state.claimToast.hasError
   );
 
+  const allData = useSelector<RootState, ClaimData>((state) => state.claimData);
+
   const dispatch = useDispatch<AppDispatch>();
 
   const navigate = useNavigate();
@@ -100,7 +105,53 @@ const ClaimReport: React.FC = () => {
   }, [dispatch, navigate]);
 
   const continueHandler = () => {
-    if (stepDone) return false; // later handle submit
+    if (stepDone) {
+      const claimAllData = {
+        ...allData.personalDetailsData,
+        ...allData.incidentDetailsData,
+      };
+
+      const data = {
+        country: claimAllData.Country,
+        adress: claimAllData.Address,
+        date: claimAllData.Date,
+        incidentDesc: claimAllData.incidentDesc,
+        travelPurpose: claimAllData.travelPurpose,
+        birthday: claimAllData.Birthday,
+        email: claimAllData.Email,
+        firstName: claimAllData["First name"],
+        secondName: claimAllData["Second name"],
+        phoneNumber: claimAllData["Phone number"],
+        policyNumber: claimAllData["Policy number"],
+      };
+
+      window
+        .fetch("/graphql/claimData", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            query: `mutation {
+          claimAllData(data: {
+            firstName: ${JSON.stringify(data.firstName)},
+            secondName: ${JSON.stringify(data.secondName)},
+            phoneNumber: ${JSON.stringify(data.phoneNumber)},
+            policyNumber: ${JSON.stringify(data.policyNumber)},
+            adress: ${JSON.stringify(data.adress)},
+            country: ${JSON.stringify(data.country)},
+            date: ${JSON.stringify(data.date)},
+            incidentDesc: ${JSON.stringify(data.incidentDesc)},
+            travelPurpose: ${JSON.stringify(data.travelPurpose)},
+            birthday: ${JSON.stringify(data.birthday)},
+            email: ${JSON.stringify(data.email)}
+          })
+         }
+        `,
+          }),
+        })
+        .then((response) => response.text())
+        .then((data) => console.log(data));
+      return false;
+    }
     claimObject.current?.scrollIntoView(true);
 
     if (claimStep === 1) {
@@ -140,9 +191,14 @@ const ClaimReport: React.FC = () => {
   };
 
   const returnHandler = () => {
+    const incidetGuard = window.localStorage.getItem("incident");
     claimObject.current?.scrollIntoView(true);
     dispatch(claimActions.returnBtn());
-    if (claimStep === 3) {
+    if (claimStep === 3 && incidetGuard === null) {
+      navigate("/claim-report/personal-details");
+    }
+
+    if (claimStep === 3 && incidetGuard !== null) {
       navigate("/claim-report/incident-details");
     }
 

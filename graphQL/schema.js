@@ -6,27 +6,27 @@ type obj {
     age: Int!
 }
 
-input UserData {
-    name: String!
-    age: Int!
+input AllData {
+    firstName: String!
+    secondName: String!
+    phoneNumber: String!
+    policyNumber: String!
+    adress: String!
+    country: String!
+    date: String!
+    incidentDesc: String!
+    travelPurpose: String!
+    birthday: String!
+    email: String!
 }
+
 
 type RootQuery {
     test: obj!
 }
 
-input ClaimData {
-    firstName: String!
-    secondName: String!
-    birthday: String!
-    phoneNumber: String!
-    email: String!
-    policyNumber: String!
-}
-
 type RootMutation {
-    makeTest(data: UserData): String!
-    claimPersonalData(data: ClaimData): String!
+    claimAllData(data: AllData): String!
 }
 
 schema {
@@ -36,3 +36,28 @@ schema {
 `);
 
 export default schema;
+
+/*
+
+input AllData {
+    incidentDetailsData : {
+        Adress: String!
+        Country: String!
+        Date: String!
+        incidentDesc: String!
+        travelPurpose: String!
+    }
+    personalDetailsData: {
+        Birthday: String!
+        Email: String!
+        First name: String!
+        Phone number: String!
+        Policy number: String!
+        Second name: String!
+    }
+}
+
+ claimAllData(data: AllData): String!
+
+
+*/

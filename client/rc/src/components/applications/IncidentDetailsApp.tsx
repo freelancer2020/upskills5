@@ -91,6 +91,10 @@ const IncidentDetailsApp: React.FC = () => {
     (state) => state.incidentValidations
   );
 
+  const incidentDesc = useSelector<RootState, string>(
+    (state) => state.claimData.incidentDetailsData.incidentDesc
+  );
+
   const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
     const validation = validatorX(value, "Incident description");
@@ -150,6 +154,7 @@ const IncidentDetailsApp: React.FC = () => {
           <div className={styles["text-container"]}>
             <label htmlFor="text">Incident description</label>
             <textarea
+              value={incidentDesc}
               onChange={changeHandler}
               required
               aria-required={true}

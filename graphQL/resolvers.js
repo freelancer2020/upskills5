@@ -1,17 +1,10 @@
 const resolvers = {
-  test() {
-    return {
-      name: "Mostafa",
-      age: 36,
-    };
+  test(obj) {
+    return "test";
   },
-  makeTest(obj) {
-    console.log(obj.data.name);
-    if (obj.data.name === "Mostafa") {
-      return "Master graphQL";
-    } else {
-      return "In The Way";
-    }
+  claimAllData(obj) {
+    const destrObject = { ...obj.data };
+    return "Data has been recevied";
   },
 };
 

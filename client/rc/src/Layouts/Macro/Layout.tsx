@@ -215,11 +215,31 @@ const Layout: React.FC = () => {
             />
             <Route
               path="/about-us"
-              element={<h2 style={{ textAlign: "center" }}>About us</h2>}
+              element={
+                <section id="about-us">
+                  <h2
+                    tabIndex={0}
+                    aria-labelledby="about-us"
+                    style={{ textAlign: "center" }}
+                  >
+                    About us
+                  </h2>
+                </section>
+              }
             />
             <Route
               path="/contact"
-              element={<h2 style={{ textAlign: "center" }}>Contact</h2>}
+              element={
+                <section id="contact" aria-labelledby="contact-header">
+                  <h2
+                    tabIndex={0}
+                    id="contact-header"
+                    style={{ textAlign: "center" }}
+                  >
+                    Contact
+                  </h2>
+                </section>
+              }
             />
           </Routes>
         </main>

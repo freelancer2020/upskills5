@@ -133,8 +133,6 @@ const ClaimReport: React.FC = () => {
       dispatch(claimActions.continue());
       dispatch(incidentlValidationActions.getValidations(dataValidations));
 
-      // window.localStorage.setItem("incident", "0");
-      // Will handle next step validation
       navigate("/claim-report/expense-report");
     } else {
       return false;

@@ -1,0 +1,42 @@
+.container-4o4 {
+  box-sizing: border-box;
+  padding: 0 8rem 0 8rem;
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url("../../../assets/4o4.gif");
+}
+
+.not-found-msg {
+  width: fit-content;
+  height: fit-content;
+  box-sizing: border-box;
+  padding: 1rem;
+  border-radius: .2rem;
+  box-shadow: 0 0 0.3rem 0.3rem #E8E8E8;
+  color: #696969;
+}
+
+.back-home-btn {
+    box-sizing: border-box;
+    height: 2.2rem;
+    border-radius: .2rem;
+    border: none;
+    background-color: royalblue;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 .3rem .3rem #E8E8E8;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 500px) {
+  .container-4o4 {
+    padding: 1rem;
+  }
+  .not-found-msg {
+    width: 100%;
+    height: fit-content;
+  }
+}

@@ -10,6 +10,7 @@ import TravelTopics from "../../components/sections/travel-topics/TravelTopics";
 import Contacts from "../../components/sections/contacts/Contacts";
 import ClaimReport from "../../components/sections/claim-report/ClaimReport";
 import ThankYou from "../../components/sections/thank-you/ThankYou";
+import PageNotFound from "../../components/sections/page-not-found/PageNotFound";
 //footer
 import Footer from "../../components/footer/Footer";
 //blocks
@@ -250,6 +251,14 @@ const Layout: React.FC = () => {
                   aria-labelledby="thank-you-header"
                 >
                   <ThankYou />
+                </section>
+              }
+            />
+            <Route
+              path="*"
+              element={
+                <section>
+                  <PageNotFound />
                 </section>
               }
             />

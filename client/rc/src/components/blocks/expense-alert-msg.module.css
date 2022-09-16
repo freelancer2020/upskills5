@@ -73,3 +73,14 @@ strong {
   color: #36454f;
   cursor: pointer;
 }
+
+@media only screen and (max-width: 500px) {
+  .alert-msg-container {
+    width: 99vw;
+  }
+  .alert-msg-close {
+    width: 20%;
+    padding: 0.5rem;
+    font-size: small;
+  }
+}

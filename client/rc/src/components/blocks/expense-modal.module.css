@@ -70,3 +70,13 @@
 .error-field-msg {
   color: Red;
 }
+
+@media only screen and (max-width: 500px) {
+  .input-row {
+    margin-bottom: .2rem;
+    margin-top: .2rem;
+  }
+  .modal-container {
+    width: 95vw;
+  }
+}

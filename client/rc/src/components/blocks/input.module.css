@@ -47,16 +47,17 @@ input {
   min-width: 12rem;
   height: fit-content;
 }
-/* input[type="radio"] {
-  width: 1.3rem;
-} */
+
 
 @media only screen and (max-width: 500px) {
   .input-row {
-    width: 100vw;
+    width: 98vw;
     padding: 0.8rem 1rem 0.8rem 1rem;
+
   }
+
   .personal-input {
     width: 100%;
   }
+ 
 }

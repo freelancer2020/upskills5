@@ -52,6 +52,9 @@
   .expense-report-container {
     padding: 1rem;
   }
+  .empty-list-image {
+    width: 95vw;
+  }
 }
 
 @media only screen and (min-width: 1536px) {

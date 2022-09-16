@@ -8,6 +8,7 @@ export type ExpenseObj = {
 export type MetaAlertData = {
   subMsg: string;
   ariaLabelMsg: string;
+  forSubmit: boolean;
 };
 
 export type ExpenseItems = {
@@ -22,6 +23,7 @@ const initExpenseState: ExpenseItems = {
   metaAlertData: {
     subMsg: "",
     ariaLabelMsg: "",
+    forSubmit: false,
   },
 };
 
@@ -49,16 +51,25 @@ export const expenseSlice = createSlice({
       const type = payload.payload;
       switch (type) {
         case "Added":
+          state.metaAlertData.forSubmit = false;
           state.isAlertMsg = true;
           state.metaAlertData.subMsg = "Your expense item has been added";
           state.metaAlertData.ariaLabelMsg =
             "Your expense item has been added successfully";
           break;
         case "Removed":
+          state.metaAlertData.forSubmit = false;
           state.isAlertMsg = true;
           state.metaAlertData.subMsg = "Your expense item has been removed";
           state.metaAlertData.ariaLabelMsg =
             "Your expense item has been removed successfully";
+          break;
+        case "submit error":
+          state.metaAlertData.forSubmit = true;
+          state.isAlertMsg = true;
+          state.metaAlertData.subMsg = "Please add expense report then submit";
+          state.metaAlertData.ariaLabelMsg =
+            "Please add expense report then submit";
           break;
         default:
           return state;

@@ -18,7 +18,17 @@
   border-radius: 1rem 0 0 1rem;
 }
 
-.suc-icon {
+.alert-error-msg-icon {
+  height: 100%;
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f44336;
+  border-radius: 1rem 0 0 1rem;
+}
+
+.suc-and-error-icon {
   font-size: 3rem;
   color: #fff;
 }

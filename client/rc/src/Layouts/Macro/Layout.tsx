@@ -9,6 +9,7 @@ import InternationalVisitor from "../../components/sections/international-visito
 import TravelTopics from "../../components/sections/travel-topics/TravelTopics";
 import Contacts from "../../components/sections/contacts/Contacts";
 import ClaimReport from "../../components/sections/claim-report/ClaimReport";
+import ThankYou from "../../components/sections/thank-you/ThankYou";
 //footer
 import Footer from "../../components/footer/Footer";
 //blocks
@@ -238,6 +239,17 @@ const Layout: React.FC = () => {
                   >
                     Contact
                   </h2>
+                </section>
+              }
+            />
+            <Route
+              path="/Thank-you"
+              element={
+                <section
+                  id="thank-you-section"
+                  aria-labelledby="thank-you-header"
+                >
+                  <ThankYou />
                 </section>
               }
             />

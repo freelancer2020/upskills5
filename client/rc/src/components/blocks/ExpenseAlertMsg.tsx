@@ -3,12 +3,15 @@ import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import expenseItemsActions from "../../store/expenseItems";
 import { AppDispatch } from "../../store/appStore";
+//Icons
+import { BiError } from "react-icons/bi";
 import { MdOutlineDone } from "react-icons/md";
 import styles from "./expense-alert-msg.module.css";
 
 interface ExpenseAlertPrpos {
   submsg: string;
   ariaLabelMsg: string;
+  forSubmit: boolean;
 }
 
 const ExpenseAlertMsg: React.FC<ExpenseAlertPrpos> = (props) => {
@@ -24,8 +27,19 @@ const ExpenseAlertMsg: React.FC<ExpenseAlertPrpos> = (props) => {
   };
   return (
     <div role="alert" className={styles["alert-msg-container"]}>
-      <div aria-hidden={true} className={styles["alert-msg-icon"]}>
-        <MdOutlineDone className={styles["suc-icon"]} />
+      <div
+        aria-hidden={true}
+        className={
+          props.forSubmit
+            ? `${styles["alert-error-msg-icon"]}`
+            : `${styles["alert-msg-icon"]}`
+        }
+      >
+        {props.forSubmit ? (
+          <BiError className={styles["suc-and-error-icon"]} />
+        ) : (
+          <MdOutlineDone className={styles["suc-and-error-icon"]} />
+        )}
       </div>
       <div
         ref={currentRef}
@@ -33,7 +47,7 @@ const ExpenseAlertMsg: React.FC<ExpenseAlertPrpos> = (props) => {
         tabIndex={0}
         className={styles["alert-msg-text"]}
       >
-        <strong>Success</strong>
+        {props.forSubmit ? <strong>Error</strong> : <strong>Success</strong>}
         <span className={styles["alert-submsg"]}>{props.submsg}</span>
       </div>
       <div className={styles["alert-msg-close"]}>

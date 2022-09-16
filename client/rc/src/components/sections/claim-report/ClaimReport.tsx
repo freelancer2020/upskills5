@@ -5,9 +5,11 @@ import { RootState, AppDispatch } from "../../../store/appStore";
 //Actions
 import claimActions from "../../../store/claimSteps";
 import toastActions from "../../../store/claimToast";
+import expenseItemsActions from "../../../store/expenseItems";
 
 //@Types
 import { ClaimData } from "../../../store/claimData";
+import { ExpenseObj } from "../../../store/expenseItems";
 
 import personalValidationActions from "../../../store/claimPersonalValidation";
 import incidentlValidationActions from "../../../store/claimIncidentValidations";
@@ -78,6 +80,10 @@ const ClaimReport: React.FC = () => {
     (state) => state.claimToast.hasError
   );
 
+  const expenseItems = useSelector<RootState, ExpenseObj[]>(
+    (state) => state.expenseItems.items
+  );
+
   const allData = useSelector<RootState, ClaimData>((state) => state.claimData);
 
   const dispatch = useDispatch<AppDispatch>();
@@ -106,6 +112,10 @@ const ClaimReport: React.FC = () => {
 
   const continueHandler = () => {
     if (stepDone) {
+      if (expenseItems.length <= 0) {
+        dispatch(expenseItemsActions.openAlertMsg("submit error"));
+        return false;
+      }
       const claimAllData = {
         ...allData.personalDetailsData,
         ...allData.incidentDetailsData,
@@ -148,9 +158,17 @@ const ClaimReport: React.FC = () => {
         `,
           }),
         })
-        .then((response) => response.text())
+        .then((response) => {
+          if (response.status !== 200) {
+            return;
+          } else {
+            navigate("/Thank-you");
+            window.localStorage.removeItem("personal");
+            window.localStorage.removeItem("incident");
+            return response.text();
+          }
+        })
         .then((data) => console.log(data));
-      return false;
     }
     claimObject.current?.scrollIntoView(true);
 
@@ -170,7 +188,6 @@ const ClaimReport: React.FC = () => {
       navigate("/claim-report/incident-details");
     } else if (claimStep === 2) {
       const dataValidations = validator(incidentState);
-      console.log("debugging", dataValidations);
       for (let i in dataValidations) {
         if (dataValidations[i] === false) {
           window.localStorage.setItem("incident", "0");

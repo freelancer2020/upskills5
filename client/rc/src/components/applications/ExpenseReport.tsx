@@ -38,6 +38,7 @@ const ExpenseReport: React.FC = () => {
     <div className={styles["expense-report-container"]}>
       {alertMsgStatus && (
         <ExpenseAlertMsg
+          forSubmit={alertMetaData.forSubmit}
           ariaLabelMsg={alertMetaData.ariaLabelMsg}
           submsg={alertMetaData.subMsg}
         />

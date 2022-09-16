@@ -1,0 +1,12 @@
+.thank-you-container {
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 12rem 4rem 12rem;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.thank-you-icon {
+    font-size: 8rem;
+    color: #4bb543;
+}

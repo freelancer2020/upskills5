@@ -13,9 +13,6 @@ const resolvers = {
       return "In The Way";
     }
   },
-  // claimPersonalData(obj) {
-  //   console.log(obj)
-  // }
 };
 
 export default resolvers;

@@ -28,25 +28,3 @@ app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "/client/rc/build/index.html"));
 });
 
-// const data = {
-//   personalDetails: {
-//     firstName: "",
-//     secondName: "",
-//     birthday: "",
-//     phoneNumber: "",
-//     email: "",
-//     policyNumber: "",
-//   },
-//   incidentDetails: {
-//     travelPurpose: "",
-//     country: "",
-//     address: "",
-//     date: "",
-//     incidentDesc: "",
-//   },
-//   expenseReport: [
-//     { id: "", name: "", price: "" },
-//     { id: "", name: "", price: "" },
-//     { id: "", name: "", price: "" },
-//   ],
-// };

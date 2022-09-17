@@ -86,7 +86,6 @@ const Input: React.FC<InputProps> = (props) => {
             onChange={(e) => storeValue(e)}
             required
             aria-live="polite"
-            aria-describedby={props.label}
             aria-invalid={!isValid}
             aria-errormessage={props.label}
             aria-required={true}

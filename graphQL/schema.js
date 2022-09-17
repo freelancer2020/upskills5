@@ -20,7 +20,6 @@ input AllData {
     email: String!
 }
 
-
 type RootQuery {
     test: obj!
 }
@@ -36,28 +35,3 @@ schema {
 `);
 
 export default schema;
-
-/*
-
-input AllData {
-    incidentDetailsData : {
-        Adress: String!
-        Country: String!
-        Date: String!
-        incidentDesc: String!
-        travelPurpose: String!
-    }
-    personalDetailsData: {
-        Birthday: String!
-        Email: String!
-        First name: String!
-        Phone number: String!
-        Policy number: String!
-        Second name: String!
-    }
-}
-
- claimAllData(data: AllData): String!
-
-
-*/

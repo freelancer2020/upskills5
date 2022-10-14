@@ -7,6 +7,7 @@ import validatorX from "../../utilities/validatorX";
 import { AppDispatch, RootState } from "../../store/appStore";
 import claimDataActions from "../../store/claimData";
 import { useDispatch, useSelector } from "react-redux";
+import { GlobalValidations } from "../../store/claimToast";
 //Actions
 import toastActions from "../../store/claimToast";
 
@@ -30,6 +31,10 @@ interface Sig {
   [index: string]: string;
 }
 
+interface Siig {
+  [index: string]: boolean;
+}
+
 const Input: React.FC<InputProps> = (props) => {
   const [isValid, setIsValid] = useState<boolean>(true);
   const dispatch = useDispatch<AppDispatch>();
@@ -39,6 +44,10 @@ const Input: React.FC<InputProps> = (props) => {
 
   const incidentValues = useSelector<RootState, Sig>(
     (state) => state.claimData.incidentDetailsData
+  );
+
+  const globalValidations = useSelector<RootState, Siig>(
+    (state) => state.claimToast.globalValidation
   );
 
   const storeValue = (
@@ -82,11 +91,12 @@ const Input: React.FC<InputProps> = (props) => {
                 ? inputsValue[props.label]
                 : incidentValues[props.label]
             }
-            style={{ border: isValid ? "" : "2px solid red" }}
+            // style={{ border: isValid ? "" : "2px solid red" }}
             onChange={(e) => storeValue(e)}
             required
+            aria-autocomplete="inline"
             aria-live="polite"
-            aria-invalid={!isValid}
+            aria-invalid={globalValidations[props.label] ? "false" : "true"}
             aria-errormessage={props.label}
             aria-required={true}
             placeholder={props.placeholder}
@@ -101,7 +111,10 @@ const Input: React.FC<InputProps> = (props) => {
             id={props.label}
             className={styles["error-field-msg"]}
           >
-            {isValid ? "" : `Please provide a valid ${props.label}`}
+            {/* {isValid ? "" : `Please provide a valid ${props.label}`} */}
+            {globalValidations[props.label]
+              ? ""
+              : `Please provide a valid ${props.label}`}
           </i>
         </li>
       )}

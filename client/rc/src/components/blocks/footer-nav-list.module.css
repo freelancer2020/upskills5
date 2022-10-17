@@ -34,3 +34,9 @@ ul {
     text-align: center;
   }
 }
+
+@media only screen and (max-width: 1024px) {
+  ul {
+    padding: .2rem;
+  }
+}

@@ -16,11 +16,11 @@ const ToastMessage: React.FC = () => {
   }, []);
 
   const closeHandler = () => {
-    dispatch(toastActions.hasNoError());
+    dispatch(toastActions.hasNoError(null));
   };
 
   const keyboardCloseHandler = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    return e.key === "Enter" ? dispatch(toastActions.hasNoError()) : null;
+    return e.key === "Enter" ? dispatch(toastActions.hasNoError(null)) : null;
   };
 
   return (

@@ -54,7 +54,7 @@ const inputs = [
   {
     category: "Personal Details",
     label: "Policy number",
-    type: "number",
+    type: "text",
     name: "personal_policy_number",
     id: "personal_policy_number",
     placeholder: "Policy number",
@@ -68,7 +68,7 @@ const PersonalDetailsApp: React.FC = () => {
   );
 
   useEffect(() => {
-    dispatch(toastActions.hasNoError());
+    dispatch(toastActions.hasNoError(null));
   }, [dispatch]);
 
   return (

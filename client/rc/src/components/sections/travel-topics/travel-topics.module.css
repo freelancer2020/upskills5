@@ -18,3 +18,10 @@
     padding: 0 3rem 0 3rem;
   }
 }
+
+@media only screen and (max-width: 1024px) {
+  .topics-row {
+    padding: 0rem;
+
+  }
+}

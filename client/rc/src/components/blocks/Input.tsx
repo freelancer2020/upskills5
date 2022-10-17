@@ -7,7 +7,6 @@ import validatorX from "../../utilities/validatorX";
 import { AppDispatch, RootState } from "../../store/appStore";
 import claimDataActions from "../../store/claimData";
 import { useDispatch, useSelector } from "react-redux";
-import { GlobalValidations } from "../../store/claimToast";
 //Actions
 import toastActions from "../../store/claimToast";
 
@@ -31,7 +30,7 @@ interface Sig {
   [index: string]: string;
 }
 
-interface Siig {
+export interface Siig {
   [index: string]: boolean;
 }
 
@@ -57,7 +56,7 @@ const Input: React.FC<InputProps> = (props) => {
     const validation = validatorX(value, props.label);
     setIsValid(validation);
     dispatch(claimDataActions.dataHandler({ type: props.label, value: value }));
-    dispatch(toastActions.hasNoError());
+    dispatch(toastActions.hasNoError(props.label));
   };
 
   return (
@@ -65,6 +64,7 @@ const Input: React.FC<InputProps> = (props) => {
       {props.radiosgroup ? (
         <li className={styles["radio-row"]}>
           <input
+            aria-errormessage="travel-purpose"
             onChange={(e) => storeValue(e)}
             value={props.selectValue}
             checked={
@@ -111,7 +111,6 @@ const Input: React.FC<InputProps> = (props) => {
             id={props.label}
             className={styles["error-field-msg"]}
           >
-            {/* {isValid ? "" : `Please provide a valid ${props.label}`} */}
             {globalValidations[props.label]
               ? ""
               : `Please provide a valid ${props.label}`}

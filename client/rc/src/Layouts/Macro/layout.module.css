@@ -12,10 +12,10 @@
 }
 .header::after {
   content: "";
-  background: #E8E8E8;
+  background: #e8e8e8;
   position: absolute;
   margin: auto;
-  bottom:0;
+  bottom: 0;
   left: 0;
   right: 0;
   height: 2px;
@@ -142,6 +142,17 @@ article {
   article {
     box-sizing: border-box;
     padding: 4rem 15rem 4rem 15rem;
+    width: 100vw;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .header {
+    height: fit-content;
+    padding: 0.5rem 0.2rem 0.5rem 0.2rem;
+  }
+  .article-container {
+    padding: 2rem;
     width: 100vw;
   }
 }

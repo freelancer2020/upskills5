@@ -57,3 +57,9 @@
     text-align: center;
   }
 }
+
+@media only screen and (max-width: 1024px) {
+  .contacts-container {
+    padding: 2rem;
+  }
+}

@@ -181,7 +181,7 @@ const ClaimReport: React.FC = () => {
           return false;
         }
       }
-      dispatch(toastActions.hasNoError());
+      dispatch(toastActions.hasNoError(null));
       window.localStorage.setItem("personal", "1");
       dispatch(claimActions.continue());
       dispatch(personalValidationActions.getValidations(dataValidations));
@@ -196,7 +196,7 @@ const ClaimReport: React.FC = () => {
         }
       }
 
-      dispatch(toastActions.hasNoError());
+      dispatch(toastActions.hasNoError(null));
       window.localStorage.setItem("incident", "1");
       dispatch(claimActions.continue());
       dispatch(incidentlValidationActions.getValidations(dataValidations));

@@ -4,9 +4,12 @@ import Input from "../blocks/Input";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store/appStore";
 
+//Actions
+import toastActions from "../../store/claimToast";
 //@Types
 import { ClaimIncidentValidation } from "../../store/claimIncidentValidations";
 import claimDataActions from "../../store/claimData";
+import { Siig } from "../blocks/Input";
 
 //validator x
 import validatorX from "../../utilities/validatorX";
@@ -95,6 +98,10 @@ const IncidentDetailsApp: React.FC = () => {
     (state) => state.claimData.incidentDetailsData.incidentDesc
   );
 
+  const globalValidations = useSelector<RootState, Siig>(
+    (state) => state.claimToast.globalValidation
+  );
+
   const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
     const validation = validatorX(value, "Incident description");
@@ -105,6 +112,7 @@ const IncidentDetailsApp: React.FC = () => {
         value: value,
       })
     );
+    dispatch(toastActions.hasNoError("Incident description"));
   };
   return (
     <div className={styles["incident-app-container"]}>
@@ -134,6 +142,15 @@ const IncidentDetailsApp: React.FC = () => {
               />
             ))}
           </fieldset>
+          <i
+            role="alert"
+            id="travel-purpose"
+            className={styles["error-field-msg"]}
+          >
+            {globalValidations["Purpose of Travel"]
+              ? ""
+              : `Please pselect Purpose of Travel`}
+          </i>
         </ul>
         <div className={styles["incident-app-container"]}>
           <ul style={{ width: "100%" }}>
@@ -154,14 +171,24 @@ const IncidentDetailsApp: React.FC = () => {
           <div className={styles["text-container"]}>
             <label htmlFor="text">Incident description</label>
             <textarea
+              aria-errormessage="incident-error"
               value={incidentDesc}
               onChange={changeHandler}
               required
               aria-required={true}
               id="text"
               className={styles["text-area"]}
-              style={{ border: isValid ? "" : "2px solid red" }}
+              // style={{ border: isValid ? "" : "2px solid red" }}
             ></textarea>
+            <i
+              role="alert"
+              id="incident-error"
+              className={styles["error-field-msg"]}
+            >
+              {globalValidations["Incident description"]
+                ? ""
+                : "Please provide incident description"}
+            </i>
           </div>
         </div>
       </div>

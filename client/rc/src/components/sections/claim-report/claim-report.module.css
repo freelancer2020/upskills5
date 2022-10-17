@@ -99,3 +99,9 @@ ol {
     justify-content: space-between;
   }
 }
+
+@media only screen and (max-width: 1024px) {
+  .claim-report-container {
+    padding: 2rem;
+  }
+}

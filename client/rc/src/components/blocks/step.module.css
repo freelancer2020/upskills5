@@ -38,3 +38,16 @@
     margin-bottom: 1rem;
   }
 }
+
+@media only screen and (max-width: 1024px) {
+  .active {
+    margin: .5rem;
+    padding: .1rem;
+    display: flex;
+  }
+  .de-active {
+    margin: .5rem;
+    padding: .1rem;
+    display: flex;
+  }
+}

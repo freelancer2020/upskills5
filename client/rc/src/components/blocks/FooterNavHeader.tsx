@@ -5,9 +5,7 @@ import profilePic from "../../assets/profilePic.png";
 const FootrNavHeader: React.FC = () => {
   return (
     <div className={styles["footer-header-container"]}>
-      <h2 tabIndex={0} aria-label="Insurer name">
-        The Insurer
-      </h2>
+      <h2 aria-label="Insurer name">The Insurer</h2>
       <img className={styles["profile-icon"]} src={profilePic} alt="" />
     </div>
   );

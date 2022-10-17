@@ -231,7 +231,7 @@ const ClaimReport: React.FC = () => {
           <ToastMessageAlert />
         </div>
       )}
-      <h1 id="claim-header" tabIndex={0} className={styles["claim-header"]}>
+      <h1 id="claim-header" className={styles["claim-header"]}>
         Claim Report
       </h1>
       <nav className={styles["breadcrumb"]} aria-label="Breadcrumb">
@@ -247,6 +247,16 @@ const ClaimReport: React.FC = () => {
           ))}
         </ol>
       </nav>
+      {claimStep === 1 && (
+        <div className={styles["attention"]}>
+          All fields marked with * are required
+        </div>
+      )}
+      {claimStep === 2 && (
+        <div className={styles["attention"]}>
+          All fields marked with * are required
+        </div>
+      )}
       <div className={styles["claim-report-app-container"]}>
         {claimStep === 1 && <PersonalDetailsApp />}
         {claimStep === 2 && <IncidentDetailsApp />}

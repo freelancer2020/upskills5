@@ -5,7 +5,6 @@ const TravelInsurance: React.FC = () => {
   return (
     <div className={styles["travel-insurance-container"]}>
       <h2
-        tabIndex={0}
         id="Travel-Insurance"
         className={styles["travel-ins-header"]}
       >

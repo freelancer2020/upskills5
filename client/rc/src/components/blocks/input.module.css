@@ -11,9 +11,17 @@ input {
   opacity: 1;
 }
 
+.label-row {
+  box-sizing: border-box;
+  padding: 0 0 0.2rem 0;
+}
+.astr {
+  margin-left: 0.2rem;
+}
+
 .error-field-msg {
   font-size: small;
-  color: red;
+  color: #B22222;
 }
 .app-container {
   display: flex;
@@ -40,7 +48,6 @@ input {
   align-items: center;
   box-sizing: border-box;
   padding: 0.3rem;
-
 }
 .radio-label {
   padding: 0 0 0 0.7rem;
@@ -48,16 +55,13 @@ input {
   height: fit-content;
 }
 
-
 @media only screen and (max-width: 500px) {
   .input-row {
     width: 98vw;
     padding: 0.8rem 1rem 0.8rem 1rem;
-
   }
 
   .personal-input {
     width: 100%;
   }
- 
 }

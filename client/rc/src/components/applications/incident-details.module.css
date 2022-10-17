@@ -19,9 +19,9 @@ fieldset {
 }
 
 .incident-header {
-  width: 100%;
+  width: fit-content;
   box-sizing: border-box;
-  padding: 0rem 16rem 0rem 16rem;
+  padding: 0rem 0rem 0rem 16rem;
 }
 
 .text-container {
@@ -40,6 +40,16 @@ fieldset {
 
 .error-field-msg {
   color: red;
+}
+
+.label-row {
+  display: flex;
+  align-items: center;
+}
+
+.astr {
+  margin-left: 0.2rem;
+  font-weight: bold;
 }
 
 @media only screen and (max-width: 500px) {

@@ -80,6 +80,11 @@ ol {
     padding: 0 1rem 0 1rem;
   }
 }
+.attention {
+  padding: 2rem;
+  box-sizing: border-box;
+  font-weight: bold;
+}
 
 @media only screen and (min-width: 1536px) {
   .claim-report-container {

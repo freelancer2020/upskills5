@@ -16,9 +16,9 @@ interface ExpenseAlertPrpos {
 
 const ExpenseAlertMsg: React.FC<ExpenseAlertPrpos> = (props) => {
   const dispatch = useDispatch<AppDispatch>();
-  const currentRef = useRef<HTMLDivElement>(null);
+ // const currentRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    currentRef.current?.focus();
+    // currentRef.current?.focus();
     setTimeout(() => dispatch(expenseItemsActions.closeAlertMsg()), 3000);
   }, [dispatch]);
 
@@ -26,7 +26,7 @@ const ExpenseAlertMsg: React.FC<ExpenseAlertPrpos> = (props) => {
     dispatch(expenseItemsActions.closeAlertMsg());
   };
   return (
-    <div role="alert" className={styles["alert-msg-container"]}>
+    <div role="status" className={styles["alert-msg-container"]}>
       <div
         aria-hidden={true}
         className={
@@ -42,7 +42,7 @@ const ExpenseAlertMsg: React.FC<ExpenseAlertPrpos> = (props) => {
         )}
       </div>
       <div
-        ref={currentRef}
+        // ref={currentRef}
         aria-label={props.ariaLabelMsg}
         tabIndex={0}
         className={styles["alert-msg-text"]}
@@ -53,7 +53,7 @@ const ExpenseAlertMsg: React.FC<ExpenseAlertPrpos> = (props) => {
       <div className={styles["alert-msg-close"]}>
         <button
           onClick={closeAlerHandler}
-          aria-label="Close Alert Message"
+          // aria-label="Close Alert Message"
           className={styles["alert-msg-btn"]}
           type="button"
         >

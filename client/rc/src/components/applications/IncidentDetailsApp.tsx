@@ -117,9 +117,12 @@ const IncidentDetailsApp: React.FC = () => {
   return (
     <div className={styles["incident-app-container"]}>
       <div className={styles["radios-container"]}>
-        <h2 className={styles["incident-header"]} id="group_label_1">
-          Purpose of Travel
-        </h2>
+        <div className={styles["label-row"]}>
+          <h2 className={styles["incident-header"]} id="group_label_1">
+            Purpose of Travel
+          </h2>
+          <span className={styles["astr"]}>*</span>
+        </div>
         <ul
           aria-labelledby="group_label_1"
           tabIndex={0}
@@ -169,7 +172,10 @@ const IncidentDetailsApp: React.FC = () => {
             ))}
           </ul>
           <div className={styles["text-container"]}>
-            <label htmlFor="text">Incident description</label>
+            <div className={styles["label-row"]}>
+              <label htmlFor="text">Incident description</label>
+              <span className={styles["astr"]}>*</span>
+            </div>
             <textarea
               aria-errormessage="incident-error"
               value={incidentDesc}
@@ -178,7 +184,6 @@ const IncidentDetailsApp: React.FC = () => {
               aria-required={true}
               id="text"
               className={styles["text-area"]}
-              // style={{ border: isValid ? "" : "2px solid red" }}
             ></textarea>
             <i
               role="alert"

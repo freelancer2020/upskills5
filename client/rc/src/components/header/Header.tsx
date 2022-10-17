@@ -42,7 +42,7 @@ const Header: React.FC = () => {
               : `${styles["static-header"]}`
           }
         >
-          <h1 aria-label="Insurer name" tabIndex={0}>
+          <h1 aria-label="Insurer name">
             {" "}
             The Insurer
           </h1>

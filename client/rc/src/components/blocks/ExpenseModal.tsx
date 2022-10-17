@@ -78,7 +78,7 @@ const ExpenseModal: React.FC = () => {
     <div onClick={closeModalHandler} className={styles["modal-mirror"]}>
       <div
         ref={currentRef}
-        role="alertdialog"
+        role="dialog"
         tabIndex={0}
         aria-modal={true}
         onClick={(e) => preventHandler(e)}

@@ -175,7 +175,6 @@ const Layout: React.FC = () => {
                   >
                     <div className={styles["article-container"]}>
                       <h2
-                        tabIndex={0}
                         id="article-header"
                         className={styles["article-text"]}
                       >
@@ -220,7 +219,6 @@ const Layout: React.FC = () => {
               element={
                 <section id="about-us">
                   <h2
-                    tabIndex={0}
                     aria-labelledby="about-us"
                     style={{ textAlign: "center" }}
                   >
@@ -234,7 +232,6 @@ const Layout: React.FC = () => {
               element={
                 <section id="contact" aria-labelledby="contact-header">
                   <h2
-                    tabIndex={0}
                     id="contact-header"
                     style={{ textAlign: "center" }}
                   >

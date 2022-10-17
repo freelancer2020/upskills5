@@ -22,7 +22,6 @@ const PageNotFound: React.FC = () => {
         <h2
           ref={currentRef}
           onKeyDown={(e) => goToHomeAcc(e)}
-          tabIndex={0}
           className={styles["not-found-msg"]}
           aria-label="We couldn't find this page, press enter to back to the home page"
           role="alert"

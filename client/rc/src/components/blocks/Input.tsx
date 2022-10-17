@@ -84,14 +84,18 @@ const Input: React.FC<InputProps> = (props) => {
         </li>
       ) : (
         <li className={styles["input-row"]} key={props.id}>
-          <label htmlFor={props.id}>{props.label}</label>
+          <div className={styles["label-row"]}>
+            <label title={`${props.label} is required`} htmlFor={props.id}>
+              {props.label}
+            </label>
+            <span className={styles["astr"]}>*</span>
+          </div>
           <input
             value={
               props.category === "Personal Details"
                 ? inputsValue[props.label]
                 : incidentValues[props.label]
             }
-            // style={{ border: isValid ? "" : "2px solid red" }}
             onChange={(e) => storeValue(e)}
             required
             aria-autocomplete="inline"

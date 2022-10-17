@@ -5,10 +5,10 @@ const Contacts: React.FC = () => {
   return (
     <div className={styles["contacts-container"]}>
       <div className={styles["contact-text"]}>
-        <h2 className={styles["contact-header"]} tabIndex={0}>
+        <h2 className={styles["contact-header"]}>
           Are you Looking for an Insurance?
         </h2>
-        <h3 id="contact-us-now" tabIndex={0}>
+        <h3 id="contact-us-now">
           Contact us to order now
         </h3>
       </div>

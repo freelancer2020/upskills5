@@ -62,7 +62,57 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
       className={styles["item-container"]}
       style={{ boxShadow: itemHovered ? "0 0 2px 2px #F0F0F0" : "" }}
     >
-      <div className={styles["item-data-container"]}>
+      <table style={{ width: "100%" }}>
+        <tr>
+          <td className={styles["expense-price"]}>
+            <b aria-label={`Price item is ${props.itemPrice}`} tabIndex={0}>
+              {" "}
+              {priceItem}
+            </b>
+          </td>
+          <td className={styles["expense-text"]}>
+            <p
+              onInput={(e) => itemTextInputHandler(e)}
+              aria-label={`Item name is ${props.itemText}`}
+              tabIndex={0}
+              ref={textEditRef}
+            >
+              {textItem}
+            </p>
+          </td>
+          <td style={{ width: "10%" }}>
+            <button
+              onMouseOver={handleItemHover}
+              onMouseOut={handleItemBlur}
+              onClick={() => removeItemHandler(props.id)}
+              aria-label="Delete the report item"
+              type="button"
+              className={styles["expense-item-btn"]}
+            >
+              <MdOutlineDelete
+                aria-hidden={true}
+                className={styles["expense-item-del"]}
+              />
+            </button>
+          </td>
+          <td style={{ width: "10%" }}>
+            <button
+              onMouseOver={handleItemHover}
+              onMouseOut={handleItemBlur}
+              onClick={editContent}
+              aria-label="Edit the report item"
+              type="button"
+              className={styles["expense-item-btn"]}
+            >
+              <GrEdit
+                aria-hidden={true}
+                className={styles["expense-item-edit"]}
+              />
+            </button>
+          </td>
+        </tr>
+      </table>
+      {/* <div className={styles["item-data-container"]}>
         <b
           onInput={(e) => itemPriceInputHandler(e)}
           aria-label={`Price item is ${props.itemPrice}`}
@@ -83,8 +133,8 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
         >
           {textItem}
         </p>
-      </div>
-      <div className={styles["item-control-container"]}>
+      </div> */}
+      {/* <div className={styles["item-control-container"]}>
         <button
           onMouseOver={handleItemHover}
           onMouseOut={handleItemBlur}
@@ -108,7 +158,7 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
         >
           <GrEdit aria-hidden={true} className={styles["expense-item-edit"]} />
         </button>
-      </div>
+      </div> */}
     </li>
   );
 };

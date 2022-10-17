@@ -17,9 +17,14 @@
 }
 
 .expense-price {
-  box-sizing: border-box;
-  padding: 0 1.5rem 0 0;
   font-size: 1.3rem;
+  width: 10%;
+}
+
+.expense-text {
+  width: 70%; 
+  height: fit-content;
+  word-break: break-all;
 }
 
 .item-control-container {

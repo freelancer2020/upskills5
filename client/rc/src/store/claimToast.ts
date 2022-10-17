@@ -43,7 +43,7 @@ export const toastSlice = createSlice({
   reducers: {
     hasError(state, payload) {
       const validation = payload.payload;
-      console.log("Error", validation)
+      console.log("Error", validation);
       state.hasError = true;
       if (!validation.validateDate) {
         state.globalValidation.Birthday = false;
@@ -140,11 +140,36 @@ export const toastSlice = createSlice({
       if (label === "Incident description") {
         state.globalValidation["Incident description"] = true;
       }
-      if (label === "tourism" || label === "study / mental work" || "physical work" || "high_risk sport") {
+      if (
+        label === "tourism" ||
+        label === "study / mental work" ||
+        "physical work" ||
+        "high_risk sport"
+      ) {
         state.globalValidation["Purpose of Travel"] = true;
       }
 
       state.hasError = false;
+    },
+    clearIncidentErrors(state) {
+      state.globalValidation = {
+        ...state.globalValidation,
+        Country: true,
+        Address: true,
+        Date: true,
+        "Incident description": true,
+      };
+    },
+    clearPErsonalErrors(state) {
+      state.globalValidation = {
+        ...state.globalValidation,
+        "First name": true,
+        "Second name": true,
+        Birthday: true,
+        "Phone number": true,
+        Email: true,
+        "Policy number": true,
+      };
     },
   },
 });

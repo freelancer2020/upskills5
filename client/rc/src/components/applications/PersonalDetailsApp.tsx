@@ -69,6 +69,7 @@ const PersonalDetailsApp: React.FC = () => {
 
   useEffect(() => {
     dispatch(toastActions.hasNoError(null));
+    dispatch(toastActions.clearPErsonalErrors());
   }, [dispatch]);
 
   return (

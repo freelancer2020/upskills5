@@ -149,7 +149,7 @@ const IncidentDetailsApp: React.FC = () => {
           >
             {globalValidations["Purpose of Travel"]
               ? ""
-              : `Please pselect Purpose of Travel`}
+              : `Please select Purpose of Travel`}
           </i>
         </ul>
         <div className={styles["incident-app-container"]}>

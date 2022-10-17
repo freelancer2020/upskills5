@@ -173,6 +173,7 @@ const ClaimReport: React.FC = () => {
     claimObject.current?.scrollIntoView(true);
 
     if (claimStep === 1) {
+      dispatch(toastActions.clearIncidentErrors());
       const dataValidations = validator(personalState);
       for (let i in dataValidations) {
         if (dataValidations[i] === false) {

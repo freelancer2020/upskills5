@@ -38,7 +38,11 @@ const ModalButton: React.FC<ModalButtonProps> = (props) => {
       }
       type="button"
     >
-      {props.type === "cancel" ? "Cancel" : "Add"}
+      {props.type === "cancel"
+        ? "Cancel"
+        : props.type === "update"
+        ? "Update"
+        : "Add"}
     </button>
   );
 };

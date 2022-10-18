@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
+
 //Redux
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store/appStore";
 import expenseItemsActions from "../../store/expenseItems";
+import expenseModalActions from "../../store/expenseModal";
 
 import { MdOutlineDelete } from "react-icons/md";
 import { GrEdit } from "react-icons/gr";
@@ -12,6 +14,12 @@ type ExpenseItemProps = {
   itemText: string;
   itemPrice: string;
   id: string;
+};
+
+type ExpenseItemData = {
+  id: string;
+  price: string;
+  text: string;
 };
 
 const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
@@ -54,6 +62,10 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
 
   const handleItemBlur = () => {
     setItemHover(false);
+  };
+
+  const updateExpenseItem = (data: ExpenseItemData) => {
+    dispatch(expenseModalActions.upDateExpenseItem(data));
   };
 
   return (
@@ -105,6 +117,13 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
               className={styles["expense-item-btn"]}
             >
               <GrEdit
+                onClick={() =>
+                  updateExpenseItem({
+                    id: props.id,
+                    price: props.itemPrice,
+                    text: props.itemText,
+                  })
+                }
                 aria-hidden={true}
                 className={styles["expense-item-edit"]}
               />

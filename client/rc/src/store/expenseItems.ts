@@ -44,6 +44,18 @@ export const expenseSlice = createSlice({
       );
       state.items = filterItems;
     },
+
+    upDateItems(state, payload) {
+      let updatedItem = payload.payload;
+      let arr = state.items;
+      arr.forEach((item, index) => {
+        if (index.toString() === updatedItem.id) {
+          item.itemText = updatedItem.text;
+          item.itemPrice = updatedItem.price;
+        }
+      });
+      state.items = [...arr];
+    },
     closeAlertMsg(state) {
       state.isAlertMsg = false;
     },

@@ -3,8 +3,10 @@ import ReactDOM from "react-dom";
 //icons
 import { AiOutlineCloseCircle } from "react-icons/ai";
 //redux
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store/appStore";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store/appStore";
+//@types
+import { InitModalData } from "../../store/expenseModal";
 //Actions
 import expenseModalActions from "../../store/expenseModal";
 import expenseItemsActions from "../../store/expenseItems";
@@ -42,13 +44,19 @@ const ExpenseModal: React.FC = () => {
     const value = e.target.value;
     setItemText(value);
     setIsValidName(true);
+    dispatch(expenseModalActions.writeExpenseName(value));
   };
 
   const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setItemPrice(value);
     setIsValidPrice(true);
+    dispatch(expenseModalActions.writeExpensePrice(value));
   };
+
+  const modalData = useSelector<RootState, InitModalData>(
+    (state) => state.expenseModal.modalData
+  );
 
   const addExpenseHandler = () => {
     if (itemText.length <= 0) {
@@ -72,6 +80,11 @@ const ExpenseModal: React.FC = () => {
       const root = document.getElementById("root") as HTMLDivElement;
       root.scrollIntoView(true);
     }
+  };
+
+  const updateExpenseHandler = () => {
+    dispatch(expenseItemsActions.upDateItems(modalData));
+    dispatch(expenseModalActions.closeModal());
   };
 
   return (
@@ -106,6 +119,7 @@ const ExpenseModal: React.FC = () => {
         <div className={styles["input-row"]}>
           <label htmlFor="name">Name</label>
           <input
+            value={modalData.text}
             ref={nameRef}
             aria-describedby="name-error-msg"
             onChange={(e) => handleNameChange(e)}
@@ -125,6 +139,7 @@ const ExpenseModal: React.FC = () => {
         <div className={styles["input-row"]}>
           <label htmlFor="price">Price</label>
           <input
+            value={modalData.price}
             ref={priceRef}
             aria-describedby="price-error-msg"
             onChange={(e) => handlePriceChange(e)}
@@ -142,7 +157,12 @@ const ExpenseModal: React.FC = () => {
         </div>
         <div className={styles["modal-buttons"]}>
           <ModalButton type="cancel" />
-          <ModalButton click={addExpenseHandler} type="add" />
+          {modalData.id.length > 0 && (
+            <ModalButton type="update" click={updateExpenseHandler} />
+          )}
+          {modalData.id.length <= 0 && (
+            <ModalButton type="submit" click={addExpenseHandler} />
+          )}
         </div>
       </div>
     </div>

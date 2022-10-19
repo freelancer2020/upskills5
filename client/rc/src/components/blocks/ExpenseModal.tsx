@@ -120,6 +120,8 @@ const ExpenseModal: React.FC = () => {
         <div className={styles["input-row"]}>
           <label htmlFor="name">Name</label>
           <input
+            required={true}
+            aria-required={true}
             value={modalData.text}
             ref={nameRef}
             aria-describedby="name-error-msg"
@@ -140,6 +142,8 @@ const ExpenseModal: React.FC = () => {
         <div className={styles["input-row"]}>
           <label htmlFor="price">Price</label>
           <input
+            required={true}
+            aria-required={true}
             value={modalData.price}
             ref={priceRef}
             aria-describedby="price-error-msg"

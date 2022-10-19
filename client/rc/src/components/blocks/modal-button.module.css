@@ -22,3 +22,11 @@
   font-weight: bold;
   margin-left: 0.5rem;
 }
+
+.modal-button-cancel:focus-visible {
+  border: 3px solid #6082b6;
+}
+
+.modal-button-add:focus-visible {
+  border: 3px solid #6495ed;
+}

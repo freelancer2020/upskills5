@@ -144,7 +144,7 @@ const ExpenseModal: React.FC = () => {
             ref={priceRef}
             aria-describedby="price-error-msg"
             onChange={(e) => handlePriceChange(e)}
-            id="name"
+            id="price"
             type="text"
             placeholder="15$"
           />

@@ -83,9 +83,20 @@ const ExpenseModal: React.FC = () => {
   };
 
   const updateExpenseHandler = () => {
-    dispatch(expenseItemsActions.upDateItems(modalData));
-    dispatch(expenseModalActions.closeModal());
-    dispatch(expenseItemsActions.openAlertMsg("updated"));
+    if (itemText.length <= 0) {
+      setIsValidName(false);
+      nameRef.current?.focus();
+    } else if (itemPrice.length <= 0) {
+      setIsValidPrice(false);
+      priceRef.current?.focus();
+    } else {
+      setIsValidPrice(true);
+      setIsValidName(true);
+
+      dispatch(expenseItemsActions.upDateItems(modalData));
+      dispatch(expenseModalActions.closeModal());
+      dispatch(expenseItemsActions.openAlertMsg("updated"));
+    }
   };
 
   return (

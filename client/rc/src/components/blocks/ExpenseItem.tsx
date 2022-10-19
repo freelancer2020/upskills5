@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 //Redux
 import { useDispatch } from "react-redux";
@@ -25,30 +25,17 @@ type ExpenseItemData = {
 const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
   const dispatch = useDispatch<AppDispatch>();
   const [itemHovered, setItemHover] = useState<boolean>(false);
-
   const [priceItem, setPriceItem] = useState<string>("");
   const [textItem, setTextItem] = useState<string>("");
-
-  const textEditRef = useRef<HTMLParagraphElement>(null);
-  const priceEditRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setPriceItem(props.itemPrice);
     setTextItem(props.itemText);
   }, [props.itemPrice, props.itemText]);
 
-  const editContent = () => {
-    priceEditRef.current?.focus();
-  };
-
   const itemTextInputHandler = (e: React.FormEvent<HTMLParagraphElement>) => {
     const value = e.currentTarget.textContent;
     return value ? setTextItem(value) : null;
-  };
-
-  const itemPriceInputHandler = (e: React.FormEvent) => {
-    const value = e.currentTarget.textContent;
-    return value ? setPriceItem(value) : null;
   };
 
   const removeItemHandler = (id: string) => {
@@ -87,7 +74,6 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
               onInput={(e) => itemTextInputHandler(e)}
               aria-label={`Item name is ${props.itemText}`}
               tabIndex={0}
-              ref={textEditRef}
             >
               {textItem}
             </p>
@@ -111,19 +97,18 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
             <button
               onMouseOver={handleItemHover}
               onMouseOut={handleItemBlur}
-              onClick={editContent}
-              aria-label="Edit the report item"
+              aria-label="update the report item"
               type="button"
               className={styles["expense-item-btn"]}
+              onClick={() =>
+                updateExpenseItem({
+                  id: props.id,
+                  price: props.itemPrice,
+                  text: props.itemText,
+                })
+              }
             >
               <GrEdit
-                onClick={() =>
-                  updateExpenseItem({
-                    id: props.id,
-                    price: props.itemPrice,
-                    text: props.itemText,
-                  })
-                }
                 aria-hidden={true}
                 className={styles["expense-item-edit"]}
               />
@@ -131,53 +116,6 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
           </td>
         </tr>
       </table>
-      {/* <div className={styles["item-data-container"]}>
-        <b
-          onInput={(e) => itemPriceInputHandler(e)}
-          aria-label={`Price item is ${props.itemPrice}`}
-          tabIndex={0}
-          ref={priceEditRef}
-          className={styles["expense-price"]}
-          contentEditable={true}
-        >
-          {priceItem}
-        </b>
-        <p
-          onInput={(e) => itemTextInputHandler(e)}
-          aria-label={`Item name is ${props.itemText}`}
-          tabIndex={0}
-          ref={textEditRef}
-          className={styles["expense-text"]}
-          contentEditable={true}
-        >
-          {textItem}
-        </p>
-      </div> */}
-      {/* <div className={styles["item-control-container"]}>
-        <button
-          onMouseOver={handleItemHover}
-          onMouseOut={handleItemBlur}
-          onClick={() => removeItemHandler(props.id)}
-          aria-label="Delete the report item"
-          type="button"
-          className={styles["expense-item-btn"]}
-        >
-          <MdOutlineDelete
-            aria-hidden={true}
-            className={styles["expense-item-del"]}
-          />
-        </button>
-        <button
-          onMouseOver={handleItemHover}
-          onMouseOut={handleItemBlur}
-          onClick={editContent}
-          aria-label="Edit the report item"
-          type="button"
-          className={styles["expense-item-btn"]}
-        >
-          <GrEdit aria-hidden={true} className={styles["expense-item-edit"]} />
-        </button>
-      </div> */}
     </li>
   );
 };

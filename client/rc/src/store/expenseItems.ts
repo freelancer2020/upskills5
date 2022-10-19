@@ -83,6 +83,13 @@ export const expenseSlice = createSlice({
           state.metaAlertData.ariaLabelMsg =
             "Please add expense report then submit";
           break;
+        case "updated":
+          state.metaAlertData.forSubmit = false;
+          state.isAlertMsg = true;
+          state.metaAlertData.subMsg = "Your expense item has been updated";
+          state.metaAlertData.ariaLabelMsg =
+            "Your expense item has been updated successfully";
+          break;
         default:
           return state;
       }

@@ -85,6 +85,7 @@ const ExpenseModal: React.FC = () => {
   const updateExpenseHandler = () => {
     dispatch(expenseItemsActions.upDateItems(modalData));
     dispatch(expenseModalActions.closeModal());
+    dispatch(expenseItemsActions.openAlertMsg("updated"));
   };
 
   return (

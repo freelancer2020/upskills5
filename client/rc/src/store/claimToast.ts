@@ -43,8 +43,7 @@ export const toastSlice = createSlice({
   reducers: {
     hasError(state, payload) {
       const validation = payload.payload;
-      console.log("Error", validation);
-      state.hasError = true;
+      //state.hasError = true;
       if (!validation.validateDate) {
         state.globalValidation.Birthday = false;
       } else {

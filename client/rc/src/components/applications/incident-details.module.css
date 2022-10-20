@@ -96,3 +96,25 @@ fieldset {
     padding: 2rem;
   }
 }
+
+@-moz-document url-prefix() {
+  @media only screen and (min-width: 1536px) {
+    .incident-app-container {
+      padding: 1rem 24rem 2rem 24rem;
+    }
+
+    .radiogroup {
+      padding: 0rem 24rem 0rem 24rem;
+    }
+
+    .incident-header {
+      padding: 0rem 24rem 0rem 24rem;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .incident-app-container {
+      padding: 2rem;
+    }
+  }
+}

@@ -156,3 +156,25 @@ article {
     width: 100vw;
   }
 }
+
+@-moz-document url-prefix() {
+  @media only screen and (min-width: 1536px) {
+    section,
+    article {
+      box-sizing: border-box;
+      padding: 4rem 15rem 4rem 15rem;
+      width: 100vw;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .header {
+      height: fit-content;
+      padding: 0.5rem 0.2rem 0.5rem 0.2rem;
+    }
+    .article-container {
+      padding: 2rem;
+      width: 100vw;
+    }
+  }
+}

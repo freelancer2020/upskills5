@@ -173,6 +173,7 @@ const ClaimReport: React.FC = () => {
     claimObject.current?.scrollIntoView(true);
 
     if (claimStep === 1) {
+
       dispatch(toastActions.clearIncidentErrors());
       const dataValidations = validator(personalState);
       for (let i in dataValidations) {
@@ -234,6 +235,7 @@ const ClaimReport: React.FC = () => {
       <h1 id="claim-header" className={styles["claim-header"]}>
         Claim Report
       </h1>
+      <form  style={{width: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
       <nav className={styles["breadcrumb"]} aria-label="Breadcrumb">
         <ol>
           {steps.map((step, index) => (
@@ -257,29 +259,30 @@ const ClaimReport: React.FC = () => {
           All fields marked with * are required
         </div>
       )}
-      <div className={styles["claim-report-app-container"]}>
-        {claimStep === 1 && <PersonalDetailsApp />}
-        {claimStep === 2 && <IncidentDetailsApp />}
-        {claimStep === 3 && <ExpenseReport />}
-      </div>
-      <div className={styles["claim-report-control-btns"]}>
-        <button
-          onClick={returnHandler}
-          style={{ visibility: isReturn ? "visible" : "hidden" }}
-          className={`${styles["claim-btn"]} ${styles["return"]}`}
-          type="button"
-        >
-          {" "}
-          Return
-        </button>
-        <button
-          onClick={continueHandler}
-          className={`${styles["claim-btn"]} ${styles["continue"]}`}
-          type="button"
-        >
-          {stepDone ? "Submit" : "Continue"}
-        </button>
-      </div>
+        <div className={styles["claim-report-app-container"]}>
+          {claimStep === 1 && <PersonalDetailsApp />}
+          {claimStep === 2 && <IncidentDetailsApp />}
+          {claimStep === 3 && <ExpenseReport />}
+        </div>
+        <div className={styles["claim-report-control-btns"]}>
+          <button
+            onClick={returnHandler}
+            style={{ visibility: isReturn ? "visible" : "hidden" }}
+            className={`${styles["claim-btn"]} ${styles["return"]}`}
+            type="button"
+          >
+            {" "}
+            Return
+          </button>
+          <button
+            onClick={continueHandler}
+            className={`${styles["claim-btn"]} ${styles["continue"]}`}
+            type="submit"
+          >
+            {stepDone ? "Submit" : "Continue"}
+          </button>
+        </div>
+        </form>
     </div>
   );
 };

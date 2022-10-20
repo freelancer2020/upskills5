@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 //validation
 import validatorX from "../../utilities/validatorX";
 
@@ -35,6 +35,7 @@ export interface Siig {
 }
 
 const Input: React.FC<InputProps> = (props) => {
+  const inputRef = useRef<HTMLInputElement>(null);
   const [isValid, setIsValid] = useState<boolean>(true);
   const dispatch = useDispatch<AppDispatch>();
   const inputsValue = useSelector<RootState, Sig>(
@@ -57,6 +58,12 @@ const Input: React.FC<InputProps> = (props) => {
     setIsValid(validation);
     dispatch(claimDataActions.dataHandler({ type: props.label, value: value }));
     dispatch(toastActions.hasNoError(props.label));
+  };
+
+  const customValidation = () => {
+    inputRef.current?.setCustomValidity(
+      `Please provide a valid  ${props.label}`
+    );
   };
 
   return (
@@ -96,13 +103,16 @@ const Input: React.FC<InputProps> = (props) => {
                 ? inputsValue[props.label]
                 : incidentValues[props.label]
             }
+            onInvalid={customValidation}
+            ref={inputRef}
             onChange={(e) => storeValue(e)}
-            required
-            aria-autocomplete="inline"
-            aria-live="polite"
-            aria-invalid={globalValidations[props.label] ? "false" : "true"}
-            aria-errormessage={props.label}
+            required={true}
             aria-required={true}
+            aria-autocomplete="inline"
+            autoComplete="on"
+            aria-describedby={`${props.id}_${props.name}`}
+            aria-invalid={globalValidations[props.label] ? false : true}
+            aria-errormessage={`${props.id}_${props.name}`}
             placeholder={props.placeholder}
             type={props.type}
             name={props.name}
@@ -111,8 +121,9 @@ const Input: React.FC<InputProps> = (props) => {
           />
 
           <i
+            aria-live="polite"
             role="alert"
-            id={props.label}
+            id={`${props.id}_${props.name}`}
             className={styles["error-field-msg"]}
           >
             {globalValidations[props.label]

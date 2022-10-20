@@ -110,3 +110,36 @@ ol {
     padding: 2rem;
   }
 }
+
+@-moz-document url-prefix() {
+  @media only screen and (min-width: 1536px) {
+    .claim-report-container {
+      padding: 4rem 24rem 4rem 24rem;
+    }
+    .claim-report-control-btns {
+      justify-content: space-between;
+      display: flex;
+      padding: 0;
+    }
+    .claim-header {
+      width: 100%;
+      text-align: left;
+    }
+    .breadcrumb {
+      padding: 0;
+      justify-content: space-between;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .claim-report-container {
+      padding: 2rem;
+    }
+  }
+
+  @media only screen and (max-width: 1163px) {
+    .claim-report-container {
+      padding: 6rem;
+    }
+  }
+}

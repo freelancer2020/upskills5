@@ -45,7 +45,29 @@ input {
 }
 
 @media only screen and (max-width: 1024px) {
- .app-container {
-  padding: 2rem;
- }
+  .app-container {
+    padding: 2rem;
+  }
+}
+
+@-moz-document url-prefix() {
+  @media only screen and (max-width: 1024px) {
+    .app-container {
+      padding: 2rem;
+    }
+  }
+  @media only screen and (max-width: 500px) {
+    .app-container {
+      padding: 0rem;
+    }
+    .form-row {
+      padding: 0rem;
+    }
+  }
+
+  @media only screen and (min-width: 1536px) {
+    .app-container {
+      padding: 4rem 24rem 4rem 24rem;
+    }
+  }
 }

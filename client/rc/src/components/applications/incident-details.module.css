@@ -45,6 +45,7 @@ fieldset {
 .label-row {
   display: flex;
   align-items: center;
+  width: fit-content;
 }
 
 .astr {

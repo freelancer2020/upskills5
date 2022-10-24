@@ -123,27 +123,30 @@ const IncidentDetailsApp: React.FC = () => {
           </h2>
           <span className={styles["astr"]}>*</span>
         </div>
-        <ul
+        <div
           aria-labelledby="group_label_1"
           tabIndex={0}
           className={styles["radiogroup"]}
         >
+          {" "}
           <fieldset>
             <legend></legend>
-            {radios.map((input, index) => (
-              <Input
-                selectValue={input.selectValue}
-                validation={true}
-                category={input.category}
-                radiosgroup
-                key={index.toString()}
-                type={input.type}
-                name={input.name}
-                label={input.label}
-                id={input.id}
-                placeholder={input.placeholder}
-              />
-            ))}
+            <ul>
+              {radios.map((input, index) => (
+                <Input
+                  selectValue={input.selectValue}
+                  validation={true}
+                  category={input.category}
+                  radiosgroup
+                  key={index.toString()}
+                  type={input.type}
+                  name={input.name}
+                  label={input.label}
+                  id={input.id}
+                  placeholder={input.placeholder}
+                />
+              ))}
+            </ul>
           </fieldset>
           <i
             role="alert"
@@ -155,7 +158,7 @@ const IncidentDetailsApp: React.FC = () => {
               ? ""
               : `Please select Purpose of Travel`}
           </i>
-        </ul>
+        </div>
         <div className={styles["incident-app-container"]}>
           <ul style={{ width: "100%" }}>
             {inputsIncident.map((input) => (

@@ -26,7 +26,7 @@ const ExpenseModal: React.FC = () => {
 
   const currentRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    currentRef.current?.focus();
+    nameRef.current?.focus();
   }, []);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -58,7 +58,12 @@ const ExpenseModal: React.FC = () => {
     (state) => state.expenseModal.modalData
   );
 
-  const addExpenseHandler = () => {
+  useEffect(() => {
+    setItemText(modalData.text);
+    setItemPrice(modalData.price);
+  }, [modalData.text, modalData.price]);
+  const addExpenseHandler = (e: React.FormEvent) => {
+    e.preventDefault();
     if (itemText.length <= 0) {
       setIsValidName(false);
       nameRef.current?.focus();
@@ -82,7 +87,8 @@ const ExpenseModal: React.FC = () => {
     }
   };
 
-  const updateExpenseHandler = () => {
+  const updateExpenseHandler = (e: React.FormEvent) => {
+    e.preventDefault();
     if (itemText.length <= 0) {
       setIsValidName(false);
       nameRef.current?.focus();
@@ -128,56 +134,65 @@ const ExpenseModal: React.FC = () => {
             Expense
           </h2>
         </div>
-        <div className={styles["input-row"]}>
-          <label htmlFor="name">Name</label>
-          <input
-            required={true}
-            aria-required={true}
-            value={modalData.text}
-            ref={nameRef}
-            aria-describedby="name-error-msg"
-            onChange={(e) => handleNameChange(e)}
-            className={styles["modal-input"]}
-            id="name"
-            type="text"
-            placeholder="e.x Mostafa"
-          />
-          <i
-            role="alert"
-            id="name-error-msg"
-            className={styles["error-field-msg"]}
-          >
-            {isValidName ? "" : `Please provide a valid name`}
-          </i>
-        </div>
-        <div className={styles["input-row"]}>
-          <label htmlFor="price">Price</label>
-          <input
-            required={true}
-            aria-required={true}
-            value={modalData.price}
-            ref={priceRef}
-            aria-describedby="price-error-msg"
-            onChange={(e) => handlePriceChange(e)}
-            id="price"
-            type="text"
-            placeholder="15$"
-          />
-          <i
-            role="alert"
-            id="price-error-msg"
-            className={styles["error-field-msg"]}
-          >
-            {isValidPrice ? "" : `Please provide a valid price`}
-          </i>
-        </div>
+        <form>
+          <div className={styles["input-row"]}>
+            <label htmlFor="name">Name</label>
+            <input
+              autoComplete="on"
+              aria-autocomplete="inline"
+              required={true}
+              aria-required={true}
+              value={modalData.text}
+              ref={nameRef}
+              aria-describedby="name-error-msg"
+              onChange={(e) => handleNameChange(e)}
+              className={styles["modal-input"]}
+              id="name"
+              type="text"
+              placeholder="e.x Mostafa"
+              aria-errormessage="name-error-msg"
+            />
+            <i
+              aria-live="polite"
+              role="alert"
+              id="name-error-msg"
+              className={styles["error-field-msg"]}
+            >
+              {isValidName ? "" : `Please provide a valid name`}
+            </i>
+          </div>
+          <div className={styles["input-row"]}>
+            <label htmlFor="price">Price</label>
+            <input
+              autoComplete="on"
+              aria-autocomplete="inline"
+              required={true}
+              aria-required={true}
+              value={modalData.price}
+              ref={priceRef}
+              aria-describedby="price-error-msg"
+              onChange={(e) => handlePriceChange(e)}
+              id="price"
+              type="text"
+              placeholder="15$"
+            />
+            <i
+              aria-live="polite"
+              role="alert"
+              id="price-error-msg"
+              className={styles["error-field-msg"]}
+            >
+              {isValidPrice ? "" : `Please provide a valid price`}
+            </i>
+          </div>
+        </form>
         <div className={styles["modal-buttons"]}>
           <ModalButton type="cancel" />
           {modalData.id.length > 0 && (
-            <ModalButton type="update" click={updateExpenseHandler} />
+            <ModalButton type="update" click={(e) => updateExpenseHandler(e)} />
           )}
           {modalData.id.length <= 0 && (
-            <ModalButton type="submit" click={addExpenseHandler} />
+            <ModalButton type="submit" click={(e) => addExpenseHandler(e)} />
           )}
         </div>
       </div>

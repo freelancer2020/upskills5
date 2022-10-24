@@ -110,8 +110,10 @@ const ClaimReport: React.FC = () => {
     }
   }, [dispatch, navigate]);
 
-  const continueHandler = () => {
+  const continueHandler = (e: React.FormEvent) => {
+    //e.preventDefault();
     if (stepDone) {
+      e.preventDefault();
       if (expenseItems.length <= 0) {
         dispatch(expenseItemsActions.openAlertMsg("submit error"));
         return false;
@@ -167,13 +169,11 @@ const ClaimReport: React.FC = () => {
             window.localStorage.removeItem("incident");
             return response.text();
           }
-        })
-        .then((data) => console.log(data));
+        });
     }
     claimObject.current?.scrollIntoView(true);
 
     if (claimStep === 1) {
-
       dispatch(toastActions.clearIncidentErrors());
       const dataValidations = validator(personalState);
       for (let i in dataValidations) {
@@ -198,11 +198,12 @@ const ClaimReport: React.FC = () => {
         }
       }
 
+      e.preventDefault();
+
       dispatch(toastActions.hasNoError(null));
       window.localStorage.setItem("incident", "1");
       dispatch(claimActions.continue());
       dispatch(incidentlValidationActions.getValidations(dataValidations));
-
       navigate("/claim-report/expense-report");
     } else {
       return false;
@@ -235,30 +236,37 @@ const ClaimReport: React.FC = () => {
       <h1 id="claim-header" className={styles["claim-header"]}>
         Claim Report
       </h1>
-      <form  style={{width: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
-      <nav className={styles["breadcrumb"]} aria-label="Breadcrumb">
-        <ol>
-          {steps.map((step, index) => (
-            <Step
-              key={index.toString()}
-              id={step.id}
-              path={step.path}
-              stepName={step.stepName}
-              stepNumber={step.stepNumber}
-            />
-          ))}
-        </ol>
-      </nav>
-      {claimStep === 1 && (
-        <div className={styles["attention"]}>
-          All fields marked with * are required
-        </div>
-      )}
-      {claimStep === 2 && (
-        <div className={styles["attention"]}>
-          All fields marked with * are required
-        </div>
-      )}
+      <form
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <nav className={styles["breadcrumb"]} aria-label="Breadcrumb">
+          <ol>
+            {steps.map((step, index) => (
+              <Step
+                key={index.toString()}
+                id={step.id}
+                path={step.path}
+                stepName={step.stepName}
+                stepNumber={step.stepNumber}
+              />
+            ))}
+          </ol>
+        </nav>
+        {claimStep === 1 && (
+          <div className={styles["attention"]}>
+            All fields marked with * are required
+          </div>
+        )}
+        {claimStep === 2 && (
+          <div className={styles["attention"]}>
+            All fields marked with * are required
+          </div>
+        )}
         <div className={styles["claim-report-app-container"]}>
           {claimStep === 1 && <PersonalDetailsApp />}
           {claimStep === 2 && <IncidentDetailsApp />}
@@ -282,7 +290,7 @@ const ClaimReport: React.FC = () => {
             {stepDone ? "Submit" : "Continue"}
           </button>
         </div>
-        </form>
+      </form>
     </div>
   );
 };

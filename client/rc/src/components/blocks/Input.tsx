@@ -60,12 +60,6 @@ const Input: React.FC<InputProps> = (props) => {
     dispatch(toastActions.hasNoError(props.label));
   };
 
-  const customValidation = () => {
-    inputRef.current?.setCustomValidity(
-      `Please provide a valid  ${props.label}`
-    );
-  };
-
   return (
     <React.Fragment>
       {props.radiosgroup ? (
@@ -77,7 +71,7 @@ const Input: React.FC<InputProps> = (props) => {
             checked={
               incidentValues.travelPurpose === props.label ? true : false
             }
-            aria-required="true"
+            aria-required={true}
             required
             placeholder={props.placeholder}
             type={props.type}
@@ -103,7 +97,6 @@ const Input: React.FC<InputProps> = (props) => {
                 ? inputsValue[props.label]
                 : incidentValues[props.label]
             }
-            onInvalid={customValidation}
             ref={inputRef}
             onChange={(e) => storeValue(e)}
             required={true}

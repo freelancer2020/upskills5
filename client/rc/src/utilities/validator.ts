@@ -46,7 +46,9 @@ const validator = (obj: PersonalDetailsData | IncidentDetailsData) => {
 
     const validations = [
       nameRegex.test(obj["Country"]),
-      nameRegex.test(obj["Address"]),
+      (function () {
+        return obj["Address"].length <= 0 ? false : true;
+      })(),
       (function () {
         return obj["Date"].length <= 0 ? false : true;
       })(),

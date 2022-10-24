@@ -147,6 +147,7 @@ const IncidentDetailsApp: React.FC = () => {
           </fieldset>
           <i
             role="alert"
+            aria-live="polite"
             id="travel-purpose"
             className={styles["error-field-msg"]}
           >
@@ -186,6 +187,7 @@ const IncidentDetailsApp: React.FC = () => {
               className={styles["text-area"]}
             ></textarea>
             <i
+              aria-live="polite"
               role="alert"
               id="incident-error"
               className={styles["error-field-msg"]}

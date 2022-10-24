@@ -47,17 +47,30 @@ const ExpenseReport: React.FC = () => {
       <div className={styles["expense-header"]}>
         <h2>Expense report</h2>
       </div>
-      <ul className={styles["report-list-items"]}>
-        {listExpenseItems.length > 0 &&
-          listExpenseItems.map((item, index) => (
-            <ExpenseItem
-              id={index.toString()}
-              itemPrice={item.itemPrice}
-              itemText={item.itemText}
-              key={index.toString()}
-            />
-          ))}
-      </ul>
+      <div className={styles["report-list-items"]}>
+        {listExpenseItems.length > 0 && (
+          <table>
+            <caption style={{ color: "#fff" }}>Expense List</caption>
+            <thead>
+              <tr>
+                <th scope="col">Price</th>
+                <th scope="col">Item</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Update</th>
+              </tr>
+            </thead>
+            {listExpenseItems.length > 0 &&
+              listExpenseItems.map((item, index) => (
+                <ExpenseItem
+                  id={index.toString()}
+                  itemPrice={item.itemPrice}
+                  itemText={item.itemText}
+                  key={index.toString()}
+                />
+              ))}
+          </table>
+        )}
+      </div>
       {listExpenseItems.length <= 0 && (
         <div>
           <img

@@ -10,6 +10,9 @@
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
+.table-data {
+  text-align: center;
+}
 
 .item-data-container {
   display: flex;

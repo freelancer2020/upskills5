@@ -16,6 +16,11 @@ table {
   box-sizing: border-box;
   padding-bottom: 2rem;
 }
+thead {
+  height: 3rem; 
+  background-color: #212121;
+  color: #fff;
+}
 .report-list-items {
   width: 100%;
   display: flex;

@@ -16,9 +16,9 @@ interface ExpenseAlertPrpos {
 
 const ExpenseAlertMsg: React.FC<ExpenseAlertPrpos> = (props) => {
   const dispatch = useDispatch<AppDispatch>();
- // const currentRef = useRef<HTMLDivElement>(null);
+  const currentRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    // currentRef.current?.focus();
+    currentRef.current?.focus();
     setTimeout(() => dispatch(expenseItemsActions.closeAlertMsg()), 3000);
   }, [dispatch]);
 
@@ -26,7 +26,11 @@ const ExpenseAlertMsg: React.FC<ExpenseAlertPrpos> = (props) => {
     dispatch(expenseItemsActions.closeAlertMsg());
   };
   return (
-    <div role="status" className={styles["alert-msg-container"]}>
+    <div
+      role="status"
+      aria-live="polite"
+      className={styles["alert-msg-container"]}
+    >
       <div
         aria-hidden={true}
         className={
@@ -42,9 +46,9 @@ const ExpenseAlertMsg: React.FC<ExpenseAlertPrpos> = (props) => {
         )}
       </div>
       <div
-        // ref={currentRef}
+        ref={currentRef}
         aria-label={props.ariaLabelMsg}
-        tabIndex={0}
+        // tabIndex={0}
         className={styles["alert-msg-text"]}
       >
         {props.forSubmit ? <strong>Error</strong> : <strong>Success</strong>}

@@ -111,8 +111,8 @@ const ClaimReport: React.FC = () => {
   }, [dispatch, navigate]);
 
   const continueHandler = (e: React.FormEvent) => {
+    e.preventDefault();
     if (stepDone) {
-      e.preventDefault();
       if (expenseItems.length <= 0) {
         dispatch(expenseItemsActions.openAlertMsg("submit error"));
         return false;

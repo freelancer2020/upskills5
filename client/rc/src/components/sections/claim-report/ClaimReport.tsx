@@ -110,8 +110,12 @@ const ClaimReport: React.FC = () => {
     }
   }, [dispatch, navigate]);
 
-  const continueHandler = (e: React.FormEvent) => {
+  const preventFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    return false;
+  };
+
+  const continueHandler = () => {
     if (stepDone) {
       if (expenseItems.length <= 0) {
         dispatch(expenseItemsActions.openAlertMsg("submit error"));
@@ -197,8 +201,6 @@ const ClaimReport: React.FC = () => {
         }
       }
 
-      e.preventDefault();
-
       dispatch(toastActions.hasNoError(null));
       window.localStorage.setItem("incident", "1");
       dispatch(claimActions.continue());
@@ -209,7 +211,9 @@ const ClaimReport: React.FC = () => {
     }
   };
 
-  const returnHandler = () => {
+  const returnHandler = (e: React.FormEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     const incidetGuard = window.localStorage.getItem("incident");
     claimObject.current?.scrollIntoView(true);
     dispatch(claimActions.returnBtn());
@@ -236,6 +240,7 @@ const ClaimReport: React.FC = () => {
         Claim Report
       </h1>
       <form
+        onSubmit={preventFormSubmit}
         style={{
           width: "100%",
           display: "flex",

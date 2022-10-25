@@ -39,7 +39,13 @@ fieldset {
 }
 
 .error-field-msg {
-  color: red;
+  color: #b22222;
+  font-family: "Alegreya Sans";
+  font-weight: bold;
+  line-height: 1.5em;
+  letter-spacing: 0.12rem;
+  font-size: small;
+
 }
 
 .label-row {

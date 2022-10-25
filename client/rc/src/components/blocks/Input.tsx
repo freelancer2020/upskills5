@@ -60,11 +60,19 @@ const Input: React.FC<InputProps> = (props) => {
     dispatch(toastActions.hasNoError(props.label));
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  };
+
   return (
     <React.Fragment>
       {props.radiosgroup ? (
         <li className={styles["radio-row"]}>
           <input
+            onKeyDown={handleKeyDown}
             aria-errormessage="travel-purpose"
             onChange={(e) => storeValue(e)}
             value={props.selectValue}
@@ -92,6 +100,7 @@ const Input: React.FC<InputProps> = (props) => {
             <span className={styles["astr"]}>*</span>
           </div>
           <input
+            onKeyDown={handleKeyDown}
             value={
               props.category === "Personal Details"
                 ? inputsValue[props.label]
@@ -112,7 +121,6 @@ const Input: React.FC<InputProps> = (props) => {
             id={props.id}
             className={styles["personal-input"]}
           />
-
           <i
             aria-live="polite"
             role="alert"

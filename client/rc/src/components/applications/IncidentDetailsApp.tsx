@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Input from "../blocks/Input";
 //redux
 import { useSelector, useDispatch } from "react-redux";
@@ -88,6 +88,7 @@ const inputsIncident = [
 ];
 
 const IncidentDetailsApp: React.FC = () => {
+  const headerRef = useRef<HTMLHeadingElement>(null);
   const dispatch = useDispatch<AppDispatch>();
   const [isValid, setIsValid] = useState<boolean>(true);
   const validations = useSelector<RootState, ClaimIncidentValidation>(
@@ -103,6 +104,7 @@ const IncidentDetailsApp: React.FC = () => {
   );
 
   const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    e.preventDefault();
     const value = e.target.value;
     const validation = validatorX(value, "Incident description");
     setIsValid(validation);
@@ -114,20 +116,24 @@ const IncidentDetailsApp: React.FC = () => {
     );
     dispatch(toastActions.hasNoError("Incident description"));
   };
+
+  useEffect(() => {
+    headerRef.current?.focus();
+  }, []);
   return (
     <div className={styles["incident-app-container"]}>
       <div className={styles["radios-container"]}>
         <div className={styles["label-row"]}>
-          <h2 className={styles["incident-header"]} id="group_label_1">
+          <h2
+            ref={headerRef}
+            className={styles["incident-header"]}
+            id="group_label_1"
+          >
             Purpose of Travel
           </h2>
           <span className={styles["astr"]}>*</span>
         </div>
-        <div
-          aria-labelledby="group_label_1"
-          tabIndex={0}
-          className={styles["radiogroup"]}
-        >
+        <div aria-labelledby="group_label_1" className={styles["radiogroup"]}>
           {" "}
           <fieldset>
             <legend></legend>

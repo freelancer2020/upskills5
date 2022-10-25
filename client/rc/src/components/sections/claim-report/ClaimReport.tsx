@@ -115,7 +115,8 @@ const ClaimReport: React.FC = () => {
     return false;
   };
 
-  const continueHandler = () => {
+  const continueHandler = (e: React.FormEvent) => {
+    e.stopPropagation();
     if (stepDone) {
       if (expenseItems.length <= 0) {
         dispatch(expenseItemsActions.openAlertMsg("submit error"));
@@ -211,9 +212,7 @@ const ClaimReport: React.FC = () => {
     }
   };
 
-  const returnHandler = (e: React.FormEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const returnHandler = () => {
     const incidetGuard = window.localStorage.getItem("incident");
     claimObject.current?.scrollIntoView(true);
     dispatch(claimActions.returnBtn());
@@ -229,6 +228,7 @@ const ClaimReport: React.FC = () => {
       navigate("/claim-report/personal-details");
     }
   };
+
   return (
     <div ref={claimObject} className={styles["claim-report-container"]}>
       {claimHasError && (

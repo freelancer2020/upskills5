@@ -68,7 +68,12 @@
 }
 
 .error-field-msg {
-  color: Red;
+  color: #b22222;
+  font-family: "Alegreya Sans";
+  font-weight: bold;
+  line-height: 1.5em;
+  letter-spacing: 0.12rem;
+  font-size: small;
 }
 
 .modal-button-cancel {

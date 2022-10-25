@@ -22,14 +22,20 @@ const ModalButton: React.FC<ModalButtonProps> = (props) => {
       }
     }
   };
+
+  const setAriaLabel = () => {
+    if (props.type === "cancel") {
+      return "Cancel and close the modal";
+    } else if (props.type === "submit") {
+      return "Add Expense item and close the modal";
+    } else {
+      return "Update Expense item and close the modal";
+    }
+  };
   return (
     <button
       tabIndex={0}
-      aria-label={
-        props.type === "cancel"
-          ? "Cancel and close the modal"
-          : "Add Expense item"
-      }
+      aria-label={setAriaLabel()}
       onClick={clickHandler}
       className={
         props.type === "cancel"

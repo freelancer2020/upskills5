@@ -58,7 +58,7 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
   return (
     <tr>
       <td className={styles["table-data"]}>
-        <b aria-label={`Price item is ${props.itemPrice}`} tabIndex={0}>
+        <b aria-label={`Price item is ${props.itemPrice}`}>
           {" "}
           {priceItem}
         </b>
@@ -67,7 +67,6 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
         <p
           onInput={(e) => itemTextInputHandler(e)}
           aria-label={`Item name is ${props.itemText}`}
-          tabIndex={0}
         >
           {textItem}
         </p>

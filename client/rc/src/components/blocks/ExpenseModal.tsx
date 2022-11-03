@@ -174,7 +174,7 @@ const ExpenseModal: React.FC = () => {
               onChange={(e) => handlePriceChange(e)}
               id="price"
               type="text"
-              placeholder="15$"
+              placeholder="$15"
             />
             <i
               aria-live="polite"

@@ -6,7 +6,8 @@ interface ValidationObj {
 
 const validator = (obj: PersonalDetailsData | IncidentDetailsData) => {
   const nameRegex = /^[a-zA-Z ]{2,30}$/;
-  const phoneRegex = /^(\([0-9]{3}\)\s*|[0-9]{3}-)[0-9]{3}-[0-9]{3}$/;
+  // const phoneRegex = /^(\([0-9]{3}\)\s*|[0-9]{3}-)[0-9]{3}-[0-9]{3}$/;
+  const phoneRegex = /^\d+$/;
   const emailRegex =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const numberRegex = /^\d+$/;

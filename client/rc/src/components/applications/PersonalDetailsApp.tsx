@@ -41,7 +41,7 @@ const inputs = [
     type: "tel",
     name: "personal_phone_number",
     id: "personal_phone_number",
-    placeholder: "733-825-924",
+    placeholder: "e.g. 999999999",
   },
   {
     category: "Personal Details",

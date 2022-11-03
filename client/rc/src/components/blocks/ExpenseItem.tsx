@@ -58,7 +58,7 @@ const ExpenseItem: React.FC<ExpenseItemProps> = (props) => {
   return (
     <tr>
       <td className={styles["table-data"]}>
-        <b aria-label={`Price item is ${props.itemPrice}`}> {priceItem}</b>
+        <b aria-label={`Price item is ${props.itemPrice}`}> ${priceItem}</b>
       </td>
       <td className={styles["table-data"]}>
         <p

@@ -48,7 +48,7 @@ const ExpenseAlertMsg: React.FC<ExpenseAlertPrpos> = (props) => {
       <div
         ref={currentRef}
         aria-label={props.ariaLabelMsg}
-        // tabIndex={0}
+        tabIndex={0}
         className={styles["alert-msg-text"]}
       >
         {props.forSubmit ? <strong>Error</strong> : <strong>Success</strong>}

@@ -49,7 +49,7 @@ const ExpenseReport: React.FC = () => {
       </div>
       <div className={styles["report-list-items"]}>
         {listExpenseItems.length > 0 && (
-          <table>
+          <table role="presentation">
             <caption style={{ color: "#212121", fontWeight: "bold" }}>
               Expense List
             </caption>
